@@ -6,7 +6,8 @@
 
 There is no library currently built to interact with the [foursquare api](https://developer.foursquare.com/) using the fantastic
 [Guzzle HTTP Client library](https://github.com/guzzle/guzzle). Guzzle is awesome and supplies a lot of great things
-for building web service clients.
+for building web service clients. Guzzle is fully unit tested which allows this library to be a light wrapper around the Guzzle
+core. You can read more [about Guzzle here](http://guzzlephp.org/).
 
 ## Usage
 
@@ -22,7 +23,7 @@ $command = $client->getCommand('venues/search', array(
     'near' => 'Chicago, IL',
     'query' => 'sushi'
 ));
-$results = $command->execute();
+$results = $command->execute(); // returns an array of results
 ```
 
 You can find a list of the client's available commands in the bundle's
