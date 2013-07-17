@@ -1,6 +1,6 @@
 {
     "name": "jcroll/foursquare-api-client",
-    "type": "symfony-bundle",
+    "type": "library",
     "description": "PHP Foursquare Api Client",
     "keywords": ["foursquare"],
     "homepage": "https://github.com/jcroll/foursquare-api-client",
@@ -19,6 +19,5 @@
             "Jcroll\\FoursquareApiClient": "lib/",
             "Jcroll\\FoursquareApiClient\\Tests": "tests/"
         }
-    },
-    "target-dir": "Jcroll/FoursquareApiBundle"
+    }
 }
