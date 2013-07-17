@@ -1,0 +1,1029 @@
+{
+    "operations": {
+        "users": {
+            "description": "Returns profile information for a given user, including selected badges and mayorships. The web profile for a user is visible at https://foursquare.com/user/USER_ID ",
+            "httpMethod": "GET",
+            "parameters": {
+                "user_id": {
+                    "description": "Identity of the user to get details for. Pass self to get details of the acting user.",
+                    "location": "uri",
+                    "required": true
+                }
+            },
+            "uri": "users/{user_id}"
+        },
+        "users/leaderboard": {
+            "description": "Returns the user's leaderboard.",
+            "httpMethod": "GET",
+            "parameters": {
+                "user_id": {
+                    "description": "Number of friends' scores to return that are adjacent to your score, in ranked order. The current user's score is returned as well. An odd number of neighbors returns one more user ahead of the current user than behind. If the current user is at the top of the leaderboard, only the neighbors behind the current user are returned. If the current user is at the bottom of the leaderboard, only the neighbors ahead of the current user are returned. If neighbors is not specified, scores for all your friends are returned.",
+                    "location": "query"
+                }
+            },
+            "uri": "users/leaderboard"
+        },
+        "users/requests": {
+            "description": "Shows a user the list of users with whom they have a pending friend request (i.e., someone tried to add the acting user as a friend, but the acting user has not accepted).",
+            "httpMethod": "GET",
+            "uri": "users/requests"
+        },
+        "users/search": {
+            "description": "Helps a user locate friends.",
+            "httpMethod": "GET|POST",
+            "parameters": {
+                "phone": {
+                    "description": "A comma-delimited list of phone numbers to look for.",
+                    "location": "query"
+                },
+                "email": {
+                    "description": "A comma-delimited list of email addresses to look for.",
+                    "location": "query"
+                },
+                "twitter": {
+                    "description": "A comma-delimited list of Twitter handles to look for.",
+                    "location": "query"
+                },
+                "twitterSource": {
+                    "description": "A single Twitter handle. Results will be users that this handle follows on Twitter who use Foursquare.",
+                    "location": "query"
+                },
+                "fbid": {
+                    "description": "A comma-delimited list of Facebook ID's to look for.",
+                    "location": "query"
+                },
+                "name": {
+                    "description": "A single string to search for in users' names.",
+                    "location": "query"
+                }
+            },
+            "uri": "users/search"
+        },
+        "users/badges": {
+            "description": "Returns badges for a given user.",
+            "extends": "users",
+            "uri": "users/{user_id}/badges"
+        },
+        "users/checkins": {
+            "extends": "users",
+            "description": "Returns a history of checkins for the authenticated user.",
+            "parameters": {
+                "limit": {
+                    "description": "Number of results to return, up to 250.",
+                    "location": "query"
+                },
+                "offset": {
+                    "description": "The number of results to skip. Used to page through results.",
+                    "location": "query"
+                },
+                "sort": {
+                    "description": "How to sort the returned checkins. Can be newestfirst or oldestfirst.",
+                    "location": "query"
+                },
+                "afterTimestamp": {
+                    "description": "Retrieve the first results to follow these seconds since epoch. This should be useful for paging forward in time, or when polling for changes. To avoid missing results when polling, we recommend subtracting several seconds from the last poll time and then de-duplicating.",
+                    "location": "query"
+                },
+                "beforeTimestamp": {
+                    "description": "Retrieve the first results prior to these seconds since epoch. Useful for paging backward in time.",
+                    "location": "query"
+                }
+            },
+            "uri": "users/{user_id}/checkins"
+        },
+        "users/friends": {
+            "extends": "users",
+            "description": "Returns an array of a user's friends.",
+            "parameters": {
+                "limit": {
+                    "description": "Number of results to return, up to 500.",
+                    "location": "query"
+                },
+                "offset": {
+                    "description": "Used to page through results.",
+                    "location": "query"
+                }
+            },
+            "uri": "users/{user_id}/friends"
+        },
+        "users/lists": {
+            "extends": "users",
+            "description": "A User's Lists.",
+            "parameters": {
+                "group": {
+                    "description": "can be created (lists created by this user), edited (other people's lists this user has edited), followed (lists this user follows), friends (lists from this user's friends), and suggested (lists relevant to the user's current location).",
+                    "location": "query"
+                },
+                "ll": {
+                    "description": "Location of the user, required in order to receive the suggested group.",
+                    "location": "query"
+                }
+            },
+            "uri": "users/{user_id}/lists"
+        },
+        "users/mayorships": {
+            "extends": "users",
+            "description": "Returns a user's mayorships.",
+            "uri": "users/{user_id}/mayorships"
+        },
+        "users/photos": {
+            "extends": "users",
+            "description": "Returns photos from a user.",
+            "parameters": {
+                "limit": {
+                    "description": "Number of results to return, up to 500.",
+                    "location": "query"
+                },
+                "offset": {
+                    "description": "Used to page through results.",
+                    "location": "query"
+                }
+            },
+            "uri": "users/{user_id}/photos"
+        },
+        "users/tips": {
+            "extends": "users",
+            "deprecated": true,
+            "description": "Returns tips from a user.",
+            "parameters": {
+                "sort": {
+                    "description": "One of recent, nearby, or popular. Nearby requires geolat and geolong to be provided.",
+                    "location": "query"
+                },
+                "ll": {
+                    "description": "Latitude and longitude of the user's location.",
+                    "location": "query"
+                },
+                "limit": {
+                    "description": "Number of results to return, up to 500.",
+                    "location": "query"
+                },
+                "offset": {
+                    "description": "Used to page through results.",
+                    "location": "query"
+                }
+            },
+            "uri": "users/{user_id}/tips"
+        },
+        "users/todos": {
+            "extends": "users",
+            "description": "Returns todos from a user. ",
+            "parameters": {
+                "sort": {
+                    "description": "One of nearby or recent. Nearby requires geolat and geolong to be provided.",
+                    "location": "query"
+                },
+                "ll": {
+                    "description": "Latitude and longitude of the user's location.",
+                    "location": "query"
+                }
+            },
+            "uri": "users/{user_id}/todos"
+        },
+        "users/venuehistory": {
+            "extends": "users",
+            "description": "Returns a list of all venues visited by the specified user, along with how many visits and when they were last there.",
+            "parameters": {
+                "beforeTimestamp": {
+                    "description": "Seconds since epoch.",
+                    "location": "query"
+                },
+                "afterTimestamp": {
+                    "description": "Seconds after epoch.",
+                    "location": "query"
+                },
+                "categoryId": {
+                    "description": "Limits returned venues to those in this category. If specifying a top-level category, all sub-categories will also match the query.",
+                    "location": "query"
+                }
+            },
+            "uri": "users/{user_id}/venuehistory"
+        },
+        "users/approve": {
+            "extends": "users",
+            "description": "Approves a pending friend request from another user.",
+            "httpMethod": "POST",
+            "uri": "users/{user_id}/approve"
+        },
+        "users/deny": {
+            "extends": "users",
+            "description": "Denies a pending friend request from another user.",
+            "httpMethod": "POST",
+            "uri": "users/{user_id}/deny"
+        },
+        "users/request": {
+            "extends": "users",
+            "description": "Sends a friend request to another user. If the other user is a page then the requesting user will automatically start following the page.",
+            "httpMethod": "POST",
+            "uri": "users/{user_id}/request"
+        },
+        "users/setpings": {
+            "extends": "users",
+            "description": "Changes whether the acting user will receive pings (phone notifications) when the specified user checks in.",
+            "httpMethod": "POST",
+            "parameters": {
+                "value": {
+                    "description": "True or false.",
+                    "location": "query",
+                    "required": true
+                }
+            },
+            "uri": "users/{user_id}/setpings"
+        },
+        "users/unfriend": {
+            "extends": "users",
+            "description": "Cancels any relationship between the acting user and the specified user. ",
+            "httpMethod": "POST",
+            "uri": "users/{user_id}/unfriend"
+        },
+        "users/update": {
+            "description": "Updates the user's profile photo.",
+            "httpMethod": "POST",
+            "parameters": {
+                "photo": {
+                    "description": "Photo under 100KB in multipart MIME encoding with content type image/jpeg, image/gif, or image/png.",
+                    "location": "query"
+                }
+            },
+            "uri": "users/self/update"
+        },
+        "venues": {
+            "description": "Gives details about a venue, including location, mayorship, tags, tips, specials, and category. ",
+            "httpMethod": "GET",
+            "parameters": {
+                "venue_id": {
+                    "description": "ID of venue to retrieve",
+                    "location": "uri",
+                    "required": true
+                }
+            },
+            "uri": "venues/{venue_id}"
+        },
+        "venues/add": {
+            "description": "Allows users to add a new venue.",
+            "httpMethod": "POST",
+            "parameters": {
+                "name": {
+                    "description": "the name of the venue",
+                    "location": "query",
+                    "required": true
+                },
+                "address": {
+                    "description": "The address of the venue.",
+                    "location": "query"
+                },
+                "crossStreet": {
+                    "description": "The nearest intersecting street or streets.",
+                    "location": "query"
+                },
+                "city": {
+                    "description": "The city name where this venue is.",
+                    "location": "query"
+                },
+                "state": {
+                    "description": "The nearest state or province to the venue.",
+                    "location": "query"
+                },
+                "zip": {
+                    "description": "The zip or postal code for the venue.",
+                    "location": "query"
+                },
+                "phone": {
+                    "description": "The phone number of the venue.",
+                    "location": "query"
+                },
+                "twitter": {
+                    "description": "The twitter handle of the venue.",
+                    "location": "query"
+                },
+                "ll": {
+                    "description": "Latitude and longitude of the venue, as accurate as is known.",
+                    "location": "query",
+                    "required": true
+                },
+                "primaryCategoryId": {
+                    "description": "The ID of the category to which you want to assign this venue.",
+                    "location": "query"
+                },
+                "description": {
+                    "description": "A freeform description of the venue, up to 300 characters.",
+                    "location": "query"
+                },
+                "url": {
+                    "description": "The url of the homepage of the venue.",
+                    "location": "query"
+                },
+                "ignoreDuplicates": {
+                    "description": "A boolean flag telling the server to ignore duplicates and force the addition of this venue.",
+                    "location": "query"
+                },
+                "ignoreDuplicateKey": {
+                    "description": "equired if ignoreDuplicates is true. This key will be available in the response of the HTTP 409 error of the first (failed) attempt to add venue.",
+                    "location": "query"
+                }
+            },
+            "uri": "venues/add"
+        },
+        "venues/categories": {
+            "description": "Returns a hierarchical list of categories applied to venues.",
+            "httpMethod": "GET",
+            "uri": "venues/categories"
+        },
+        "venues/explore": {
+            "description": "Returns a list of recommended venues near the current location. ",
+            "httpMethod": "GET",
+            "parameters": {
+                "ll": {
+                    "description": "required unless near is provided. Latitude and longitude of the user's location.",
+                    "location": "query"
+                },
+                "near": {
+                    "description": "required unless ll is provided. A string naming a place in the world. If the near string is not geocodable, returns a failed_geocode error. Otherwise, searches within the bounds of the geocode and adds a geocode object to the response.",
+                    "location": "query"
+                },
+                "llAcc": {
+                    "description": "Accuracy of latitude and longitude, in meters.",
+                    "location": "query"
+                },
+                "alt": {
+                    "description": "Altitude of the user's location, in meters.",
+                    "location": "query"
+                },
+                "altAcc": {
+                    "description": "Accuracy of the user's altitude, in meters.",
+                    "location": "query"
+                },
+                "radius": {
+                    "description": "Radius to search within, in meters. If radius is not specified, a suggested radius will be used based on the density of venues in the area.",
+                    "location": "query"
+                },
+                "section": {
+                    "description": "One of food, drinks, coffee, shops, arts, outdoors, sights, trending or specials, nextVenues (venues frequently visited after a given venue), or topPicks (a mix of recommendations generated without a query from the user). Choosing one of these limits results to venues with the specified category or property.",
+                    "location": "query"
+                },
+                "query": {
+                    "description": "A term to be searched against a venue's tips, category, etc. The query parameter has no effect when a section is specified.",
+                    "location": "query"
+                },
+                "limit": {
+                    "description": "Number of results to return, up to 50.",
+                    "location": "query"
+                },
+                "offset": {
+                    "description": "Used to page through results.",
+                    "location": "query"
+                },
+                "novelty": {
+                    "description": "Pass new or old to limit results to places the acting user hasn't been or has been, respectively. Omitting this parameter returns a mixture of old and new venues.",
+                    "location": "query"
+                },
+                "friendVisits": {
+                    "description": "Pass visited or notvisited to limit results to places the acting user's friends have or haven't been, respectively. Omitting this parameter returns a mixture of venues to which the user's friends have or haven't been.",
+                    "location": "query"
+                },
+                "time": {
+                    "description": "Pass any to retrieve results for any time of day. Omitting this parameter returns results targeted to the current time of day.",
+                    "location": "query"
+                },
+                "day": {
+                    "description": "Pass any to retrieve results for any day of the week. Omitting this parameter returns results targeted to the current day of the week.",
+                    "location": "query"
+                },
+                "venuePhotos": {
+                    "description": "Boolean flag to include a photo in the response for each venue, if one is available. Default is 0 (no photos). Photos are returned as part of the venue JSON object.",
+                    "location": "query"
+                },
+                "lastVenue": {
+                    "description": "A venue ID to use in combination with the intent=nextVenues parameter, which returns venues users often visit after a given venue. If intent=nextVenues is specified but lastVenue is not, the user's last check-in will be used if it is within 2 hours. If the user has not checked in within the last 2 hours, no results will be returned.",
+                    "location": "query"
+                }
+            },
+            "uri": "venues/explore"
+        },
+        "venues/managed": {
+            "description": "Get a list of venues the current user manages.",
+            "httpMethod": "GET",
+            "parameters": {
+                "limit": {
+                    "description": "Number of managed venues to return. Defaults to 100, maximum is 1000.",
+                    "location": "query"
+                },
+                "offset": {
+                    "description": "Number of venues to skip over for paging. Defaults to 0.",
+                    "location": "query"
+                }
+            },
+            "uri": "venues/managed"
+        },
+        "venues/search": {
+            "description": "Returns a list of venues near the current location, optionally matching a search term. ",
+            "httpMethod": "GET",
+            "parameters": {
+                "ll": {
+                    "description": "required unless near is provided. Latitude and longitude of the user's location. (Required for query searches). Optional if using intent=global",
+                    "location": "query"
+                },
+                "near": {
+                    "description": "required unless ll is provided. A string naming a place in the world. If the near string is not geocodable, returns a failed_geocode error. Otherwise, searches within the bounds of the geocode. Adds a geocode object to the response. (Required for query searches)",
+                    "location": "query"
+                },
+                "llAcc": {
+                    "description": "Accuracy of latitude and longitude, in meters. (Does not currently affect search results.)",
+                    "location": "query"
+                },
+                "alt": {
+                    "description": "Altitude of the user's location, in meters. (Does not currently affect search results.)",
+                    "location": "query"
+                },
+                "altAcc": {
+                    "description": "Accuracy of the user's altitude, in meters. (Does not currently affect search results.)",
+                    "location": "query"
+                },
+                "query": {
+                    "description": "A search term to be applied against venue names.",
+                    "location": "query"
+                },
+                "limit": {
+                    "description": "Number of results to return, up to 50.",
+                    "location": "query"
+                },
+                "intent": {
+                    "description": "One of the values below, indicating your intent in performing the search. If no value is specified, defaults to checkin.",
+                    "location": "query"
+                },
+                "radius": {
+                    "description": "Limit results to venues within this many meters of the specified location. Defaults to a city-wide area. Only valid for requests with intent=browse, or requests with intent=checkin and categoryId or query. Does not apply to match intent requests. The maximum supported radius is currently 100,000 meters.",
+                    "location": "query"
+                },
+                "sw": {
+                    "description": "With ne, limits results to the bounding quadrangle defined by the latitude and longitude given by sw as its south-west corner, and ne as its north-east corner. The bounding quadrangle is only supported for intent=browse searches. Not valid with ll or radius. Bounding quadrangles with an area up to approximately 10,000 square kilometers are supported.",
+                    "location": "query"
+                },
+                "ne": {
+                    "description": "See sw",
+                    "location": "query"
+                },
+                "categoryId": {
+                    "description": "A comma separated list of categories to limit results to. If you specify categoryId specifying a radius may improve results. If specifying a top-level category, all sub-categories will also match the query. Does not apply to match intent requests.",
+                    "location": "query"
+                },
+                "url": {
+                    "description": "A third-party URL which we will attempt to match against our map of venues to URLs.",
+                    "location": "query"
+                },
+                "providerId": {
+                    "description": "Identifier for a known third party that is part of our map of venues to URLs, used in conjunction with linkedId.",
+                    "location": "query"
+                },
+                "linkedId": {
+                    "description": "1002207971611 Identifier used by third party specified in providerId, which we will attempt to match against our map of venues to URLs.",
+                    "location": "query"
+                }
+            },
+            "uri": "venues/search"
+        },
+        "venues/suggestcompletion": {
+            "description": "Returns a list of mini-venues partially matching the search term, near the location.",
+            "httpMethod": "GET",
+            "parameters": {
+                "ll": {
+                    "description": "Latitude and longitude of the user's location. (Required for query searches)",
+                    "location": "query",
+                    "required": true
+                },
+                "llAcc": {
+                    "description": "Accuracy of latitude and longitude, in meters. (Does not currently affect search results.)",
+                    "location": "query"
+                },
+                "alt": {
+                    "description": "Altitude of the user's location, in meters. (Does not currently affect search results.)",
+                    "location": "query"
+                },
+                "altAcc": {
+                    "description": "Accuracy of the user's altitude, in meters. (Does not currently affect search results.)",
+                    "location": "query"
+                },
+                "query": {
+                    "description": "A search term to be applied against titles. Must be at least 3 characters long.",
+                    "location": "query",
+                    "required": true
+                },
+                "limit": {
+                    "description": "Number of results to return, up to 100.",
+                    "location": "query"
+                },
+                "radius": {
+                    "description": "Limit results to venues within this many meters of the specified location. Defaults to a city-wide area. The maximum supported radius is currently 80,000 meters.",
+                    "location": "query"
+                }
+            },
+            "uri": "venues/suggestcompletion"
+        },
+        "venues/timeseries": {
+            "description": "Get daily venue stats for a list of venues over a time range.",
+            "httpMethod": "GET",
+            "parameters": {
+                "venueId": {
+                    "description": "A comma-separated list of venue ids to retrieve series data for. The current user must be the manager of all venues specified.",
+                    "location": "query"
+                },
+                "startAt": {
+                    "description": "The start of the time range to retrieve stats for (seconds since epoch).",
+                    "location": "query",
+                    "required": true
+                },
+                "endAt": {
+                    "description": "The end of the time range to retrieve stats for (seconds since epoch). If omitted, the current time is assumed.",
+                    "location": "query"
+                },
+                "fields": {
+                    "description": "Specifies which fields to return. May be one or more of totalCheckins, newCheckins, uniqueVisitors, sharing, genders, ages, hours, separated by commas.",
+                    "location": "query"
+                }
+            },
+            "uri": "venues/timeseries"
+        },
+        "venues/trending": {
+            "description": "Returns a list of venues near the current location with the most people currently checked in. ",
+            "httpMethod": "GET",
+            "parameters": {
+                "ll": {
+                    "description": "Latitude and longitude of the user's location.",
+                    "location": "query",
+                    "required": true
+                },
+                "limit": {
+                    "description": "Number of results to return, up to 50.",
+                    "location": "query"
+                },
+                "radius": {
+                    "description": "Radius in meters, up to approximately 2000 meters.",
+                    "location": "query"
+                }
+            },
+            "uri": "venues/trending"
+        },
+        "venues/events": {
+            "extends": "venues",
+            "description": "Allows you to access information about the current events at a place. ",
+            "httpMethod": "GET",
+            "uri": "venues/{venue_id}/events"
+        },
+        "venues/herenow": {
+            "extends": "venues",
+            "description": "Provides a count of how many people are at a given venue. ",
+            "httpMethod": "GET",
+            "parameters": {
+                "limit": {
+                    "description": "Number of results to return, up to 500.",
+                    "location": "query"
+                },
+                "offset": {
+                    "description": "Used to page through results.",
+                    "location": "query"
+                }
+            },
+            "uri": "venues/{venue_id}/herenow"
+        },
+        "venues/hours": {
+            "extends": "venues",
+            "description": "Returns hours for a venue. ",
+            "httpMethod": "GET",
+            "uri": "venues/{venue_id}/hours"
+        },
+        "venues/likes": {
+            "extends": "venues",
+            "description": "Returns friends and a total count of users who have liked this venue.",
+            "httpMethod": "GET",
+            "uri": "venues/{venue_id}/likes"
+        },
+        "venues/links": {
+            "extends": "venues",
+            "description": "Returns URLs or identifiers from third parties that have been applied to this venue, such as how the New York Times refers to this venue and a URL for additional information from nytimes.com. This is part of the foursquare Venue Map.",
+            "httpMethod": "GET",
+            "uri": "venues/{venue_id}/links"
+        },
+        "venues/listed": {
+            "extends": "venues",
+            "description": "The lists that this venue appears on",
+            "httpMethod": "GET",
+            "parameters": {
+                "group": {
+                    "description": "can be created, edited, followed, friends, other. If no acting user is present, only other is supported.",
+                    "location": "query"
+                },
+                "limit": {
+                    "description": "Number of results to return, up to 200.",
+                    "location": "query"
+                },
+                "offset": {
+                    "description": "Used to page through results. Must specify a group",
+                    "location": "query"
+                }
+            },
+            "uri": "venues/{venue_id}/listed"
+        },
+        "venues/menu": {
+            "extends": "venues",
+            "description": "",
+            "httpMethod": "GET",
+            "uri": "venues/{venue_id}/menu"
+        },
+        "venues/nextvenues": {
+            "extends": "venues",
+            "description": "Returns menu information for a venue.",
+            "httpMethod": "GET",
+            "uri": "venues/{venue_id}/nextvenues"
+        },
+        "venues/photos": {
+            "extends": "venues",
+            "description": "Returns photos for a venue.",
+            "parameters": {
+                "group": {
+                    "description": "If not specified, public venue photos are returned ordered by relevance. Pass venue for public venue photos, ordered by recency. Pass checkin for venue photos from friends (including non-public photos from recent checkins), ordered by recency.",
+                    "location": "query"
+                },
+                "limit": {
+                    "description": "Number of results to return, up to 200.",
+                    "location": "query"
+                },
+                "offset": {
+                    "description": "Used to page through results.",
+                    "location": "query"
+                }
+            },
+            "httpMethod": "GET",
+            "uri": "venues/{venue_id}/photos"
+        },
+        "venues/similar": {
+            "extends": "venues",
+            "description": "Returns a list of venues similar to the specified venue.",
+            "httpMethod": "GET",
+            "uri": "venues/{venue_id}/similar"
+        },
+        "venues/stats": {
+            "extends": "venues",
+            "description": "Get venue stats over a given time range. Only available to the manager of a venue.",
+            "parameters": {
+                "startAt": {
+                    "description": "he start of the time range to retrieve stats for (seconds since epoch). If omitted, all-time stats will be returned.",
+                    "location": "query"
+                },
+                "endAt": {
+                    "description": "The end of the time range to retrieve stats for (seconds since epoch). If omitted, the current time is assumed.",
+                    "location": "query"
+                }
+            },
+            "httpMethod": "GET",
+            "uri": "venues/{venue_id}/stats"
+        },
+        "venues/tips": {
+            "extends": "venues",
+            "description": "Returns tips for a venue. ",
+            "parameters": {
+                "sort": {
+                    "description": "One of friends, recent, or popular.",
+                    "location": "query"
+                },
+                "limit": {
+                    "description": "Number of results to return, up to 500.",
+                    "location": "query"
+                },
+                "offset": {
+                    "description": "Used to page through results.",
+                    "location": "query"
+                }
+            },
+            "httpMethod": "GET",
+            "uri": "venues/{venue_id}/tips"
+        },
+        "venues/dislike": {
+            "extends": "venues",
+            "description": "Allows the acting user to dislike or undo a previous dislike for a venue.",
+            "parameters": {
+                "set": {
+                    "default": 1,
+                    "description": "If 1, dislike this venue. If 0 undo a previous dislike for this venue. Default value is 1",
+                    "location": "query"
+                }
+            },
+            "httpMethod": "POST",
+            "uri": "venues/{venue_id}/dislike"
+        },
+        "venues/edit": {
+            "extends": "venues",
+            "description": "Allows you to make changes to a venue (acting user must be a superuser or venue manager). Any blank parameter deletes an old value, any unspecified parameter does nothing.",
+            "parameters": {
+                "name": {
+                    "description": "The name of the venue.",
+                    "location": "query"
+                },
+                "address": {
+                    "description": "The address of the venue.",
+                    "location": "query"
+                },
+                "crossStreet": {
+                    "description": "The nearest intersecting street or streets.",
+                    "location": "query"
+                },
+                "city": {
+                    "description": "The city name where this venue is.",
+                    "location": "query"
+                },
+                "state": {
+                    "description": "The nearest state or province to the venue.",
+                    "location": "query"
+                },
+                "zip": {
+                    "description": "The zip or postal code for the venue.",
+                    "location": "query"
+                },
+                "phone": {
+                    "description": "The phone number of the venue.",
+                    "location": "query"
+                },
+                "ll": {
+                    "description": "Latitude and longitude of the venue",
+                    "location": "query"
+                },
+                "categoryId": {
+                    "description": "The IDs of the category or categories to which you want to assign this venue (separate multiple IDs with commas).",
+                    "location": "query"
+                },
+                "twitter": {
+                    "description": "The twitter handle of the venue.",
+                    "location": "query"
+                },
+                "description": {
+                    "description": "A freeform description of the venue, up to 300 characters.",
+                    "location": "query"
+                },
+                "url": {
+                    "description": "The url of the homepage of the venue.",
+                    "location": "query"
+                },
+                "storeId": {
+                    "description": "An identifier used by the manager of the venue to distinguish between venues of the same name. Only visible to managers.",
+                    "location": "query"
+                },
+                "hours": {
+                    "description": "The hours for the venue, as a semi-colon separated list of open segments and named segments (e.g., brunch or happy hour). Open segments are formatted as day,start,end. Named segments additionally have a label, formatted as day,start,end,label. Days are formatted as integers with Monday = 1,...,Sunday = 7. Start and End are formatted as [+]HHMM format. Use 24 hour format (no colon), prefix with 0 for HH or MM less than 10. Use '+' prefix, i.e., +0230 to represent 2:30 am past midnight into the following day.",
+                    "location": "query"
+                }
+            },
+            "httpMethod": "POST",
+            "uri": "venues/{venue_id}/edit"
+        },
+        "venues/flag": {
+            "extends": "venues",
+            "description": "Allows users to indicate a venue is incorrect in some way. ",
+            "parameters": {
+                "problem": {
+                    "description": "One of mislocated, closed, duplicate, inappropriate, doesnt_exist, event_over",
+                    "location": "query",
+                    "required": true
+                },
+                "venueId": {
+                    "description": "ID of the duplicated venue (for problem duplicate)",
+                    "location": "query"
+                }
+            },
+            "httpMethod": "POST",
+            "uri": "venues/{venue_id}/flag"
+        },
+        "venues/like": {
+            "extends": "venues",
+            "description": "Allows the acting user to like or unlike a venue.",
+            "parameters": {
+                "set": {
+                    "default": 1,
+                    "description": "If 1, like this venue. If 0 unlike (un-do a previous like) it. Default value is 1.",
+                    "location": "query",
+                    "required": true
+                }
+            },
+            "httpMethod": "POST",
+            "uri": "venues/{venue_id}/like"
+        },
+        "venues/proposeedit": {
+            "extends": "venues",
+            "description": "Allows you to propose a change to a venue. ",
+            "parameters": {
+                "name": {
+                    "description": "The name of the venue.",
+                    "location": "query"
+                },
+                "address": {
+                    "description": "The address of the venue.",
+                    "location": "query"
+                },
+                "crossStreet": {
+                    "description": "The nearest intersecting street or streets.",
+                    "location": "query"
+                },
+                "city": {
+                    "description": "The city name where this venue is.",
+                    "location": "query"
+                },
+                "state": {
+                    "description": "The nearest state or province to the venue.",
+                    "location": "query"
+                },
+                "zip": {
+                    "description": "The zip or postal code for the venue.",
+                    "location": "query"
+                },
+                "phone": {
+                    "description": "The phone number of the venue.",
+                    "location": "query"
+                },
+                "ll": {
+                    "description": "Latitude and longitude of the venue",
+                    "location": "query"
+                },
+                "primaryCategoryId": {
+                    "description": "The ID of the category to which you want to assign this venue.",
+                    "location": "query"
+                },
+                "hours": {
+                    "description": "The hours for the venue, as a semi-colon separated list of open segments and named segments (e.g., brunch or happy hour). Open segments are formatted as day,start,end. Named segments additionally have a label, formatted as day,start,end,label. Days are formatted as integers with Monday = 1,...,Sunday = 7. Start and End are formatted as [+]HHMM format. Use 24 hour format (no colon), prefix with 0 for HH or MM less than 10. Use '+' prefix, i.e., +0230 to represent 2:30 am past midnight into the following day.",
+                    "location": "query"
+                }
+            },
+            "httpMethod": "POST",
+            "uri": "venues/{venue_id}/proposeedit"
+        },
+        "venues/setrole": {
+            "extends": "venues",
+            "description": "Sets a user's or page's role for a venue.",
+            "parameters": {
+                "userId": {
+                    "description": "The id of the user or brand page for which we are changing roles at this venue",
+                    "location": "query",
+                    "required": true
+                },
+                "role": {
+                    "description": "One of the values below, indicating the role that the user should receive at the venue.",
+                    "location": "query",
+                    "required": true
+                },
+                "visible": {
+                    "description": "Determines whether managers are visible on the venue profile. Only applies to manager role.",
+                    "location": "query"
+                }
+            },
+            "httpMethod": "POST",
+            "uri": "venues/{venue_id}/setrole"
+        }
+    },
+    "venuegroups": {
+        "description": "Get venue group details.",
+        "httpMethod": "GET",
+        "parameters": {
+            "group_id": {
+                "description": "The ID of the venue group to retrieve additional information for.",
+                "location": "uri",
+                "required": true
+            }
+        },
+        "uri": "venuegroups/{group_id}"
+    },
+    "venuegroups/add": {
+        "description": "Create a venue group. If the venueId parameter is specified, then the endpoint will add the specified venues to the venue group. If it is not possible to add all of the specified venues to the group, then creation of the venue group will fail entirely.",
+        "httpMethod": "POST",
+        "parameters": {
+            "name": {
+                "description": "The name to give the group.",
+                "location": "query",
+                "required": true
+            },
+            "venueId": {
+                "description": "Comma-delimited list of venue IDs to add to the group. If this parameter is not specified, then the venue group will initially be empty.",
+                "location": "query"
+            }
+        },
+        "uri": "venuegroups/add"
+    },
+    "venuegroups/delete": {
+        "extends": "venuegroups",
+        "description": "Delete a venue group.",
+        "httpMethod": "POST",
+        "uri": "venuegroups/{group_id}/delete"
+    },
+    "venuegroups/list": {
+        "description": "List all venue groups owned by the user.",
+        "httpMethod": "POST",
+        "uri": "venuegroups/list"
+    },
+    "venuegroups/timeseries": {
+        "extends": "venuegroups",
+        "description": "Get daily venue stats for the venues in a group over a time range.",
+        "parameters": {
+            "startAt": {
+                "description": "The start of the time range to retrieve stats for (seconds since epoch).",
+                "location": "query",
+                "required": true
+            },
+            "endAt": {
+                "description": "The end of the time range to retrieve stats for (seconds since epoch). If omitted, the current time is assumed.",
+                "location": "query"
+            },
+            "fields": {
+                "description": "Specifies which fields to return. May be one or more of totalCheckins, newCheckins, uniqueVisitors, sharing, genders, ages, hours, separated by commas.",
+                "location": "query"
+            }
+        },
+        "uri": "venuegroups/{group_id}/timeseries"
+    },
+    "venuegroups/addvenue": {
+        "extends": "venuegroups",
+        "description": "Add a venue to a venue group.",
+        "httpMethod": "POST",
+        "parameters": {
+            "venueId": {
+                "description": "comma-delimited list of venue IDs to add to the group",
+                "location": "query",
+                "required": true
+            }
+        },
+        "uri": "venuegroups/{group_id}/addvenue"
+    },
+    "venuegroups/campaigns": {
+        "extends": "venuegroups",
+        "description": "Retrieve the campaigns that reference this venue group.",
+        "uri": "venuegroups/{group_id}/campaigns"
+    },
+    "venuegroups/edit": {
+        "extends": "venuegroups",
+        "description": "Allows you to make changes to all venues in a venue group. Acting user must be the owner of the group. Any blank parameter deletes an old value, any unspecified parameter does nothing.",
+        "httpMethod": "POST",
+        "parameters": {
+            "name": {
+                "description": "The name of the venue.",
+                "location": "query"
+            },
+            "city": {
+                "description": "The city name where this venue is.",
+                "location": "query"
+            },
+            "state": {
+                "description": "The nearest state or province to the venue.",
+                "location": "query"
+            },
+            "zip": {
+                "description": "The zip or postal code for the venue.",
+                "location": "query"
+            },
+            "phone": {
+                "description": "The phone number for the venue.",
+                "location": "query"
+            },
+            "categoryId": {
+                "description": "The IDs of the category or categories to which you want to assign this venue (separate multiple IDs with commas).",
+                "location": "query"
+            },
+            "twitter": {
+                "description": "The twitter handle of the venue.",
+                "location": "query"
+            },
+            "description": {
+                "description": "A freeform description of the venue, up to 300 characters.",
+                "location": "query"
+            },
+            "url": {
+                "description": "The url of the homepage of the venue.",
+                "location": "query"
+            }
+        },
+        "uri": "venuegroups/{group_id}/edit"
+    },
+    "venuegroups/removevenue": {
+        "extends": "venuegroups",
+        "description": "Remove a venue from a venue group.",
+        "httpMethod": "POST",
+        "parameters": {
+            "venueId": {
+                "description": "comma-delimited list of venue IDs to remove from the group",
+                "location": "query",
+                "required": true
+            }
+        },
+        "uri": "venuegroups/{group_id}/removevenue"
+    },
+    "venuegroups/update": {
+        "extends": "venuegroups",
+        "description": "Updates a venue group. At least one of the name and venueId parameters must be specified.",
+        "httpMethod": "POST",
+        "parameters": {
+            "name": {
+                "description": "If specified, the new name to give to the group.",
+                "location": "query"
+            },
+            "venueId": {
+                "description": "If specified, a comma-delimited list of venue IDs that will become the new set of venue IDs for the group.",
+                "location": "query"
+            }
+        },
+        "uri": "venuegroups/{group_id}/update"
+    }
+}

@@ -1,0 +1,24 @@
+{
+    "name": "jcroll/foursquare-api-client",
+    "type": "symfony-bundle",
+    "description": "PHP Foursquare Api Client",
+    "keywords": ["foursquare"],
+    "homepage": "https://github.com/jcroll/foursquare-api-client",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jarrett Croll",
+            "email": "jarrett.croll@gmail.com"
+        }
+    ],
+    "require": {
+        "guzzle/guzzle": "~3.7"
+    },
+    "autoload": {
+        "psr-0": {
+            "Jcroll\\FoursquareApiClient": "lib/",
+            "Jcroll\\FoursquareApiClient\\Tests": "tests/"
+        }
+    },
+    "target-dir": "Jcroll/FoursquareApiBundle"
+}
