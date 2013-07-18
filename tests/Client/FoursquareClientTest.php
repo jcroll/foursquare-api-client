@@ -21,7 +21,7 @@ class FoursquareClientTest extends \PHPUnit_Framework_TestCase
 
         $client = FoursquareClient::factory($config);
 
-        $this->assertInstanceOf('\Jcroll\FoursquareApiBundle\Client\FoursquareClient', $client);
+        $this->assertInstanceOf('\Jcroll\FoursquareApiClient\Client\FoursquareClient', $client);
         $this->assertEquals($config['client_id'], $client->getDefaultOption('query')['client_id']);
         $this->assertEquals($config['client_secret'], $client->getDefaultOption('query')['client_secret']);
     }
