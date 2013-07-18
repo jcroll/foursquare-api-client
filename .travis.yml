@@ -2,4 +2,4 @@ language: php
 php:
   - 5.4
   
-before_script: composer intall --dev
+before_script: composer install --dev
