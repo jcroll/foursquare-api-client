@@ -19,5 +19,6 @@
             "Jcroll\\FoursquareApiClient": "lib/",
             "Jcroll\\FoursquareApiClient\\Tests": "tests/"
         }
-    }
+    },
+    "minimum-stability": "dev"
 }
