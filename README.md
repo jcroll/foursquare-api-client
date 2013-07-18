@@ -22,8 +22,8 @@ specific access.
 use Jcroll\FoursquareApiClient\Client\FoursquareClient;
 
 $client = FoursquareClient::factory(array(
-    'client_id'     => 'your_foursquare_client_id',
-    'client_secret' => 'your_foursquare_client_secret'
+    'client_id'     => 'your_foursquare_client_id',    // required
+    'client_secret' => 'your_foursquare_client_secret' // required
 ));
 $client->addToken($oauthToken); // optionaly pass in for user specific requests
 $command = $client->getCommand('venues/search', array(
