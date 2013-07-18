@@ -2,7 +2,7 @@
 
 namespace Jcroll\FoursquareApiClient\Tests\Client;
 
-use Jcroll\FoursquareApiBundle\Client\FoursquareClient;
+use Jcroll\FoursquareApiClient\Client\FoursquareClient;
 
 class FoursquareClientTest extends \PHPUnit_Framework_TestCase
 {
