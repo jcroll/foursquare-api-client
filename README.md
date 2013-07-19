@@ -29,6 +29,12 @@ Add JcrollFoursquareApiBundle in your composer.json:
 }
 ```
 
+Download the library:
+
+``` bash
+$ php composer.phar update jcroll/foursquare-api-client
+```
+
 After installing, you need to require Composer's autoloader somewhere in your code:
 
 ```php
