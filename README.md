@@ -11,7 +11,7 @@ core. You can read more [about Guzzle here](http://guzzlephp.org/).
 
 ## Oauth Integration
 
-Endpoints in the foursquare API that are user specific will require authorization with foursquare using the Oauth 2.0 protocal. This type
+Endpoints in the foursquare API that are user specific will require authorization with foursquare using the Oauth 2.0 protocol. This type
 of authorization is beyond the scope of this library as there are better libraries for that such as the [FriendsOfSymfony Oauth2 
 Server](https://github.com/FriendsOfSymfony/oauth2-php). After authorization you can pass the access token into client for user 
 specific access.
