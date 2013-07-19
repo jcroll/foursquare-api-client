@@ -9,6 +9,32 @@ There is no library currently built to interact with the [foursquare api](https:
 for building web service clients. Guzzle is fully unit tested which allows this library to be a light wrapper around the Guzzle
 core. You can read more [about Guzzle here](http://guzzlephp.org/).
 
+## Installation
+
+The JcrollFoursquareApiClient is available on Packagist ([jcroll/foursquare-api-client](https://packagist.org/packages/jcroll/foursquare-api-client))
+and as such installable via [Composer](http://getcomposer.org/).
+
+If you do not use Composer, you can grab the code from GitHub, and use any PSR-0 compatible autoloader
+(e.g. the [Symfony2 ClassLoader component](https://github.com/symfony/ClassLoader)) to load the library's classes.
+
+### Composer example
+
+Add JcrollFoursquareApiBundle in your composer.json:
+
+```js
+{
+    "require": {
+        "jcroll/foursquare-api-client": "1.0.*"
+    }
+}
+```
+
+After installing, you need to require Composer's autoloader somewhere in your code:
+
+```php
+require_once 'vendor/autoload.php';
+```
+
 ## Oauth Integration
 
 Endpoints in the foursquare API that are user specific will require authorization with foursquare using the Oauth 2.0 protocol. This type
