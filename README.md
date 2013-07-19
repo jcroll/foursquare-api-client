@@ -37,4 +37,10 @@ You can find a list of the client's available commands in the bundle's
 [client.json](https://github.com/jcroll/foursquare-api-client/blob/master/lib/Jcroll/FoursquareApiClient/Resources/config/client.json) but basically
 they should be the same as the [api endpoints listed in the docs](https://developer.foursquare.com/docs/).
 
+## TODO
 
+I haven't gotten around to adding all the endpoints yet so if you don't see the one you are looking for it's as easy as
+forking the [JcrollFoursquareApiClient](https://github.com/jcroll/foursquare-api-client) and just adding your endpoint
+following the schema in [client.json](https://github.com/jcroll/foursquare-api-client/blob/master/lib/Jcroll/FoursquareApiClient/Resources/config/client.json).
+Then please just submit a pr and I'll be happy to include your endpoint otherwise I will work on adding them all in my
+free time.
