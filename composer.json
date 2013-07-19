@@ -1,7 +1,7 @@
 {
     "name": "jcroll/foursquare-api-client",
     "type": "library",
-    "description": "PHP Foursquare Api Client",
+    "description": "PHP Foursquare Api Client built on Guzzle",
     "keywords": ["foursquare", "api", "client"],
     "homepage": "https://github.com/jcroll/foursquare-api-client",
     "license": "MIT",
