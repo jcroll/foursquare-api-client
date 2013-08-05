@@ -874,296 +874,296 @@
             },
             "httpMethod": "POST",
             "uri": "venues/{venue_id}/setrole"
-        }
-    },
-    "venuegroups": {
-        "description": "Get venue group details.",
-        "httpMethod": "GET",
-        "parameters": {
-            "group_id": {
-                "description": "The ID of the venue group to retrieve additional information for.",
-                "location": "uri",
-                "required": true
-            }
         },
-        "uri": "venuegroups/{group_id}"
-    },
-    "venuegroups/add": {
-        "description": "Create a venue group. If the venueId parameter is specified, then the endpoint will add the specified venues to the venue group. If it is not possible to add all of the specified venues to the group, then creation of the venue group will fail entirely.",
-        "httpMethod": "POST",
-        "parameters": {
-            "name": {
-                "description": "The name to give the group.",
-                "location": "query",
-                "required": true
-            },
-            "venueId": {
-                "description": "Comma-delimited list of venue IDs to add to the group. If this parameter is not specified, then the venue group will initially be empty.",
-                "location": "query"
-            }
-        },
-        "uri": "venuegroups/add"
-    },
-    "venuegroups/delete": {
-        "extends": "venuegroups",
-        "description": "Delete a venue group.",
-        "httpMethod": "POST",
-        "uri": "venuegroups/{group_id}/delete"
-    },
-    "venuegroups/list": {
-        "description": "List all venue groups owned by the user.",
-        "httpMethod": "POST",
-        "uri": "venuegroups/list"
-    },
-    "venuegroups/timeseries": {
-        "extends": "venuegroups",
-        "description": "Get daily venue stats for the venues in a group over a time range.",
-        "parameters": {
-            "startAt": {
-                "description": "The start of the time range to retrieve stats for (seconds since epoch).",
-                "location": "query",
-                "required": true
-            },
-            "endAt": {
-                "description": "The end of the time range to retrieve stats for (seconds since epoch). If omitted, the current time is assumed.",
-                "location": "query"
-            },
-            "fields": {
-                "description": "Specifies which fields to return. May be one or more of totalCheckins, newCheckins, uniqueVisitors, sharing, genders, ages, hours, separated by commas.",
-                "location": "query"
-            }
-        },
-        "uri": "venuegroups/{group_id}/timeseries"
-    },
-    "venuegroups/addvenue": {
-        "extends": "venuegroups",
-        "description": "Add a venue to a venue group.",
-        "httpMethod": "POST",
-        "parameters": {
-            "venueId": {
-                "description": "comma-delimited list of venue IDs to add to the group",
-                "location": "query",
-                "required": true
-            }
-        },
-        "uri": "venuegroups/{group_id}/addvenue"
-    },
-    "venuegroups/campaigns": {
-        "extends": "venuegroups",
-        "description": "Retrieve the campaigns that reference this venue group.",
-        "uri": "venuegroups/{group_id}/campaigns"
-    },
-    "venuegroups/edit": {
-        "extends": "venuegroups",
-        "description": "Allows you to make changes to all venues in a venue group. Acting user must be the owner of the group. Any blank parameter deletes an old value, any unspecified parameter does nothing.",
-        "httpMethod": "POST",
-        "parameters": {
-            "name": {
-                "description": "The name of the venue.",
-                "location": "query"
-            },
-            "city": {
-                "description": "The city name where this venue is.",
-                "location": "query"
-            },
-            "state": {
-                "description": "The nearest state or province to the venue.",
-                "location": "query"
-            },
-            "zip": {
-                "description": "The zip or postal code for the venue.",
-                "location": "query"
-            },
-            "phone": {
-                "description": "The phone number for the venue.",
-                "location": "query"
-            },
-            "categoryId": {
-                "description": "The IDs of the category or categories to which you want to assign this venue (separate multiple IDs with commas).",
-                "location": "query"
-            },
-            "twitter": {
-                "description": "The twitter handle of the venue.",
-                "location": "query"
-            },
-            "description": {
-                "description": "A freeform description of the venue, up to 300 characters.",
-                "location": "query"
-            },
-            "url": {
-                "description": "The url of the homepage of the venue.",
-                "location": "query"
-            }
-        },
-        "uri": "venuegroups/{group_id}/edit"
-    },
-    "venuegroups/removevenue": {
-        "extends": "venuegroups",
-        "description": "Remove a venue from a venue group.",
-        "httpMethod": "POST",
-        "parameters": {
-            "venueId": {
-                "description": "comma-delimited list of venue IDs to remove from the group",
-                "location": "query",
-                "required": true
-            }
-        },
-        "uri": "venuegroups/{group_id}/removevenue"
-    },
-    "venuegroups/update": {
-        "extends": "venuegroups",
-        "description": "Updates a venue group. At least one of the name and venueId parameters must be specified.",
-        "httpMethod": "POST",
-        "parameters": {
-            "name": {
-                "description": "If specified, the new name to give to the group.",
-                "location": "query"
-            },
-            "venueId": {
-                "description": "If specified, a comma-delimited list of venue IDs that will become the new set of venue IDs for the group.",
-                "location": "query"
-            }
-        },
-        "uri": "venuegroups/{group_id}/update"
-    },
-    "checkins": {
-        "description": "Get details of a checkin.",
-        "httpMethod": "GET",
-		"parameters": {
-			"checkin_id": {
-				"description": "The ID of the checkin to retrieve additional information for.",
-				"location": "uri",
-				"required": true
+		"venuegroups": {
+			"description": "Get venue group details.",
+			"httpMethod": "GET",
+			"parameters": {
+				"group_id": {
+					"description": "The ID of the venue group to retrieve additional information for.",
+					"location": "uri",
+					"required": true
+				}
 			},
-			"signature": {
-				"description": "When checkins are sent to public feeds, foursquare appends a signature allowing users to bypass the friends-only access check on checkins. The same value can be used here for programmatic access to otherwise inaccessible checkins.",
-				"location": "query"
-			}
+			"uri": "venuegroups/{group_id}"
 		},
-		"uri": "checkins/{checkin_id}"
-    },
-    "checkins/likes": {
-        "extends": "checkins",
-        "description": "Returns friends and a total count of users who have liked this checkin.",
-        "httpMethod": "GET",
-		"uri": "checkins/{checkin_id}/likes"
-    },
-    "checkins/addcomment": {
-        "extends": "checkins",
-        "description": "Comment on a check-in",
-        "httpMethod": "POST",
-		"parameters": {
-			"text": {
-				"description": "The text of the comment, up to 200 characters.",
-				"location": "postField",
-				"required": true
+		"venuegroups/add": {
+			"description": "Create a venue group. If the venueId parameter is specified, then the endpoint will add the specified venues to the venue group. If it is not possible to add all of the specified venues to the group, then creation of the venue group will fail entirely.",
+			"httpMethod": "POST",
+			"parameters": {
+				"name": {
+					"description": "The name to give the group.",
+					"location": "query",
+					"required": true
+				},
+				"venueId": {
+					"description": "Comma-delimited list of venue IDs to add to the group. If this parameter is not specified, then the venue group will initially be empty.",
+					"location": "query"
+				}
 			},
-			"mentions": {
-				"description": "Mentions in your check-in. This parameter is a semicolon-delimited list of mentions. A single mention is of the form 'start,end,userid', where start is the index of the first character in the shout representing the mention, end is the index of the first character in the shout after the mention, and userid is the userid of the user being mentioned. Character indices in shouts are 0-based.",
-				"location": "postField",
-				"required": false
-			}
+			"uri": "venuegroups/add"
 		},
-		"uri": "checkins/{checkin_id}/addcomment"
-    },
-    "checkins/deletecomment": {
-        "extends": "checkins",
-        "description": "Remove a comment from a checkin, if the acting user is the author or the owner of the checkin.",
-        "httpMethod": "POST",
-		"parameters": {
-			"commentId": {
-				"description": "The id of the comment to remove.",
-				"location": "postField",
-				"required": true
-			}
+		"venuegroups/delete": {
+			"extends": "venuegroups",
+			"description": "Delete a venue group.",
+			"httpMethod": "POST",
+			"uri": "venuegroups/{group_id}/delete"
 		},
-		"uri": "checkins/{checkin_id}/deletecomment"
-    },
-    "checkins/like": {
-        "extends": "checkins",
-        "description": "Allows the acting user to like or unlike a checkin.",
-        "httpMethod": "POST",
-		"parameters": {
-			"set": {
-				"description": "If 1, like this checkin. If 0 unlike (un-do a previous like) it. Default value is 1.",
-				"location": "postField",
-				"required": false
-			}
+		"venuegroups/list": {
+			"description": "List all venue groups owned by the user.",
+			"httpMethod": "POST",
+			"uri": "venuegroups/list"
 		},
-		"uri": "checkins/{checkin_id}/like"
-    },
-    "checkins/add": {
-        "description": "Allows the acting user to check in to a place.",
-        "httpMethod": "POST",
-		"parameters": {
-			"venueId": {
-				"description": "The venue where the user is checking in.",
-				"location": "postField",
-				"required": true
+		"venuegroups/timeseries": {
+			"extends": "venuegroups",
+			"description": "Get daily venue stats for the venues in a group over a time range.",
+			"parameters": {
+				"startAt": {
+					"description": "The start of the time range to retrieve stats for (seconds since epoch).",
+					"location": "query",
+					"required": true
+				},
+				"endAt": {
+					"description": "The end of the time range to retrieve stats for (seconds since epoch). If omitted, the current time is assumed.",
+					"location": "query"
+				},
+				"fields": {
+					"description": "Specifies which fields to return. May be one or more of totalCheckins, newCheckins, uniqueVisitors, sharing, genders, ages, hours, separated by commas.",
+					"location": "query"
+				}
 			},
-			"eventId": {
-				"description": "The event the user is checking in to.",
-				"location": "postField",
-				"required": false
-			},
-			"shout": {
-				"description": "A message about your check-in. The maximum length of this field is 140 characters.",
-				"location": "postField",
-				"required": false
-			},
-			"mentions": {
-				"description": "Mentions in your check-in. This parameter is a semicolon-delimited list of mentions.",
-				"location": "postField",
-				"required": false
-			},
-			"broadcast": {
-				"description": "Who to broadcast this check-in to. Accepts a comma-delimited list of values.",
-				"location": "postField",
-				"required": false
-			},
-			"ll": {
-				"description": "Latitude and longitude of the user's location. Only specify this field if you have a GPS or other device reported location for the user at the time of check-in.",
-				"location": "postField",
-				"required": false
-			},
-			"llAcc": {
-				"description": "Accuracy of the user's latitude and longitude, in meters.",
-				"location": "postField",
-				"required": false
-			},
-			"alt": {
-				"description": "Altitude of the user's location, in meters.",
-				"location": "postField",
-				"required": false
-			},
-			"altAcc": {
-				"description": "Vertical accuracy of the user's location, in meters.",
-				"location": "postField",
-				"required": false
-			}
+			"uri": "venuegroups/{group_id}/timeseries"
 		},
-		"uri": "checkins/add"
-    },
-    "checkins/recent": {
-        "description": "Returns a list of recent checkins from friends.",
-        "httpMethod": "GET",
-		"parameters": {
-			"ll": {
-				"description": "Latitude and longitude of the user's location, so response can include distance.",
-				"location": "query",
-				"required": false
+		"venuegroups/addvenue": {
+			"extends": "venuegroups",
+			"description": "Add a venue to a venue group.",
+			"httpMethod": "POST",
+			"parameters": {
+				"venueId": {
+					"description": "comma-delimited list of venue IDs to add to the group",
+					"location": "query",
+					"required": true
+				}
 			},
-			"limit": {
-				"description": "Number of results to return, up to 100.",
-				"location": "query",
-				"required": false
-			},
-			"afterTimestamp": {
-				"description": "Seconds after which to look for checkins, e.g. for looking for new checkins since the last fetch. If more than limit results are new since then, this is ignored. Checkins created prior to this timestamp will still be returned if they have new comments or photos, making it easier to poll for all new activity.",
-				"location": "query",
-				"required": false
-			}
+			"uri": "venuegroups/{group_id}/addvenue"
 		},
-		"uri": "checkins/{checkin_id}"
+		"venuegroups/campaigns": {
+			"extends": "venuegroups",
+			"description": "Retrieve the campaigns that reference this venue group.",
+			"uri": "venuegroups/{group_id}/campaigns"
+		},
+		"venuegroups/edit": {
+			"extends": "venuegroups",
+			"description": "Allows you to make changes to all venues in a venue group. Acting user must be the owner of the group. Any blank parameter deletes an old value, any unspecified parameter does nothing.",
+			"httpMethod": "POST",
+			"parameters": {
+				"name": {
+					"description": "The name of the venue.",
+					"location": "query"
+				},
+				"city": {
+					"description": "The city name where this venue is.",
+					"location": "query"
+				},
+				"state": {
+					"description": "The nearest state or province to the venue.",
+					"location": "query"
+				},
+				"zip": {
+					"description": "The zip or postal code for the venue.",
+					"location": "query"
+				},
+				"phone": {
+					"description": "The phone number for the venue.",
+					"location": "query"
+				},
+				"categoryId": {
+					"description": "The IDs of the category or categories to which you want to assign this venue (separate multiple IDs with commas).",
+					"location": "query"
+				},
+				"twitter": {
+					"description": "The twitter handle of the venue.",
+					"location": "query"
+				},
+				"description": {
+					"description": "A freeform description of the venue, up to 300 characters.",
+					"location": "query"
+				},
+				"url": {
+					"description": "The url of the homepage of the venue.",
+					"location": "query"
+				}
+			},
+			"uri": "venuegroups/{group_id}/edit"
+		},
+		"venuegroups/removevenue": {
+			"extends": "venuegroups",
+			"description": "Remove a venue from a venue group.",
+			"httpMethod": "POST",
+			"parameters": {
+				"venueId": {
+					"description": "comma-delimited list of venue IDs to remove from the group",
+					"location": "query",
+					"required": true
+				}
+			},
+			"uri": "venuegroups/{group_id}/removevenue"
+		},
+		"venuegroups/update": {
+			"extends": "venuegroups",
+			"description": "Updates a venue group. At least one of the name and venueId parameters must be specified.",
+			"httpMethod": "POST",
+			"parameters": {
+				"name": {
+					"description": "If specified, the new name to give to the group.",
+					"location": "query"
+				},
+				"venueId": {
+					"description": "If specified, a comma-delimited list of venue IDs that will become the new set of venue IDs for the group.",
+					"location": "query"
+				}
+			},
+			"uri": "venuegroups/{group_id}/update"
+		},
+		"checkins": {
+			"description": "Get details of a checkin.",
+			"httpMethod": "GET",
+			"parameters": {
+				"checkin_id": {
+					"description": "The ID of the checkin to retrieve additional information for.",
+					"location": "uri",
+					"required": true
+				},
+				"signature": {
+					"description": "When checkins are sent to public feeds, foursquare appends a signature allowing users to bypass the friends-only access check on checkins. The same value can be used here for programmatic access to otherwise inaccessible checkins.",
+					"location": "query"
+				}
+			},
+			"uri": "checkins/{checkin_id}"
+		},
+		"checkins/add": {
+			"description": "Allows the acting user to check in to a place.",
+			"httpMethod": "POST",
+			"parameters": {
+				"venueId": {
+					"description": "The venue where the user is checking in.",
+					"location": "postField",
+					"required": true
+				},
+				"eventId": {
+					"description": "The event the user is checking in to.",
+					"location": "postField",
+					"required": false
+				},
+				"shout": {
+					"description": "A message about your check-in. The maximum length of this field is 140 characters.",
+					"location": "postField",
+					"required": false
+				},
+				"mentions": {
+					"description": "Mentions in your check-in. This parameter is a semicolon-delimited list of mentions.",
+					"location": "postField",
+					"required": false
+				},
+				"broadcast": {
+					"description": "Who to broadcast this check-in to. Accepts a comma-delimited list of values.",
+					"location": "postField",
+					"required": false
+				},
+				"ll": {
+					"description": "Latitude and longitude of the user's location. Only specify this field if you have a GPS or other device reported location for the user at the time of check-in.",
+					"location": "postField",
+					"required": false
+				},
+				"llAcc": {
+					"description": "Accuracy of the user's latitude and longitude, in meters.",
+					"location": "postField",
+					"required": false
+				},
+				"alt": {
+					"description": "Altitude of the user's location, in meters.",
+					"location": "postField",
+					"required": false
+				},
+				"altAcc": {
+					"description": "Vertical accuracy of the user's location, in meters.",
+					"location": "postField",
+					"required": false
+				}
+			},
+			"uri": "checkins/add"
+		},
+		"checkins/recent": {
+			"description": "Returns a list of recent checkins from friends.",
+			"httpMethod": "GET",
+			"parameters": {
+				"ll": {
+					"description": "Latitude and longitude of the user's location, so response can include distance.",
+					"location": "query",
+					"required": false
+				},
+				"limit": {
+					"description": "Number of results to return, up to 100.",
+					"location": "query",
+					"required": false
+				},
+				"afterTimestamp": {
+					"description": "Seconds after which to look for checkins, e.g. for looking for new checkins since the last fetch. If more than limit results are new since then, this is ignored. Checkins created prior to this timestamp will still be returned if they have new comments or photos, making it easier to poll for all new activity.",
+					"location": "query",
+					"required": false
+				}
+			},
+			"uri": "checkins/{checkin_id}"
+		},
+		"checkins/likes": {
+			"extends": "checkins",
+			"description": "Returns friends and a total count of users who have liked this checkin.",
+			"httpMethod": "GET",
+			"uri": "checkins/{checkin_id}/likes"
+		},
+		"checkins/addcomment": {
+			"extends": "checkins",
+			"description": "Comment on a check-in",
+			"httpMethod": "POST",
+			"parameters": {
+				"text": {
+					"description": "The text of the comment, up to 200 characters.",
+					"location": "postField",
+					"required": true
+				},
+				"mentions": {
+					"description": "Mentions in your check-in. This parameter is a semicolon-delimited list of mentions. A single mention is of the form 'start,end,userid', where start is the index of the first character in the shout representing the mention, end is the index of the first character in the shout after the mention, and userid is the userid of the user being mentioned. Character indices in shouts are 0-based.",
+					"location": "postField",
+					"required": false
+				}
+			},
+			"uri": "checkins/{checkin_id}/addcomment"
+		},
+		"checkins/deletecomment": {
+			"extends": "checkins",
+			"description": "Remove a comment from a checkin, if the acting user is the author or the owner of the checkin.",
+			"httpMethod": "POST",
+			"parameters": {
+				"commentId": {
+					"description": "The id of the comment to remove.",
+					"location": "postField",
+					"required": true
+				}
+			},
+			"uri": "checkins/{checkin_id}/deletecomment"
+		},
+		"checkins/like": {
+			"extends": "checkins",
+			"description": "Allows the acting user to like or unlike a checkin.",
+			"httpMethod": "POST",
+			"parameters": {
+				"set": {
+					"description": "If 1, like this checkin. If 0 unlike (un-do a previous like) it. Default value is 1.",
+					"location": "postField",
+					"required": false
+				}
+			},
+			"uri": "checkins/{checkin_id}/like"
+		}
     }
 }
