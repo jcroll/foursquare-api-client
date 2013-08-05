@@ -1025,5 +1025,145 @@
             }
         },
         "uri": "venuegroups/{group_id}/update"
+    },
+    "checkins": {
+        "description": "Get details of a checkin.",
+        "httpMethod": "GET",
+		"parameters": {
+			"checkin_id": {
+				"description": "The ID of the checkin to retrieve additional information for.",
+				"location": "uri",
+				"required": true
+			},
+			"signature": {
+				"description": "When checkins are sent to public feeds, foursquare appends a signature allowing users to bypass the friends-only access check on checkins. The same value can be used here for programmatic access to otherwise inaccessible checkins.",
+				"location": "query"
+			}
+		},
+		"uri": "checkins/{checkin_id}"
+    },
+    "checkins/likes": {
+        "extends": "checkins",
+        "description": "Returns friends and a total count of users who have liked this checkin.",
+        "httpMethod": "GET",
+		"uri": "checkins/{checkin_id}/likes"
+    },
+    "checkins/addcomment": {
+        "extends": "checkins",
+        "description": "Comment on a check-in",
+        "httpMethod": "POST",
+		"parameters": {
+			"text": {
+				"description": "The text of the comment, up to 200 characters.",
+				"location": "postField",
+				"required": true
+			},
+			"mentions": {
+				"description": "Mentions in your check-in. This parameter is a semicolon-delimited list of mentions. A single mention is of the form 'start,end,userid', where start is the index of the first character in the shout representing the mention, end is the index of the first character in the shout after the mention, and userid is the userid of the user being mentioned. Character indices in shouts are 0-based.",
+				"location": "postField"
+				"required": false
+			}
+		},
+		"uri": "checkins/{checkin_id}/addcomment"
+    },
+    "checkins/deletecomment": {
+        "extends": "checkins",
+        "description": "Remove a comment from a checkin, if the acting user is the author or the owner of the checkin.",
+        "httpMethod": "POST",
+		"parameters": {
+			"commentId": {
+				"description": "The id of the comment to remove.",
+				"location": "postField",
+				"required": true
+			}
+		},
+		"uri": "checkins/{checkin_id}/deletecomment"
+    },
+    "checkins/like": {
+        "extends": "checkins",
+        "description": "Allows the acting user to like or unlike a checkin.",
+        "httpMethod": "POST",
+		"parameters": {
+			"set": {
+				"description": "If 1, like this checkin. If 0 unlike (un-do a previous like) it. Default value is 1.",
+				"location": "postField"
+				"required": false
+			}
+		},
+		"uri": "checkins/{checkin_id}/like"
+    },
+    "checkins/add": {
+        "description": "Allows the acting user to check in to a place.",
+        "httpMethod": "POST",
+		"parameters": {
+			"venueId": {
+				"description": "The venue where the user is checking in.",
+				"location": "postField"
+				"required": true
+			},
+			"eventId": {
+				"description": "The event the user is checking in to.",
+				"location": "postField"
+				"required": false
+			},
+			"shout": {
+				"description": "A message about your check-in. The maximum length of this field is 140 characters.",
+				"location": "postField"
+				"required": false
+			},
+			"mentions": {
+				"description": "Mentions in your check-in. This parameter is a semicolon-delimited list of mentions.",
+				"location": "postField"
+				"required": false
+			},
+			"broadcast": {
+				"description": "Who to broadcast this check-in to. Accepts a comma-delimited list of values.",
+				"location": "postField"
+				"required": false
+			},
+			"ll": {
+				"description": "Latitude and longitude of the user's location. Only specify this field if you have a GPS or other device reported location for the user at the time of check-in.",
+				"location": "postField"
+				"required": false
+			},
+			"llAcc": {
+				"description": "Accuracy of the user's latitude and longitude, in meters.",
+				"location": "postField"
+				"required": false
+			},
+			"alt": {
+				"description": "Altitude of the user's location, in meters.",
+				"location": "postField"
+				"required": false
+			},
+			"altAcc": {
+				"description": "Vertical accuracy of the user's location, in meters.",
+				"location": "postField"
+				"required": false
+			}
+		},
+		"uri": "checkins/add"
+    },
+    "checkins/recent": {
+        "description": "Returns a list of recent checkins from friends.",
+        "httpMethod": "GET",
+		"parameters": {
+			"ll": {
+				"description": "Latitude and longitude of the user's location, so response can include distance.",
+				"location": "query",
+				"required": false
+			},
+			"limit": {
+				"description": "Number of results to return, up to 100.",
+				"location": "query",
+				"required": false
+			},
+			"afterTimestamp": {
+				"description": "Seconds after which to look for checkins, e.g. for looking for new checkins since the last fetch. If more than limit results are new since then, this is ignored. Checkins created prior to this timestamp will still be returned if they have new comments or photos, making it easier to poll for all new activity.",
+				"location": "query",
+				"required": false
+			}
+		},
+		"uri": "checkins/{checkin_id}"
     }
 }
