@@ -1060,7 +1060,7 @@
 			},
 			"mentions": {
 				"description": "Mentions in your check-in. This parameter is a semicolon-delimited list of mentions. A single mention is of the form 'start,end,userid', where start is the index of the first character in the shout representing the mention, end is the index of the first character in the shout after the mention, and userid is the userid of the user being mentioned. Character indices in shouts are 0-based.",
-				"location": "postField"
+				"location": "postField",
 				"required": false
 			}
 		},
@@ -1086,7 +1086,7 @@
 		"parameters": {
 			"set": {
 				"description": "If 1, like this checkin. If 0 unlike (un-do a previous like) it. Default value is 1.",
-				"location": "postField"
+				"location": "postField",
 				"required": false
 			}
 		},
@@ -1098,47 +1098,47 @@
 		"parameters": {
 			"venueId": {
 				"description": "The venue where the user is checking in.",
-				"location": "postField"
+				"location": "postField",
 				"required": true
 			},
 			"eventId": {
 				"description": "The event the user is checking in to.",
-				"location": "postField"
+				"location": "postField",
 				"required": false
 			},
 			"shout": {
 				"description": "A message about your check-in. The maximum length of this field is 140 characters.",
-				"location": "postField"
+				"location": "postField",
 				"required": false
 			},
 			"mentions": {
 				"description": "Mentions in your check-in. This parameter is a semicolon-delimited list of mentions.",
-				"location": "postField"
+				"location": "postField",
 				"required": false
 			},
 			"broadcast": {
 				"description": "Who to broadcast this check-in to. Accepts a comma-delimited list of values.",
-				"location": "postField"
+				"location": "postField",
 				"required": false
 			},
 			"ll": {
 				"description": "Latitude and longitude of the user's location. Only specify this field if you have a GPS or other device reported location for the user at the time of check-in.",
-				"location": "postField"
+				"location": "postField",
 				"required": false
 			},
 			"llAcc": {
 				"description": "Accuracy of the user's latitude and longitude, in meters.",
-				"location": "postField"
+				"location": "postField",
 				"required": false
 			},
 			"alt": {
 				"description": "Altitude of the user's location, in meters.",
-				"location": "postField"
+				"location": "postField",
 				"required": false
 			},
 			"altAcc": {
 				"description": "Vertical accuracy of the user's location, in meters.",
-				"location": "postField"
+				"location": "postField",
 				"required": false
 			}
 		},
