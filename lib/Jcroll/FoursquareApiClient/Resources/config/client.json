@@ -1113,7 +1113,7 @@
                     "required": false
                 }
             },
-            "uri": "checkins/{checkin_id}"
+            "uri": "checkins/recent"
         },
         "checkins/likes": {
             "extends": "checkins",
@@ -1129,7 +1129,7 @@
                 "text": {
                     "description": "The text of the comment, up to 200 characters.",
                     "location": "postField",
-                    "required": true
+                    "required": false
                 },
                 "mentions": {
                     "description": "Mentions in your check-in. This parameter is a semicolon-delimited list of mentions. A single mention is of the form 'start,end,userid', where start is the index of the first character in the shout representing the mention, end is the index of the first character in the shout after the mention, and userid is the userid of the user being mentioned. Character indices in shouts are 0-based.",
@@ -1158,6 +1158,7 @@
             "httpMethod": "POST",
             "parameters": {
                 "set": {
+                    "default": 1,
                     "description": "If 1, like this checkin. If 0 unlike (un-do a previous like) it. Default value is 1.",
                     "location": "postField",
                     "required": false
