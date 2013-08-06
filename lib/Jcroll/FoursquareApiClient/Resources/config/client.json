@@ -224,7 +224,7 @@
             "parameters": {
                 "value": {
                     "description": "True or false.",
-                    "location": "query",
+                    "location": "postField",
                     "required": true
                 }
             },
@@ -242,7 +242,7 @@
             "parameters": {
                 "photo": {
                     "description": "Photo under 100KB in multipart MIME encoding with content type image/jpeg, image/gif, or image/png.",
-                    "location": "query"
+                    "location": "postField"
                 }
             },
             "uri": "users/self/update"
@@ -270,56 +270,56 @@
                 },
                 "address": {
                     "description": "The address of the venue.",
-                    "location": "query"
+                    "location": "postField"
                 },
                 "crossStreet": {
                     "description": "The nearest intersecting street or streets.",
-                    "location": "query"
+                    "location": "postField"
                 },
                 "city": {
                     "description": "The city name where this venue is.",
-                    "location": "query"
+                    "location": "postField"
                 },
                 "state": {
                     "description": "The nearest state or province to the venue.",
-                    "location": "query"
+                    "location": "postField"
                 },
                 "zip": {
                     "description": "The zip or postal code for the venue.",
-                    "location": "query"
+                    "location": "postField"
                 },
                 "phone": {
                     "description": "The phone number of the venue.",
-                    "location": "query"
+                    "location": "postField"
                 },
                 "twitter": {
                     "description": "The twitter handle of the venue.",
-                    "location": "query"
+                    "location": "postField"
                 },
                 "ll": {
                     "description": "Latitude and longitude of the venue, as accurate as is known.",
-                    "location": "query",
+                    "location": "postField",
                     "required": true
                 },
                 "primaryCategoryId": {
                     "description": "The ID of the category to which you want to assign this venue.",
-                    "location": "query"
+                    "location": "postField"
                 },
                 "description": {
                     "description": "A freeform description of the venue, up to 300 characters.",
-                    "location": "query"
+                    "location": "postField"
                 },
                 "url": {
                     "description": "The url of the homepage of the venue.",
-                    "location": "query"
+                    "location": "postField"
                 },
                 "ignoreDuplicates": {
                     "description": "A boolean flag telling the server to ignore duplicates and force the addition of this venue.",
-                    "location": "query"
+                    "location": "postField"
                 },
                 "ignoreDuplicateKey": {
                     "description": "equired if ignoreDuplicates is true. This key will be available in the response of the HTTP 409 error of the first (failed) attempt to add venue.",
-                    "location": "query"
+                    "location": "postField"
                 }
             },
             "uri": "venues/add"
@@ -704,7 +704,7 @@
                 "set": {
                     "default": 1,
                     "description": "If 1, dislike this venue. If 0 undo a previous dislike for this venue. Default value is 1",
-                    "location": "query"
+                    "location": "postField"
                 }
             },
             "httpMethod": "POST",
@@ -716,59 +716,59 @@
             "parameters": {
                 "name": {
                     "description": "The name of the venue.",
-                    "location": "query"
+                    "location": "postField"
                 },
                 "address": {
                     "description": "The address of the venue.",
-                    "location": "query"
+                    "location": "postField"
                 },
                 "crossStreet": {
                     "description": "The nearest intersecting street or streets.",
-                    "location": "query"
+                    "location": "postField"
                 },
                 "city": {
                     "description": "The city name where this venue is.",
-                    "location": "query"
+                    "location": "postField"
                 },
                 "state": {
                     "description": "The nearest state or province to the venue.",
-                    "location": "query"
+                    "location": "postField"
                 },
                 "zip": {
                     "description": "The zip or postal code for the venue.",
-                    "location": "query"
+                    "location": "postField"
                 },
                 "phone": {
                     "description": "The phone number of the venue.",
-                    "location": "query"
+                    "location": "postField"
                 },
                 "ll": {
                     "description": "Latitude and longitude of the venue",
-                    "location": "query"
+                    "location": "postField"
                 },
                 "categoryId": {
                     "description": "The IDs of the category or categories to which you want to assign this venue (separate multiple IDs with commas).",
-                    "location": "query"
+                    "location": "postField"
                 },
                 "twitter": {
                     "description": "The twitter handle of the venue.",
-                    "location": "query"
+                    "location": "postField"
                 },
                 "description": {
                     "description": "A freeform description of the venue, up to 300 characters.",
-                    "location": "query"
+                    "location": "postField"
                 },
                 "url": {
                     "description": "The url of the homepage of the venue.",
-                    "location": "query"
+                    "location": "postField"
                 },
                 "storeId": {
                     "description": "An identifier used by the manager of the venue to distinguish between venues of the same name. Only visible to managers.",
-                    "location": "query"
+                    "location": "postField"
                 },
                 "hours": {
                     "description": "The hours for the venue, as a semi-colon separated list of open segments and named segments (e.g., brunch or happy hour). Open segments are formatted as day,start,end. Named segments additionally have a label, formatted as day,start,end,label. Days are formatted as integers with Monday = 1,...,Sunday = 7. Start and End are formatted as [+]HHMM format. Use 24 hour format (no colon), prefix with 0 for HH or MM less than 10. Use '+' prefix, i.e., +0230 to represent 2:30 am past midnight into the following day.",
-                    "location": "query"
+                    "location": "postField"
                 }
             },
             "httpMethod": "POST",
@@ -780,12 +780,12 @@
             "parameters": {
                 "problem": {
                     "description": "One of mislocated, closed, duplicate, inappropriate, doesnt_exist, event_over",
-                    "location": "query",
+                    "location": "postField",
                     "required": true
                 },
                 "venueId": {
                     "description": "ID of the duplicated venue (for problem duplicate)",
-                    "location": "query"
+                    "location": "postField"
                 }
             },
             "httpMethod": "POST",
@@ -798,7 +798,7 @@
                 "set": {
                     "default": 1,
                     "description": "If 1, like this venue. If 0 unlike (un-do a previous like) it. Default value is 1.",
-                    "location": "query",
+                    "location": "postField",
                     "required": true
                 }
             },
@@ -811,43 +811,43 @@
             "parameters": {
                 "name": {
                     "description": "The name of the venue.",
-                    "location": "query"
+                    "location": "postField"
                 },
                 "address": {
                     "description": "The address of the venue.",
-                    "location": "query"
+                    "location": "postField"
                 },
                 "crossStreet": {
                     "description": "The nearest intersecting street or streets.",
-                    "location": "query"
+                    "location": "postField"
                 },
                 "city": {
                     "description": "The city name where this venue is.",
-                    "location": "query"
+                    "location": "postField"
                 },
                 "state": {
                     "description": "The nearest state or province to the venue.",
-                    "location": "query"
+                    "location": "postField"
                 },
                 "zip": {
                     "description": "The zip or postal code for the venue.",
-                    "location": "query"
+                    "location": "postField"
                 },
                 "phone": {
                     "description": "The phone number of the venue.",
-                    "location": "query"
+                    "location": "postField"
                 },
                 "ll": {
                     "description": "Latitude and longitude of the venue",
-                    "location": "query"
+                    "location": "postField"
                 },
                 "primaryCategoryId": {
                     "description": "The ID of the category to which you want to assign this venue.",
-                    "location": "query"
+                    "location": "postField"
                 },
                 "hours": {
                     "description": "The hours for the venue, as a semi-colon separated list of open segments and named segments (e.g., brunch or happy hour). Open segments are formatted as day,start,end. Named segments additionally have a label, formatted as day,start,end,label. Days are formatted as integers with Monday = 1,...,Sunday = 7. Start and End are formatted as [+]HHMM format. Use 24 hour format (no colon), prefix with 0 for HH or MM less than 10. Use '+' prefix, i.e., +0230 to represent 2:30 am past midnight into the following day.",
-                    "location": "query"
+                    "location": "postField"
                 }
             },
             "httpMethod": "POST",
@@ -859,17 +859,17 @@
             "parameters": {
                 "userId": {
                     "description": "The id of the user or brand page for which we are changing roles at this venue",
-                    "location": "query",
+                    "location": "postField",
                     "required": true
                 },
                 "role": {
                     "description": "One of the values below, indicating the role that the user should receive at the venue.",
-                    "location": "query",
+                    "location": "postField",
                     "required": true
                 },
                 "visible": {
                     "description": "Determines whether managers are visible on the venue profile. Only applies to manager role.",
-                    "location": "query"
+                    "location": "postField"
                 }
             },
             "httpMethod": "POST",
@@ -893,12 +893,12 @@
             "parameters": {
                 "name": {
                     "description": "The name to give the group.",
-                    "location": "query",
+                    "location": "postField",
                     "required": true
                 },
                 "venueId": {
                     "description": "Comma-delimited list of venue IDs to add to the group. If this parameter is not specified, then the venue group will initially be empty.",
-                    "location": "query"
+                    "location": "postField"
                 }
             },
             "uri": "venuegroups/add"
@@ -941,7 +941,7 @@
             "parameters": {
                 "venueId": {
                     "description": "comma-delimited list of venue IDs to add to the group",
-                    "location": "query",
+                    "location": "postField",
                     "required": true
                 }
             },
@@ -959,39 +959,39 @@
             "parameters": {
                 "name": {
                     "description": "The name of the venue.",
-                    "location": "query"
+                    "location": "postField"
                 },
                 "city": {
                     "description": "The city name where this venue is.",
-                    "location": "query"
+                    "location": "postField"
                 },
                 "state": {
                     "description": "The nearest state or province to the venue.",
-                    "location": "query"
+                    "location": "postField"
                 },
                 "zip": {
                     "description": "The zip or postal code for the venue.",
-                    "location": "query"
+                    "location": "postField"
                 },
                 "phone": {
                     "description": "The phone number for the venue.",
-                    "location": "query"
+                    "location": "postField"
                 },
                 "categoryId": {
                     "description": "The IDs of the category or categories to which you want to assign this venue (separate multiple IDs with commas).",
-                    "location": "query"
+                    "location": "postField"
                 },
                 "twitter": {
                     "description": "The twitter handle of the venue.",
-                    "location": "query"
+                    "location": "postField"
                 },
                 "description": {
                     "description": "A freeform description of the venue, up to 300 characters.",
-                    "location": "query"
+                    "location": "postField"
                 },
                 "url": {
                     "description": "The url of the homepage of the venue.",
-                    "location": "query"
+                    "location": "postField"
                 }
             },
             "uri": "venuegroups/{group_id}/edit"
@@ -1003,7 +1003,7 @@
             "parameters": {
                 "venueId": {
                     "description": "comma-delimited list of venue IDs to remove from the group",
-                    "location": "query",
+                    "location": "postField",
                     "required": true
                 }
             },
@@ -1016,11 +1016,11 @@
             "parameters": {
                 "name": {
                     "description": "If specified, the new name to give to the group.",
-                    "location": "query"
+                    "location": "postField"
                 },
                 "venueId": {
                     "description": "If specified, a comma-delimited list of venue IDs that will become the new set of venue IDs for the group.",
-                    "location": "query"
+                    "location": "postField"
                 }
             },
             "uri": "venuegroups/{group_id}/update"
