@@ -43,13 +43,6 @@ After installing, you need to require Composer's autoloader somewhere in your co
 require_once 'vendor/autoload.php';
 ```
 
-## Oauth Integration
-
-Endpoints in the foursquare API that are user specific will require authorization with foursquare using the Oauth 2.0 protocol. This type
-of authorization is beyond the scope of this library as there are better libraries for that such as the [FriendsOfSymfony Oauth2 
-Server](https://github.com/FriendsOfSymfony/oauth2-php). After authorization you can pass the access token into the client for user 
-specific access.
-
 ## Usage
 
 ```php
@@ -70,6 +63,13 @@ $results = $command->execute(); // returns an array of results
 You can find a list of the client's available commands in the bundle's
 [client.json](https://github.com/jcroll/foursquare-api-client/blob/master/lib/Jcroll/FoursquareApiClient/Resources/config/client.json) but basically
 they should be the same as the [api endpoints listed in the docs](https://developer.foursquare.com/docs/).
+
+## Oauth Integration
+
+Endpoints in the foursquare API that are user specific will require authorization with foursquare using the Oauth 2.0 protocol. This type
+of authorization is beyond the scope of this library as there are better libraries for that such as the [FriendsOfSymfony Oauth2 
+Server](https://github.com/FriendsOfSymfony/oauth2-php). After authorization you can pass the access token into the client for user 
+specific access.
 
 ## TODO
 
