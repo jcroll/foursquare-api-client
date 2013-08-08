@@ -1302,5 +1302,42 @@
             "httpMethod": "POST",
             "uri": "tips/{tip_id}/unmark"
         }
+    },
+    "lists": {
+        "description": "Gives details about a list.",
+        "httpMethod": "GET",
+        "parameters": {
+            "list_id": {
+                "description": "id for a user-created (e.g. /v2/lists/12381902N) or followed list or one of either USER_ID/tips (e.g. /v2/lists/32/tips) or USER_ID/todos.",
+                "location": "uri",
+                "required": true
+            },
+            "limit": {
+                "description": "Number of results to return, up to 200.",
+                "location": "query",
+                "required": false
+            },
+            "offset": {
+                "description": "The number of results to skip. Used to page through results.",
+                "location": "query",
+                "required": false
+            },
+            "llBounds": {
+                "description": "optional Restricts the returned results to the input bounding box.",
+                "location": "query",
+                "required": false
+            },
+            "categoryId": {
+                "description": "optional Restricts the returned results to venues matching the input category id.",
+                "location": "query",
+                "required": false
+            },
+            "sort": {
+                "description": "optional Sorts the list items. Possible values are recent and nearby. recent sorts the list items by the date added to the list. nearby sorts the list items by the distance from the center of the provided llBounds.",
+                "location": "query",
+                "required": false
+            }
+        },
+        "uri": "lists/{list_id}"
     }
 }
