@@ -1172,10 +1172,97 @@
             "parameters": {
                 "tip_id": {
                     "description": "ID of tip to retrieve",
+                    "location": "uri",
                     "required": true
                 }
             },
             "uri": "tips/{tip_id}"
+        },
+        "tips/add": {
+            "description": "Allows you to add a new tip at a venue.",
+            "httpMethod": "POST",
+            "parameters": {
+                "venueId": {
+                    "description": "The venue where you want to add this tip.",
+                    "location": "postField",
+                    "required": true
+                },
+                "text": {
+                    "description": "The text of the tip, up to 200 characters.",
+                    "location": "postField",
+                    "required": true
+                },
+                "url": {
+                    "description": "A URL related to this tip.",
+                    "location": "postField",
+                    "required": false
+                },
+                "broadcast": {
+                    "description": "Whether to broadcast this tip. Send twitter if you want to send to twitter, facebook if you want to send to facebook, or twitter,facebook if you want to send to both.",
+                    "location": "postField",
+                    "required": false
+                }
+            },
+            "uri": "tips/add"
+        },
+        "tips/search": {
+            "description": "Returns a list of tips near the area specified. ",
+            "httpMethod": "GET",
+            "parameters": {
+                "ll": {
+                    "description": "required unless near is provided. Latitude and longitude of the user's location.",
+                    "location": "query",
+                    "required": false
+                },
+                "near": {
+                    "description": "required unless ll is provided. A string naming a place in the world. If the near string is not geocodable, returns a failed_geocode error. Otherwise, searches within the bounds of the geocode and adds a geocode object to the response.",
+                    "location": "query",
+                    "required": false
+                },
+                "limit": {
+                    "description": "Number of results to return, up to 500.",
+                    "location": "query",
+                    "required": false
+                },
+                "offset": {
+                    "description": "Used to page through results.",
+                    "location": "query",
+                    "required": false
+                },
+                "filter": {
+                    "description": "If set to friends, only show nearby tips from friends.",
+                    "location": "query",
+                    "required": false
+                },
+                "query": {
+                    "description": "Only find tips matching the given term, cannot be used in conjunction with friends filter.",
+                    "location": "query",
+                    "required": false
+                }
+            },
+            "uri": "tips/search"
+        },
+        "tips/likes": {
+            "extends": "tips",
+            "description": "Returns friends and a total count of users who have liked this tip.",
+            "uri": "tips/{tip_id}/likes"
+        },
+        "tips/listed": {
+            "extends": "tips",
+            "description": "The lists that this tip appears on",
+            "parameters": {
+                "group": {
+                    "description": "can be created, edited, followed, friends, other. If no acting user is present, only other is supported.",
+                    "location": "query",
+                    "required": false
+                }
+            },
+            "uri": "tips/{tip_id}/listed"
+        },
+        "tips/saves": {
+            "extends": "tips",
+            "description": "Returns friends and a total count of users who have saved this tip.",
+            "uri": "tips/{tip_id}/saves"
         }
     }
 }
