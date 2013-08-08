@@ -1,6 +1,7 @@
 # JcrollFoursquareApiClient
 
 [![Build Status](https://travis-ci.org/jcroll/foursquare-api-client.png)](https://travis-ci.org/jcroll/foursquare-api-client)
+Find the [Symfony2 Bundle for this library here](https://github.com/jcroll/foursquare-api-bundle).
 
 ## Why?
 
