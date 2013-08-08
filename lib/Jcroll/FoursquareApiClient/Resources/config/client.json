@@ -1263,6 +1263,44 @@
             "extends": "tips",
             "description": "Returns friends and a total count of users who have saved this tip.",
             "uri": "tips/{tip_id}/saves"
+        },
+        "tips/flag": {
+            "extends": "tips",
+            "description": "Allows the acting user to flag a tip as offensive, spam, or not relevant.",
+            "httpMethod": "POST",
+            "parameters": {
+                "comment": {
+                    "description": "A comment explaining the flag.",
+                    "location": "postField",
+                    "required": false
+                },
+                "problem": {
+                    "description": "The specific problem with the tip. Must be one of 'offensive', 'spam', or 'nolongerrelevant'.",
+                    "location": "postField",
+                    "required": true
+                }
+            },
+            "uri": "tips/{tip_id}/flag"
+        },
+        "tips/like": {
+            "extends": "tips",
+            "description": "Allows the acting user to like or unlike a tip.",
+            "httpMethod": "POST",
+            "parameters": {
+                "set": {
+                    "default": 1,
+                    "description": "If 1, like this tip. If 0 unlike (un-do a previous like) it. Default value is 1",
+                    "location": "postField",
+                    "required": false
+                }
+            },
+            "uri": "tips/{tip_id}/like"
+        },
+        "tips/unmark": {
+            "extends": "tips",
+            "description": "Allows you to remove a tip from your to-do list.",
+            "httpMethod": "POST",
+            "uri": "tips/{tip_id}/unmark"
         }
     }
 }
