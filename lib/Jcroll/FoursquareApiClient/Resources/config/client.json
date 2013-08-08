@@ -1165,6 +1165,17 @@
                 }
             },
             "uri": "checkins/{checkin_id}/like"
+        },
+        "tips": {
+            "description": "Gives details about a tip, including which users (especially friends) have marked the tip to-do.",
+            "httpMethod": "GET",
+            "parameters": {
+                "tip_id": {
+                    "description": "ID of tip to retrieve",
+                    "required": true
+                }
+            },
+            "uri": "tips/{tip_id}"
         }
     }
 }
