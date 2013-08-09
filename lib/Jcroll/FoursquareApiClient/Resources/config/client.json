@@ -1453,5 +1453,110 @@
             }
         },
         "uri": "lists/{list_id}/additem"
+    },
+    "lists/deleteitem": {
+        "extends": "lists/followers",
+        "description": "Allows you to delete items from a list. One of itemId, venueId, or tipId must be provided. ",
+        "httpMethod": "POST",
+        "parameters": {
+            "itemId": {
+                "description": "optional id of the item to delete.",
+                "location": "postField",
+                "required": false
+            },
+            "venueId": {
+                "description": "optional id of a venue to be deleted. If the venue is on the list multiple times, e.g. multiple tips at the same venue, all items will be removed.",
+                "location": "postField",
+                "required": false
+            },
+            "tipId": {
+                "description": "optional id of a tip to be deleted.",
+                "location": "postField",
+                "required": false
+            }
+
+        },
+        "uri": "lists/{list_id}/deleteitem"
+    },
+    "lists/follow": {
+        "extends": "lists/followers",
+        "description": "Allows you to follow a list.",
+        "httpMethod": "POST",
+        "uri": "lists/{list_id}/follow"
+    },
+    "lists/moveitem": {
+        "extends": "lists/followers",
+        "description": "Allows you to move an item on a list. One of beforeId or afterId must be specified.",
+        "httpMethod": "POST",
+        "parameters": {
+            "itemId": {
+                "description": "id of the item on this list to move",
+                "location": "postField",
+                "required": true
+            },
+            "beforeId": {
+                "description": "optional Move itemId before beforeId.",
+                "location": "postField",
+                "required": false
+            },
+            "afterId": {
+                "description": "optional Move itemId after afterId.",
+                "location": "postField",
+                "required": false
+            }
+        },
+        "uri": "lists/{list_id}/moveitem"
+    },
+    "lists/share": {
+        "extends": "lists/followers",
+        "description": "Share a user-created list to twitter or facebook.",
+        "httpMethod": "POST",
+        "parameters": {
+            "broadcast": {
+                "description": "Where to broadcast this list. Send twitter if you want to send to twitter, facebook if you want to send to facebook, or twitter,facebook if you want to send to both.",
+                "location": "postField",
+                "required": false
+            },
+            "message": {
+                "description": "optional A personal note to include with the share.",
+                "location": "postField",
+                "required": false
+            }
+        },
+        "uri": "lists/{list_id}/share"
+    },
+    "lists/unfollow": {
+        "extends": "lists/followers",
+        "description": "Allows you to unfollow a list.",
+        "httpMethod": "POST",
+        "uri": "lists/{list_id}/unfollow"
+    },
+    "lists/update": {
+        "extends": "lists/followers",
+        "description": "Allows you to update a list.",
+        "httpMethod": "POST",
+        "parameters": {
+            "name": {
+                "description": "If present and a non-empty value, updates the List name.",
+                "location": "postField",
+                "required": false
+            },
+            "description": {
+                "description": "If present and a non-empty value, updates the List description. If present and empty, will remove the List description.",
+                "location": "postField",
+                "required": false
+            },
+            "collaborative": {
+                "description": "Boolean indicating if this list can be edited by friends. Once this has been set to true for a list, authenticated friends can edit the list via additem, deleteitem, etc.",
+                "location": "postField",
+                "required": false
+            },
+            "photoId": {
+                "description": "If present and a non-empty value, updates the List photo. If present and empty, will remove the List photo.",
+                "location": "postField",
+                "required": false
+            }
+        },
+        "uri": "lists/{list_id}/update"
     }
 }
