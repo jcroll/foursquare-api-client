@@ -1743,6 +1743,85 @@
                 }
             },
             "uri": "settings/{setting_id}/set"
+        },
+        "specials": {
+            "description": "Gives details about a special, including text and whether it is unlocked for the current or provided user.",
+            "httpMethod": "GET",
+            "parameters": {
+                "special_id": {
+                    "description": "required ID of special to retrieve",
+                    "location": "uri",
+                    "required": true
+                },
+                "venueId": {
+                    "description": "required ID of a venue the special is running at",
+                    "location": "query",
+                    "required": true
+                },
+                "userId": {
+                    "description": "ID of the user to check whether the special is unlocked for. Only available if the current user is the manager of the venue. If not provided, checks wher the special is unlocked for the current user.",
+                    "location": "query",
+                    "required": false
+                }
+            },
+            "uri": "specials/{special_id}"
+        },
+        "specials/add": {
+            "description": "Allows you to create a new special.",
+            "httpMethod": "POST",
+            "parameters": {
+                "name": {
+                    "description": "A name for the special.",
+                    "location": "postField",
+                    "required": false
+                },
+                "text": {
+                    "description": "Required. Maximum length of 200 characters.",
+                    "location": "postField",
+                    "required": true
+                },
+                "unlockedText": {
+                    "description": "Required. Maximum length of 200 characters. Special text that is shown when the user has unlocked the special.",
+                    "location": "postField",
+                    "required": true
+                },
+                "finePrint": {
+                    "description": "Maximum length of 200 characters. Fine print, shown in small type on the special detail page.",
+                    "location": "postField",
+                    "required": false
+                },
+                "count1": {
+                    "description": "Count for frequency, count, regular, swarm, friends, and flash specials",
+                    "location": "postField",
+                    "required": false
+                },
+                "count2": {
+                    "description": "Secondary count for regular, flash specials",
+                    "location": "postField",
+                    "required": false
+                },
+                "count3": {
+                    "description": "Tertiary count for flash specials",
+                    "location": "postField",
+                    "required": false
+                },
+                "type": {
+                    "description": "Required. The type of special.",
+                    "location": "postField",
+                    "required": true
+                },
+                "offerId": {
+                    "description": "Maximum length of 16 characters. Internal id in your 3rd party system.",
+                    "location": "postField",
+                    "required": false
+                },
+                "cost": {
+                    "description": "The amount of money the user must spend to use this special in dollars and cents. For example, 5.50 meaning 5 dollars and 50 cents.",
+                    "location": "postField",
+                    "required": false
+                }
+            },
+            "uri": "specials/add"
         }
     }
 }
