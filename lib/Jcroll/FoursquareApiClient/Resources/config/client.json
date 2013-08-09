@@ -1456,7 +1456,7 @@
     },
     "lists/deleteitem": {
         "extends": "lists/followers",
-        "description": "Allows you to delete items from a list. One of itemId, venueId, or tipId must be provided. ",
+        "description": "Allows you to delete items from a list. One of itemId, venueId, or tipId must be provided.",
         "httpMethod": "POST",
         "parameters": {
             "itemId": {
@@ -1558,5 +1558,38 @@
             }
         },
         "uri": "lists/{list_id}/update"
+    },
+    "lists/updateitem": {
+        "extends": "lists/followers",
+        "description": "Allows you to add or remove photos and tips from items on user-created lists. ",
+        "httpMethod": "POST",
+        "parameters": {
+            "itemId": {
+                "description": "required The id of an item on this list.",
+                "location": "postField",
+                "required": true
+            },
+            "tipId": {
+                "description": "optional If present and a non-empty value, adds or replaces a tip on this item. If present and empty, will remove the tip on this item.",
+                "location": "postField",
+                "required": false
+            },
+            "text": {
+                "description": "optional If present creates a public tip on the venue and replaces any existing tip on the item. Cannot be used in conjuction with tipId or photoId.",
+                "location": "postField",
+                "required": false
+            },
+            "url": {
+                "description": "optional If adding a new tip via text, this can associate a url with the tip.",
+                "location": "postField",
+                "required": false
+            },
+            "photoId": {
+                "description": "optional If present and a non-empty value, adds a photo to this item. If present and empty, will remove the photo on this item. If the photo was a private checkin photo, it will be promoted to a public venue photo.",
+                "location": "postField",
+                "required": false
+            }
+        },
+        "uri": "lists/{list_id}/updateitem"
     }
 }
