@@ -2267,6 +2267,7 @@
                     "description": "If 1, like this page. If 0 unlike (un-do a previous like) it. Default value is 1.",
                     "location": "postField",
                     "required": false
+                }
             },
             "uri": "pages/{user_id}/like"
         },
@@ -2291,6 +2292,48 @@
                 }
             },
             "uri": "pageupdates/{update_id}"
+        },
+        "pageupdates/add": {
+            "description": "Broadcast an update as a page to followers of the page and associated venues. Venues can be specified either by the venueId, groupId or pageId (meaning all venues managed by the page) parameters. Broadcasts will show up in the Activity Stream (the Friends tab in the app) for any user who has either liked the page or any of the venues or has checked in enough times at any of the venues AND is in the same city as one of the venues associated with the broadcast. A broadcast can contain any combination of a shout, a special and photos, but at least one of the three must be specified. The API enforces a rate limit of at most one broadcast sent by a given user to the same set of venues in 15 minutes. This rate may change and is stricter for larger sets of venues.",
+            "httpMethod": "POST",
+            "parameters": {
+                "pageId": {
+                    "description": "required id of the page to associate with the broadcast. To find the page for a venue you can look at the page object in the venue response.",
+                    "location": "postField",
+                    "required": true
+                },
+                "groupId": {
+                    "description": "The venue group from which to broadcast an update.",
+                    "location": "postField",
+                    "required": false
+                },
+                "venueId": {
+                    "description": "A comma-separated list of venue IDs indicated which venues to broadcast from.",
+                    "location": "postField",
+                    "required": false
+                },
+                "shout": {
+                    "description": "Optional text associated with the broadcast. 160 characters max.",
+                    "location": "postField",
+                    "required": false
+                },
+                "campaignId": {
+                    "description": "An optional special to attach to the broadcast.",
+                    "location": "postField",
+                    "required": false
+                },
+                "photoId": {
+                    "description": "An optional photo to attach to the broadcast. For a new photo, you should use the photo add endpoint and specify only the pageId parameter.",
+                    "location": "postField",
+                    "required": false
+                },
+                "broadcast": {
+                    "description": "Additional places to send the broadcast to. Accepts a comma-delimited list of values",
+                    "location": "postField",
+                    "required": false
+                }
+            },
+            "uri": "pageupdates/add"
         }
     }
 }
