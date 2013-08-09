@@ -2266,10 +2266,31 @@
                     "default": 1,
                     "description": "If 1, like this page. If 0 unlike (un-do a previous like) it. Default value is 1.",
                     "location": "postField",
-                    "required": true
-                }
+                    "required": false
             },
             "uri": "pages/{user_id}/like"
+        },
+        "pageupdates": {
+            "description": "Get page update details.",
+            "httpMethod": "GET",
+            "parameters": {
+                "update_id": {
+                    "description": "The ID of the update to retrieve additional information for.",
+                    "location": "uri",
+                    "required": true
+                },
+                "limit": {
+                    "description": "The number of nearby venues to show (default 20).",
+                    "location": "query",
+                    "required": false
+                },
+                "ll": {
+                    "description": "The location of the current user.",
+                    "location": "query",
+                    "required": false
+                }
+            },
+            "uri": "pageupdates/{update_id}"
         }
     }
 }
