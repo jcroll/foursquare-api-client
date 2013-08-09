@@ -1709,6 +1709,40 @@
                 }
             },
             "uri": "photos/add"
+        },
+        "settings": {
+            "description": "Returns a setting for the acting user.",
+            "httpMethod": "GET",
+            "parameters": {
+                "setting_id": {
+                    "description": "The name of a setting.",
+                    "location": "uri",
+                    "required": true
+                }
+            },
+            "uri": "settings/{setting_id}"
+        },
+        "settings/all": {
+            "description": "Returns the settings of the acting user.",
+            "httpMethod": "GET",
+            "uri": "settings/all"
+        },
+        "settings/set": {
+            "description": "Change a setting for the given user.",
+            "httpMethod": "POST",
+            "parameters": {
+                "setting_id": {
+                    "description": "required Name of setting to change, sendMayorshipsToTwitter, sendBadgesToTwitter, sendMayorshipsToFacebook, sendBadgesToFacebook, receivePings, receiveCommentPings.",
+                    "location": "uri",
+                    "required": true
+                },
+                "value": {
+                    "description": "required 1 for true, and 0 for false.",
+                    "location": "postField",
+                    "required": true
+                }
+            },
+            "uri": "settings/{setting_id}/set"
         }
     }
 }
