@@ -1822,6 +1822,99 @@
                 }
             },
             "uri": "specials/add"
+        },
+        "specials/list": {
+            "description": "List available specials.",
+            "httpMethod": "GET",
+            "parameters": {
+                "venueId": {
+                    "description": "comma-separated list of venue IDs; filters results to the specials assigned to the venue(s).",
+                    "location": "query",
+                    "required": false
+                },
+                "status": {
+                    "description": "(optional, requires venueId) which specials to return: pending, active, expired, all",
+                    "location": "query",
+                    "required": false
+                }
+            },
+            "uri": "specials/list"
+        },
+        "specials/search": {
+            "description": "Returns a list of specials near the current location.",
+            "httpMethod": "GET",
+            "parameters": {
+                "ll": {
+                    "description": "Required. Latitude and longitude to search near.",
+                    "location": "query",
+                    "required": true
+                },
+                "radius": {
+                    "description": "Limit results to venues within this many meters of the specified location. Defaults to a city-wide area.",
+                    "location": "query",
+                    "required": false
+                },
+                "llAcc": {
+                    "description": "Accuracy of latitude and longitude, in meters.",
+                    "location": "query",
+                    "required": false
+                },
+                "alt": {
+                    "description": "Altitude of the user's location, in meters.",
+                    "location": "query",
+                    "required": false
+                },
+                "altAcc": {
+                    "description": "Accuracy of the user's altitude, in meters.",
+                    "location": "query",
+                    "required": false
+                },
+                "limit": {
+                    "description": "Number of results to return, up to 50.",
+                    "location": "query",
+                    "required": false
+                }
+            },
+            "uri": "specials/search"
+        },
+        "specials/configuration": {
+            "description": "Get special configuration details.",
+            "httpMethod": "GET",
+            "parameters": {
+                "special_id": {
+                    "description": "The ID of the special to retrieve configuration details for.",
+                    "location": "uri",
+                    "required": true
+                }
+            },
+            "uri": "specials/{special_id}/configuration"
+        },
+        "specials/flag": {
+            "description": "Allows users to indicate a Special is improper in some way.",
+            "httpMethod": "POST",
+            "parameters": {
+                "id": {
+                    "description": "required The id of the special being flagged",
+                    "location": "uri",
+                    "required": true
+                },
+                "venueId": {
+                    "description": "required The id of the venue running the special.",
+                    "location": "postField",
+                    "required": true
+                },
+                "problem": {
+                    "description": "required One of not_redeemable, not_valuable, other.",
+                    "location": "postField",
+                    "required": true
+                },
+                "text": {
+                    "description": "Additional text about why the user has flagged this special",
+                    "location": "postField",
+                    "required": false
+                }
+            },
+            "uri": "specials/{id}/flag"
         }
     }
 }
