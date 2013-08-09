@@ -2127,6 +2127,149 @@
                 }
             },
             "uri": "events/add"
+        },
+        "pages": {
+            "description": "Returns user details for a page. Will return error if user specified is not a page.",
+            "httpMethod": "GET",
+            "parameters": {
+                "user_id": {
+                    "description": "Identity of the page to get details for.",
+                    "location": "uri",
+                    "required": true
+                }
+            },
+            "uri": "pages/{user_id}"
+        },
+        "pages/add": {
+            "description": "Allows users to create a new page. The creating user is added as a manager of the new page.",
+            "httpMethod": "POST",
+            "parameters": {
+                "name": {
+                    "description": "required the name of the page",
+                    "location": "postField",
+                    "required": true
+                }
+            },
+            "uri": "pages/add"
+        },
+        "pages/managing": {
+            "description": "Returns an array of the pages a user manages.",
+            "httpMethod": "GET",
+            "uri": "pages/managing"
+        },
+        "pages/search": {
+            "description": "Returns a list of pages matching the search term.",
+            "httpMethod": "GET",
+            "parameters": {
+                "name": {
+                    "description": "A search term to be applied against page names.",
+                    "location": "query",
+                    "required": false
+                },
+                "twitter": {
+                    "description": "A comma-delimited list of Twitter handles to look for.",
+                    "location": "query",
+                    "required": false
+                },
+                "fbid": {
+                    "description": "A comma-delimited list of Facebook ID's to look for.",
+                    "location": "query",
+                    "required": false
+                }
+            },
+            "uri": "pages/search"
+        },
+        "pages/timeseries": {
+            "description": "Get daily venue stats for venues managed by a page over a time range.",
+            "httpMethod": "GET",
+            "parameters": {
+                "page_id": {
+                    "description": "The page whose venues to get timeseries data for",
+                    "location": "uri",
+                    "required": true
+                },
+                "startAt": {
+                    "description": "required. The start of the time range to retrieve stats for (seconds since epoch).",
+                    "location": "query",
+                    "required": false
+                },
+                "endAt": {
+                    "description": "The end of the time range to retrieve stats for (seconds since epoch). If omitted, the current time is assumed.",
+                    "location": "query",
+                    "required": false
+                },
+                "fields": {
+                    "description": "Specifies which fields to return. May be one or more of totalCheckins, newCheckins, uniqueVisitors, sharing, genders, ages, hours, separated by commas.",
+                    "location": "query",
+                    "required": false
+                }
+            },
+            "uri": "pages/{page_id}/timeseries"
+        },
+        "pages/venues": {
+            "description": "Allows you to get the page's venues.",
+            "httpMethod": "GET",
+            "parameters": {
+                "page_id": {
+                    "description": "The page id for which venues are being requested.",
+                    "location": "uri",
+                    "required": true
+                },
+                "ll": {
+                    "description": "optional Not valid with ne or sw. Limits results to venues near this latitude and longitude within an optional radius.",
+                    "location": "query",
+                    "required": false
+                },
+                "radius": {
+                    "description": "optional Can be used when including ll. Not valid with ne or sw. Limit results to venues within this many meters of the specified ll. The maximum supported radius is currently 100,000 meters.",
+                    "location": "query",
+                    "required": false
+                },
+                "sw": {
+                    "description": "With ne, limits results to the bounding quadrangle defined by the latitude and longitude given by sw as its south-west corner, and ne as its north-east corner. Not valid with ll or radius. Bounding quadrangles with an area up to approximately 10,000 square kilometers are supported.",
+                    "location": "query",
+                    "required": false
+                },
+                "ne": {
+                    "description": "See sw",
+                    "location": "query",
+                    "required": false
+                },
+                "offset": {
+                    "description": "The offset of which venues to return. Defaults to 0.",
+                    "location": "query",
+                    "required": false
+                },
+                "limit": {
+                    "description": "The number of venues to return. Defaults to 20, max of 100.",
+                    "location": "query",
+                    "required": false
+                },
+                "storeId": {
+                    "description": "optional Only return venues whose storeId matches. storeIds are defined by the page manager (and therefore namespaced to that particular page). They are the page's own internal identifier for that venue. Cannot be used with any geo params.",
+                    "location": "query",
+                    "required": false
+                }
+            },
+            "uri": "pages/{page_id}/venues"
+        },
+        "pages/like": {
+            "description": "Allows the acting user to like or unlike a page. Liking a page subscribes the acting user to updates from that page.",
+            "httpMethod": "POST",
+            "parameters": {
+                "user_id": {
+                    "description": "required The page to like or unlike.",
+                    "location": "uri",
+                    "required": true
+                },
+                "set": {
+                    "default": 1,
+                    "description": "If 1, like this page. If 0 unlike (un-do a previous like) it. Default value is 1.",
+                    "location": "postField",
+                    "required": true
+                }
+            },
+            "uri": "pages/{user_id}/like"
         }
     }
 }
