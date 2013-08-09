@@ -2363,6 +2363,27 @@
                 }
             },
             "uri": "pageupdates/{update_id}/like"
+        },
+        "multi": {
+            "description": "Does multiple (up to 5) requests at once. If specifying a v=YYYYMMDD param, be sure to use it for the top-level",
+            "httpMethod": "GET",
+            "parameters": {
+                "requests": {
+                    "description": "required A comma-delimited list of API requests.",
+                    "location": "query",
+                    "required": true
+                }
+            },
+            "uri": "multi"
+        },
+        "multi/post": {
+            "extends": "multi",
+            "httpMethod": "POST",
+            "parameters": {
+                "requests": {
+                    "location": "postField"
+                }
+            }
         }
     }
 }
