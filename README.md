@@ -73,7 +73,6 @@ specific access.
 
 ## TODO
 
-I haven't gotten around to adding all the endpoints yet so if you don't see the one you are looking for it's as easy as
-forking this repo and just adding your endpoint following the schema in [client.json](https://github.com/jcroll/foursquare-api-client/blob/master/lib/Jcroll/FoursquareApiClient/Resources/config/client.json)
-(yay Guzzle!). Then please just submit a pr and I'll be happy to include your endpoint otherwise I will work on adding 
-them all in my free time.
+Almost all of the endpoints should now be included in the library but if you don't see the one you are looking for it's as
+easy as forking this repo and just adding your endpoint following the schema in [client.json](https://github.com/jcroll/foursquare-api-client/blob/master/lib/Jcroll/FoursquareApiClient/Resources/config/client.json)
+(yay Guzzle!). Then please just submit a pr and I'll be happy to include your endpoint.
