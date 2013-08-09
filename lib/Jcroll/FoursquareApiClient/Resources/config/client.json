@@ -2061,6 +2061,72 @@
                 }
             },
             "uri": "campaigns/{campaign_id}/start"
+        },
+        "events": {
+            "description": "Get details of a event.",
+            "httpMethod": "GET",
+            "parameters": {
+                "event_id": {
+                    "description": "required The ID of the event to retrieve additional information for.",
+                    "location": "uri",
+                    "required": true
+                }
+            },
+            "uri": "events/{event_id}"
+        },
+        "events/categories": {
+            "description": "Returns a hierarchical list of categories applied to events. ",
+            "httpMethod": "GET",
+            "uri": "events/categories"
+        },
+        "events/search": {
+            "description": "This is an experimental API and subject to change or breakage.",
+            "httpMethod": "GET",
+            "parameters": {
+                "domain": {
+                    "description": "required Identifier for a known third-party event provider. This is used in conjunction with id. Currently songkick.com is the only supported value.",
+                    "location": "query",
+                    "required": true
+                },
+                "eventId": {
+                    "description": "required Identifier used by third-party specifed in domain, which we will attempt to match against our events listings. eventId is the id of an event, participantId is the id of a participant, like a band or sports team.",
+                    "location": "query",
+                    "required": false
+                },
+                "participantId": {
+                    "description": "required Identifier used by third-party specifed in domain, which we will attempt to match against our events listings. eventId is the id of an event, participantId is the id of a participant, like a band or sports team.",
+                    "location": "query",
+                    "required": false
+                }
+            },
+            "uri": "events/search"
+        },
+        "events/add": {
+            "description": "Create an event for a venue that you manage. You can see all your events in the tools tab when you're managing your venue. They're on the calendar. Events show up when users view your venue on mobile or the web. Users can also check in to events and share with their friends what they're up to in the present moment, and look back to see what they did in the days of yore.",
+            "httpMethod": "POST",
+            "parameters": {
+                "venueId": {
+                    "description": "The id of the venue where the event is being held.",
+                    "location": "postField",
+                    "required": false
+                },
+                "name": {
+                    "description": "The name of the event.",
+                    "location": "postField",
+                    "required": false
+                },
+                "start": {
+                    "description": "Time when the event is scheduled to start, in seconds since Unix epoch.",
+                    "location": "postField",
+                    "required": false
+                },
+                "end": {
+                    "description": "Time when the event is scheduled to end, in seconds since Unix epoch.",
+                    "location": "postField",
+                    "required": false
+                }
+            },
+            "uri": "events/add"
         }
     }
 }
