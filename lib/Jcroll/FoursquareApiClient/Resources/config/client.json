@@ -1927,6 +1927,77 @@
                 }
             },
             "uri": "specials/{special_id}/retire"
+        },
+        "campaigns": {
+            "description": "Get details of a campaign.",
+            "httpMethod": "GET",
+            "parameters": {
+                "campaign_id": {
+                    "description": "The ID of the campaign to retrieve additional information for.",
+                    "location": "uri",
+                    "required": true
+                }
+            },
+            "uri": "campaigns/{campaign_id}"
+        },
+        "campaigns/add": {
+            "description": "Create a campaign. The special must be started in order for it to be visible to users. Homes and Offices are not allowed to run specials, so an attempt to add a campaign on such a venue will result in an error.",
+            "httpMethod": "POST",
+            "parameters": {
+                "specialId": {
+                    "description": "required (unless campaignId has been provided). Special ID",
+                    "location": "postField",
+                    "required": true
+                },
+                "groupId": {
+                    "description": "required (unless venueId has been provided). Comma-separated list of venue group IDs.",
+                    "location": "postField",
+                    "required": true
+                },
+                "venueId": {
+                    "description": "required (unless groupId has been provided). Comma-separated list of venue IDs",
+                    "location": "postField",
+                    "required": true
+                },
+                "endAt": {
+                    "description": "DateTime when the campaign is to be automatically deactivated (seconds since epoch)",
+                    "location": "postField",
+                    "required": false
+                },
+                "startAt": {
+                    "description": "DateTime when the campaign is to be started (seconds since epoch). If this parameter is not specified, the campaign will be in a pending state until the campaign is actually started via the start action. If this parameter is specified and is in the past, the campaign will be started as of the current time.",
+                    "location": "postField",
+                    "required": false
+                },
+                "campaignId": {
+                    "description": "ID of an existing campaign to copy. The existing campaign will be used to supply values for all parameters other than the startAt and endAt parameters. Accordingly, the specialId parameter is optional when campaignId has been specified, but may be specified to override the special ID obtained from the existing campaign. Similarly, the groupId and venueId parameters can also be specified to override the values obtained from the existing campaign.",
+                    "location": "postField",
+                    "required": false
+                }
+            },
+            "uri": "campaigns/add"
+        },
+        "campaigns/list": {
+            "description": "List all campaigns matching the given criteria.",
+            "httpMethod": "GET",
+            "parameters": {
+                "specialId": {
+                    "description": "if specified, limits response to campaigns involving the given special",
+                    "location": "query",
+                    "required": false
+                },
+                "groupId": {
+                    "description": "if specified, limits response to campaigns involving the given group",
+                    "location": "query",
+                    "required": false
+                },
+                "status": {
+                    "description": "which campaigns to return: pending,scheduled,active,expired,depleted,stopped,notStarted,ended,all (default=all)",
+                    "location": "query",
+                    "required": false
+                }
+            },
+            "uri": "campaigns/list"
         }
     }
 }
