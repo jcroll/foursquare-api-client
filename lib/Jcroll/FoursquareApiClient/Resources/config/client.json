@@ -1339,5 +1339,119 @@
             }
         },
         "uri": "lists/{list_id}"
+    },
+    "lists/add": {
+        "description": "Allows users to create a new list.",
+        "httpMethod": "POST",
+        "parameters": {
+            "name": {
+                "description": "The name of the list.",
+                "location": "postField",
+                "required": true
+            },
+            "description": {
+                "description": "The description of the list.",
+                "location": "postField",
+                "required": false
+            },
+            "collaborative": {
+                "description": "Boolean indicating if this list can be edited by friends.",
+                "location": "postField",
+                "required": false
+            },
+            "photoId": {
+                "description": "The id of a photo that should be set as the list photo.",
+                "location": "postField",
+                "required": false
+            }
+        },
+        "uri": "lists/add"
+    },
+    "lists/followers": {
+        "description": "Returns a count and items of users following this list.",
+        "httpMethod": "POST",
+        "parameters": {
+            "list_id": {
+                "description": "id for a user-created list",
+                "location": "uri",
+                "required": true
+            }
+        },
+        "uri": "lists/{list_id}/followers"
+    },
+    "lists/saves": {
+        "description": "Returns friends and a total count of users who have saved this list.",
+        "httpMethod": "GET",
+        "parameters": {
+            "list_id": {
+                "description": "The ID of the list to get saves for.",
+                "location": "uri",
+                "required": true
+            }
+        },
+        "uri": "lists/{list_id}/saves"
+    },
+    "lists/suggestphoto": {
+        "extends": "lists/saves",
+        "description": "Suggests photos that may be appropriate for this item.",
+        "httpMethod": "GET",
+        "parameters": {
+            "itemId": {
+                "description": "id of item on this list.",
+                "location": "query",
+                "required": true
+            }
+        },
+        "uri": "lists/{list_id}/suggestphoto"
+    },
+    "lists/suggesttip": {
+        "extends": "lists/suggestphoto",
+        "description": "Suggests tips that may be appropriate for this item",
+        "httpMethod": "GET",
+        "uri": "lists/{list_id}/suggesttip"
+    },
+    "lists/suggestvenues": {
+        "extends": "lists/saves",
+        "description": "Suggests venues that may be appropriate for this list.",
+        "httpMethod": "GET",
+        "uri": "lists/{list_id}/suggestvenues"
+    },
+    "lists/additem": {
+        "extends": "lists/followers",
+        "description": "Allows you to add an item to a list.",
+        "httpMethod": "POST",
+        "parameters": {
+            "venueId": {
+                "description": "optional A venue to add to the list.",
+                "location": "postField",
+                "required": false
+            },
+            "text": {
+                "description": "optional If the target is a user-created list, this will create a public tip on the venue. If the target is /userid/todos, the text will be a private note that is only visible to the author.",
+                "location": "postField",
+                "required": false
+            },
+            "url": {
+                "description": "optional If adding a new tip via text, this can associate a url with the tip.",
+                "location": "postField",
+                "required": false
+            },
+            "tipId": {
+                "description": "optional Used to add a tip to a list. Cannot be used in conjunction with the text and url fields.",
+                "location": "postField",
+                "required": false
+            },
+            "listId": {
+                "description": "optional Used in conjuction with itemId, the id for a user created or followed list as well as one of either USER_ID/tips or USER_ID/todos.",
+                "location": "postField",
+                "required": false
+            },
+            "itemId": {
+                "description": "optional Used in conjuction with listId, the id of an item on that list that we wish to copy to this list.",
+                "location": "postField",
+                "required": false
+            }
+        },
+        "uri": "lists/{list_id}/additem"
     }
 }
