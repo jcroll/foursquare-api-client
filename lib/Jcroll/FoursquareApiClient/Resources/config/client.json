@@ -1915,6 +1915,18 @@
                 }
             },
             "uri": "specials/{id}/flag"
+        },
+        "specials/retire": {
+            "description": "Retire a special. Retired specials will not show up in the list of specials and cannot be assigned to a group. Also ends any active campaigns associated with the special.",
+            "httpMethod": "POST",
+            "parameters": {
+                "special_id": {
+                    "description": "The ID of the special to retire.",
+                    "location": "uri",
+                    "required": true
+                }
+            },
+            "uri": "specials/{special_id}/retire"
         }
     }
 }
