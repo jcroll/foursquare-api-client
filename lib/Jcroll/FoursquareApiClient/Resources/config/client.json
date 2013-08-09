@@ -1301,295 +1301,295 @@
             "description": "Allows you to remove a tip from your to-do list.",
             "httpMethod": "POST",
             "uri": "tips/{tip_id}/unmark"
-        }
-    },
-    "lists": {
-        "description": "Gives details about a list.",
-        "httpMethod": "GET",
-        "parameters": {
-            "list_id": {
-                "description": "id for a user-created (e.g. /v2/lists/12381902N) or followed list or one of either USER_ID/tips (e.g. /v2/lists/32/tips) or USER_ID/todos.",
-                "location": "uri",
-                "required": true
-            },
-            "limit": {
-                "description": "Number of results to return, up to 200.",
-                "location": "query",
-                "required": false
-            },
-            "offset": {
-                "description": "The number of results to skip. Used to page through results.",
-                "location": "query",
-                "required": false
-            },
-            "llBounds": {
-                "description": "optional Restricts the returned results to the input bounding box.",
-                "location": "query",
-                "required": false
-            },
-            "categoryId": {
-                "description": "optional Restricts the returned results to venues matching the input category id.",
-                "location": "query",
-                "required": false
-            },
-            "sort": {
-                "description": "optional Sorts the list items. Possible values are recent and nearby. recent sorts the list items by the date added to the list. nearby sorts the list items by the distance from the center of the provided llBounds.",
-                "location": "query",
-                "required": false
-            }
         },
-        "uri": "lists/{list_id}"
-    },
-    "lists/add": {
-        "description": "Allows users to create a new list.",
-        "httpMethod": "POST",
-        "parameters": {
-            "name": {
-                "description": "The name of the list.",
-                "location": "postField",
-                "required": true
+        "lists": {
+            "description": "Gives details about a list.",
+            "httpMethod": "GET",
+            "parameters": {
+                "list_id": {
+                    "description": "id for a user-created (e.g. /v2/lists/12381902N) or followed list or one of either USER_ID/tips (e.g. /v2/lists/32/tips) or USER_ID/todos.",
+                    "location": "uri",
+                    "required": true
+                },
+                "limit": {
+                    "description": "Number of results to return, up to 200.",
+                    "location": "query",
+                    "required": false
+                },
+                "offset": {
+                    "description": "The number of results to skip. Used to page through results.",
+                    "location": "query",
+                    "required": false
+                },
+                "llBounds": {
+                    "description": "optional Restricts the returned results to the input bounding box.",
+                    "location": "query",
+                    "required": false
+                },
+                "categoryId": {
+                    "description": "optional Restricts the returned results to venues matching the input category id.",
+                    "location": "query",
+                    "required": false
+                },
+                "sort": {
+                    "description": "optional Sorts the list items. Possible values are recent and nearby. recent sorts the list items by the date added to the list. nearby sorts the list items by the distance from the center of the provided llBounds.",
+                    "location": "query",
+                    "required": false
+                }
             },
-            "description": {
-                "description": "The description of the list.",
-                "location": "postField",
-                "required": false
-            },
-            "collaborative": {
-                "description": "Boolean indicating if this list can be edited by friends.",
-                "location": "postField",
-                "required": false
-            },
-            "photoId": {
-                "description": "The id of a photo that should be set as the list photo.",
-                "location": "postField",
-                "required": false
-            }
+            "uri": "lists/{list_id}"
         },
-        "uri": "lists/add"
-    },
-    "lists/followers": {
-        "description": "Returns a count and items of users following this list.",
-        "httpMethod": "POST",
-        "parameters": {
-            "list_id": {
-                "description": "id for a user-created list",
-                "location": "uri",
-                "required": true
-            }
+        "lists/add": {
+            "description": "Allows users to create a new list.",
+            "httpMethod": "POST",
+            "parameters": {
+                "name": {
+                    "description": "The name of the list.",
+                    "location": "postField",
+                    "required": true
+                },
+                "description": {
+                    "description": "The description of the list.",
+                    "location": "postField",
+                    "required": false
+                },
+                "collaborative": {
+                    "description": "Boolean indicating if this list can be edited by friends.",
+                    "location": "postField",
+                    "required": false
+                },
+                "photoId": {
+                    "description": "The id of a photo that should be set as the list photo.",
+                    "location": "postField",
+                    "required": false
+                }
+            },
+            "uri": "lists/add"
         },
-        "uri": "lists/{list_id}/followers"
-    },
-    "lists/saves": {
-        "description": "Returns friends and a total count of users who have saved this list.",
-        "httpMethod": "GET",
-        "parameters": {
-            "list_id": {
-                "description": "The ID of the list to get saves for.",
-                "location": "uri",
-                "required": true
-            }
+        "lists/followers": {
+            "description": "Returns a count and items of users following this list.",
+            "httpMethod": "POST",
+            "parameters": {
+                "list_id": {
+                    "description": "id for a user-created list",
+                    "location": "uri",
+                    "required": true
+                }
+            },
+            "uri": "lists/{list_id}/followers"
         },
-        "uri": "lists/{list_id}/saves"
-    },
-    "lists/suggestphoto": {
-        "extends": "lists/saves",
-        "description": "Suggests photos that may be appropriate for this item.",
-        "httpMethod": "GET",
-        "parameters": {
-            "itemId": {
-                "description": "id of item on this list.",
-                "location": "query",
-                "required": true
-            }
+        "lists/saves": {
+            "description": "Returns friends and a total count of users who have saved this list.",
+            "httpMethod": "GET",
+            "parameters": {
+                "list_id": {
+                    "description": "The ID of the list to get saves for.",
+                    "location": "uri",
+                    "required": true
+                }
+            },
+            "uri": "lists/{list_id}/saves"
         },
-        "uri": "lists/{list_id}/suggestphoto"
-    },
-    "lists/suggesttip": {
-        "extends": "lists/suggestphoto",
-        "description": "Suggests tips that may be appropriate for this item",
-        "httpMethod": "GET",
-        "uri": "lists/{list_id}/suggesttip"
-    },
-    "lists/suggestvenues": {
-        "extends": "lists/saves",
-        "description": "Suggests venues that may be appropriate for this list.",
-        "httpMethod": "GET",
-        "uri": "lists/{list_id}/suggestvenues"
-    },
-    "lists/additem": {
-        "extends": "lists/followers",
-        "description": "Allows you to add an item to a list.",
-        "httpMethod": "POST",
-        "parameters": {
-            "venueId": {
-                "description": "optional A venue to add to the list.",
-                "location": "postField",
-                "required": false
+        "lists/suggestphoto": {
+            "extends": "lists/saves",
+            "description": "Suggests photos that may be appropriate for this item.",
+            "httpMethod": "GET",
+            "parameters": {
+                "itemId": {
+                    "description": "id of item on this list.",
+                    "location": "query",
+                    "required": true
+                }
             },
-            "text": {
-                "description": "optional If the target is a user-created list, this will create a public tip on the venue. If the target is /userid/todos, the text will be a private note that is only visible to the author.",
-                "location": "postField",
-                "required": false
-            },
-            "url": {
-                "description": "optional If adding a new tip via text, this can associate a url with the tip.",
-                "location": "postField",
-                "required": false
-            },
-            "tipId": {
-                "description": "optional Used to add a tip to a list. Cannot be used in conjunction with the text and url fields.",
-                "location": "postField",
-                "required": false
-            },
-            "listId": {
-                "description": "optional Used in conjuction with itemId, the id for a user created or followed list as well as one of either USER_ID/tips or USER_ID/todos.",
-                "location": "postField",
-                "required": false
-            },
-            "itemId": {
-                "description": "optional Used in conjuction with listId, the id of an item on that list that we wish to copy to this list.",
-                "location": "postField",
-                "required": false
-            }
+            "uri": "lists/{list_id}/suggestphoto"
         },
-        "uri": "lists/{list_id}/additem"
-    },
-    "lists/deleteitem": {
-        "extends": "lists/followers",
-        "description": "Allows you to delete items from a list. One of itemId, venueId, or tipId must be provided.",
-        "httpMethod": "POST",
-        "parameters": {
-            "itemId": {
-                "description": "optional id of the item to delete.",
-                "location": "postField",
-                "required": false
+        "lists/suggesttip": {
+            "extends": "lists/suggestphoto",
+            "description": "Suggests tips that may be appropriate for this item",
+            "httpMethod": "GET",
+            "uri": "lists/{list_id}/suggesttip"
+        },
+        "lists/suggestvenues": {
+            "extends": "lists/saves",
+            "description": "Suggests venues that may be appropriate for this list.",
+            "httpMethod": "GET",
+            "uri": "lists/{list_id}/suggestvenues"
+        },
+        "lists/additem": {
+            "extends": "lists/followers",
+            "description": "Allows you to add an item to a list.",
+            "httpMethod": "POST",
+            "parameters": {
+                "venueId": {
+                    "description": "optional A venue to add to the list.",
+                    "location": "postField",
+                    "required": false
+                },
+                "text": {
+                    "description": "optional If the target is a user-created list, this will create a public tip on the venue. If the target is /userid/todos, the text will be a private note that is only visible to the author.",
+                    "location": "postField",
+                    "required": false
+                },
+                "url": {
+                    "description": "optional If adding a new tip via text, this can associate a url with the tip.",
+                    "location": "postField",
+                    "required": false
+                },
+                "tipId": {
+                    "description": "optional Used to add a tip to a list. Cannot be used in conjunction with the text and url fields.",
+                    "location": "postField",
+                    "required": false
+                },
+                "listId": {
+                    "description": "optional Used in conjuction with itemId, the id for a user created or followed list as well as one of either USER_ID/tips or USER_ID/todos.",
+                    "location": "postField",
+                    "required": false
+                },
+                "itemId": {
+                    "description": "optional Used in conjuction with listId, the id of an item on that list that we wish to copy to this list.",
+                    "location": "postField",
+                    "required": false
+                }
             },
-            "venueId": {
-                "description": "optional id of a venue to be deleted. If the venue is on the list multiple times, e.g. multiple tips at the same venue, all items will be removed.",
-                "location": "postField",
-                "required": false
-            },
-            "tipId": {
-                "description": "optional id of a tip to be deleted.",
-                "location": "postField",
-                "required": false
-            }
+            "uri": "lists/{list_id}/additem"
+        },
+        "lists/deleteitem": {
+            "extends": "lists/followers",
+            "description": "Allows you to delete items from a list. One of itemId, venueId, or tipId must be provided.",
+            "httpMethod": "POST",
+            "parameters": {
+                "itemId": {
+                    "description": "optional id of the item to delete.",
+                    "location": "postField",
+                    "required": false
+                },
+                "venueId": {
+                    "description": "optional id of a venue to be deleted. If the venue is on the list multiple times, e.g. multiple tips at the same venue, all items will be removed.",
+                    "location": "postField",
+                    "required": false
+                },
+                "tipId": {
+                    "description": "optional id of a tip to be deleted.",
+                    "location": "postField",
+                    "required": false
+                }
 
+            },
+            "uri": "lists/{list_id}/deleteitem"
         },
-        "uri": "lists/{list_id}/deleteitem"
-    },
-    "lists/follow": {
-        "extends": "lists/followers",
-        "description": "Allows you to follow a list.",
-        "httpMethod": "POST",
-        "uri": "lists/{list_id}/follow"
-    },
-    "lists/moveitem": {
-        "extends": "lists/followers",
-        "description": "Allows you to move an item on a list. One of beforeId or afterId must be specified.",
-        "httpMethod": "POST",
-        "parameters": {
-            "itemId": {
-                "description": "id of the item on this list to move",
-                "location": "postField",
-                "required": true
-            },
-            "beforeId": {
-                "description": "optional Move itemId before beforeId.",
-                "location": "postField",
-                "required": false
-            },
-            "afterId": {
-                "description": "optional Move itemId after afterId.",
-                "location": "postField",
-                "required": false
-            }
+        "lists/follow": {
+            "extends": "lists/followers",
+            "description": "Allows you to follow a list.",
+            "httpMethod": "POST",
+            "uri": "lists/{list_id}/follow"
         },
-        "uri": "lists/{list_id}/moveitem"
-    },
-    "lists/share": {
-        "extends": "lists/followers",
-        "description": "Share a user-created list to twitter or facebook.",
-        "httpMethod": "POST",
-        "parameters": {
-            "broadcast": {
-                "description": "Where to broadcast this list. Send twitter if you want to send to twitter, facebook if you want to send to facebook, or twitter,facebook if you want to send to both.",
-                "location": "postField",
-                "required": false
+        "lists/moveitem": {
+            "extends": "lists/followers",
+            "description": "Allows you to move an item on a list. One of beforeId or afterId must be specified.",
+            "httpMethod": "POST",
+            "parameters": {
+                "itemId": {
+                    "description": "id of the item on this list to move",
+                    "location": "postField",
+                    "required": true
+                },
+                "beforeId": {
+                    "description": "optional Move itemId before beforeId.",
+                    "location": "postField",
+                    "required": false
+                },
+                "afterId": {
+                    "description": "optional Move itemId after afterId.",
+                    "location": "postField",
+                    "required": false
+                }
             },
-            "message": {
-                "description": "optional A personal note to include with the share.",
-                "location": "postField",
-                "required": false
-            }
+            "uri": "lists/{list_id}/moveitem"
         },
-        "uri": "lists/{list_id}/share"
-    },
-    "lists/unfollow": {
-        "extends": "lists/followers",
-        "description": "Allows you to unfollow a list.",
-        "httpMethod": "POST",
-        "uri": "lists/{list_id}/unfollow"
-    },
-    "lists/update": {
-        "extends": "lists/followers",
-        "description": "Allows you to update a list.",
-        "httpMethod": "POST",
-        "parameters": {
-            "name": {
-                "description": "If present and a non-empty value, updates the List name.",
-                "location": "postField",
-                "required": false
+        "lists/share": {
+            "extends": "lists/followers",
+            "description": "Share a user-created list to twitter or facebook.",
+            "httpMethod": "POST",
+            "parameters": {
+                "broadcast": {
+                    "description": "Where to broadcast this list. Send twitter if you want to send to twitter, facebook if you want to send to facebook, or twitter,facebook if you want to send to both.",
+                    "location": "postField",
+                    "required": false
+                },
+                "message": {
+                    "description": "optional A personal note to include with the share.",
+                    "location": "postField",
+                    "required": false
+                }
             },
-            "description": {
-                "description": "If present and a non-empty value, updates the List description. If present and empty, will remove the List description.",
-                "location": "postField",
-                "required": false
-            },
-            "collaborative": {
-                "description": "Boolean indicating if this list can be edited by friends. Once this has been set to true for a list, authenticated friends can edit the list via additem, deleteitem, etc.",
-                "location": "postField",
-                "required": false
-            },
-            "photoId": {
-                "description": "If present and a non-empty value, updates the List photo. If present and empty, will remove the List photo.",
-                "location": "postField",
-                "required": false
-            }
+            "uri": "lists/{list_id}/share"
         },
-        "uri": "lists/{list_id}/update"
-    },
-    "lists/updateitem": {
-        "extends": "lists/followers",
-        "description": "Allows you to add or remove photos and tips from items on user-created lists. ",
-        "httpMethod": "POST",
-        "parameters": {
-            "itemId": {
-                "description": "required The id of an item on this list.",
-                "location": "postField",
-                "required": true
-            },
-            "tipId": {
-                "description": "optional If present and a non-empty value, adds or replaces a tip on this item. If present and empty, will remove the tip on this item.",
-                "location": "postField",
-                "required": false
-            },
-            "text": {
-                "description": "optional If present creates a public tip on the venue and replaces any existing tip on the item. Cannot be used in conjuction with tipId or photoId.",
-                "location": "postField",
-                "required": false
-            },
-            "url": {
-                "description": "optional If adding a new tip via text, this can associate a url with the tip.",
-                "location": "postField",
-                "required": false
-            },
-            "photoId": {
-                "description": "optional If present and a non-empty value, adds a photo to this item. If present and empty, will remove the photo on this item. If the photo was a private checkin photo, it will be promoted to a public venue photo.",
-                "location": "postField",
-                "required": false
-            }
+        "lists/unfollow": {
+            "extends": "lists/followers",
+            "description": "Allows you to unfollow a list.",
+            "httpMethod": "POST",
+            "uri": "lists/{list_id}/unfollow"
         },
-        "uri": "lists/{list_id}/updateitem"
+        "lists/update": {
+            "extends": "lists/followers",
+            "description": "Allows you to update a list.",
+            "httpMethod": "POST",
+            "parameters": {
+                "name": {
+                    "description": "If present and a non-empty value, updates the List name.",
+                    "location": "postField",
+                    "required": false
+                },
+                "description": {
+                    "description": "If present and a non-empty value, updates the List description. If present and empty, will remove the List description.",
+                    "location": "postField",
+                    "required": false
+                },
+                "collaborative": {
+                    "description": "Boolean indicating if this list can be edited by friends. Once this has been set to true for a list, authenticated friends can edit the list via additem, deleteitem, etc.",
+                    "location": "postField",
+                    "required": false
+                },
+                "photoId": {
+                    "description": "If present and a non-empty value, updates the List photo. If present and empty, will remove the List photo.",
+                    "location": "postField",
+                    "required": false
+                }
+            },
+            "uri": "lists/{list_id}/update"
+        },
+        "lists/updateitem": {
+            "extends": "lists/followers",
+            "description": "Allows you to add or remove photos and tips from items on user-created lists. ",
+            "httpMethod": "POST",
+            "parameters": {
+                "itemId": {
+                    "description": "required The id of an item on this list.",
+                    "location": "postField",
+                    "required": true
+                },
+                "tipId": {
+                    "description": "optional If present and a non-empty value, adds or replaces a tip on this item. If present and empty, will remove the tip on this item.",
+                    "location": "postField",
+                    "required": false
+                },
+                "text": {
+                    "description": "optional If present creates a public tip on the venue and replaces any existing tip on the item. Cannot be used in conjuction with tipId or photoId.",
+                    "location": "postField",
+                    "required": false
+                },
+                "url": {
+                    "description": "optional If adding a new tip via text, this can associate a url with the tip.",
+                    "location": "postField",
+                    "required": false
+                },
+                "photoId": {
+                    "description": "optional If present and a non-empty value, adds a photo to this item. If present and empty, will remove the photo on this item. If the photo was a private checkin photo, it will be promoted to a public venue photo.",
+                    "location": "postField",
+                    "required": false
+                }
+            },
+            "uri": "lists/{list_id}/updateitem"
+        }
     }
 }
