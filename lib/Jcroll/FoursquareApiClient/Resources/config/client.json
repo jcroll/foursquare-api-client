@@ -1590,6 +1590,17 @@
                 }
             },
             "uri": "lists/{list_id}/updateitem"
+        },
+        "updates": {
+            "httpMethod": "GET",
+            "parameters": {
+                "update_id": {
+                    "description": "required The ID of the update to retrieve",
+                    "location": "uri",
+                    "required": true
+                }
+            },
+            "uri": "updates/{update_id}"
         }
     }
 }
