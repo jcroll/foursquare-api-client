@@ -1590,6 +1590,800 @@
                 }
             },
             "uri": "lists/{list_id}/updateitem"
+        },
+        "updates": {
+            "httpMethod": "GET",
+            "parameters": {
+                "update_id": {
+                    "description": "required The ID of the update to retrieve",
+                    "location": "uri",
+                    "required": true
+                }
+            },
+            "uri": "updates/{update_id}"
+        },
+        "updates/notifications": {
+            "description": "Retrieve a user's notification tray notifications",
+            "httpMethod": "GET",
+            "parameters": {
+                "limit": {
+                    "description": "Maximum number of results to return, up to 99. Notifications are grouped over time, so there will usually be fewer than 99 results available at any given time. offset 0 Used to page through results. Only the 99 most recent notifications are visible, so offset must be no more than 99 - limit.",
+                    "location": "query",
+                    "required": false
+                }
+            },
+            "uri": "updates/notifications"
+        },
+        "updates/marknotificationsread": {
+            "description": "Mark notification tray notifications as read up, to a certain timestamp.",
+            "httpMethod": "POST",
+            "parameters": {
+                "highWatermark": {
+                    "description": "required The timestamp of the most recent notification that the user viewed.",
+                    "location": "postField",
+                    "required": true
+                }
+            },
+            "uri": "updates/marknotificationsread"
+        },
+        "photos": {
+            "description": "Get details of a photo.",
+            "httpMethod": "GET",
+            "parameters": {
+                "photo_id": {
+                    "description": "required The ID of the photo to retrieve additional information for.",
+                    "location": "uri",
+                    "required": true
+                }
+            },
+            "uri": "photos/{photo_id}"
+        },
+        "photos/add": {
+            "description": "Allows users to add a new photo to a checkin, tip, venue, or page update in general.",
+            "httpMethod": "POST",
+            "parameters": {
+                "checkinId": {
+                    "description": "the ID of a checkin owned by the user.",
+                    "location": "postField",
+                    "required": false
+                },
+                "tipId": {
+                    "description": "the ID of a tip owned by the user.",
+                    "location": "postField",
+                    "required": false
+                },
+                "venueId": {
+                    "description": "the ID of a venue, provided only when adding a public photo of the venue in general, rather than a photo for a private checkin, tip, or page update.",
+                    "location": "postField",
+                    "required": false
+                },
+                "pageId": {
+                    "description": "the ID of a page, provided only when adding a photo that will be in an update for that page (no other ids should be specified).",
+                    "location": "postField",
+                    "required": false
+                },
+                "broadcast": {
+                    "description": "Whether to broadcast this photo. Send twitter if you want to send to twitter, facebook if you want to send to facebook, or twitter,facebook if you want to send to both.",
+                    "location": "postField",
+                    "required": false
+                },
+                "public": {
+                    "description": "When the checkinId is also provided (meaning this is a photo attached to a checkin), this parameter allows for making the photo public and viewable at the venue. Valid values are 1 and 0 (default).",
+                    "location": "postField",
+                    "required": false
+                },
+                "ll": {
+                    "description": "Latitude and longitude of the user's location.",
+                    "location": "postField",
+                    "required": false
+                },
+                "llAcc": {
+                    "description": "Accuracy of the user's latitude and longitude, in meters.",
+                    "location": "postField",
+                    "required": false
+                },
+                "alt": {
+                    "description": "Altitude of the user's location, in meters.",
+                    "location": "postField",
+                    "required": false
+                },
+                "altAcc": {
+                    "description": "Vertical accuracy of the user's location, in meters.",
+                    "location": "postField",
+                    "required": false
+                },
+                "postUrl": {
+                    "description": "A link for more details about the photo. This page will be opened in an embedded web view in the foursquare application, unless contentId is specified and a native link handler is registered and present. We support the following URL schemes: http, https, foursquare, mailto, tel, and sms.",
+                    "location": "postField",
+                    "required": false
+                },
+                "postContentId": {
+                    "description": "Identifier for the photo post to be used in a native link, up to 50 characters. A checkinId and postUrl must also be specified in the request.",
+                    "location": "postField",
+                    "required": false
+                },
+                "postText": {
+                    "description": "Text for the photo post, up to 200 characters. A checkinId must also be specified in the request.",
+                    "location": "postField",
+                    "required": false
+                }
+            },
+            "uri": "photos/add"
+        },
+        "settings": {
+            "description": "Returns a setting for the acting user.",
+            "httpMethod": "GET",
+            "parameters": {
+                "setting_id": {
+                    "description": "The name of a setting.",
+                    "location": "uri",
+                    "required": true
+                }
+            },
+            "uri": "settings/{setting_id}"
+        },
+        "settings/all": {
+            "description": "Returns the settings of the acting user.",
+            "httpMethod": "GET",
+            "uri": "settings/all"
+        },
+        "settings/set": {
+            "description": "Change a setting for the given user.",
+            "httpMethod": "POST",
+            "parameters": {
+                "setting_id": {
+                    "description": "required Name of setting to change, sendMayorshipsToTwitter, sendBadgesToTwitter, sendMayorshipsToFacebook, sendBadgesToFacebook, receivePings, receiveCommentPings.",
+                    "location": "uri",
+                    "required": true
+                },
+                "value": {
+                    "description": "required 1 for true, and 0 for false.",
+                    "location": "postField",
+                    "required": true
+                }
+            },
+            "uri": "settings/{setting_id}/set"
+        },
+        "specials": {
+            "description": "Gives details about a special, including text and whether it is unlocked for the current or provided user.",
+            "httpMethod": "GET",
+            "parameters": {
+                "special_id": {
+                    "description": "required ID of special to retrieve",
+                    "location": "uri",
+                    "required": true
+                },
+                "venueId": {
+                    "description": "required ID of a venue the special is running at",
+                    "location": "query",
+                    "required": true
+                },
+                "userId": {
+                    "description": "ID of the user to check whether the special is unlocked for. Only available if the current user is the manager of the venue. If not provided, checks wher the special is unlocked for the current user.",
+                    "location": "query",
+                    "required": false
+                }
+            },
+            "uri": "specials/{special_id}"
+        },
+        "specials/add": {
+            "description": "Allows you to create a new special.",
+            "httpMethod": "POST",
+            "parameters": {
+                "name": {
+                    "description": "A name for the special.",
+                    "location": "postField",
+                    "required": false
+                },
+                "text": {
+                    "description": "Required. Maximum length of 200 characters.",
+                    "location": "postField",
+                    "required": true
+                },
+                "unlockedText": {
+                    "description": "Required. Maximum length of 200 characters. Special text that is shown when the user has unlocked the special.",
+                    "location": "postField",
+                    "required": true
+                },
+                "finePrint": {
+                    "description": "Maximum length of 200 characters. Fine print, shown in small type on the special detail page.",
+                    "location": "postField",
+                    "required": false
+                },
+                "count1": {
+                    "description": "Count for frequency, count, regular, swarm, friends, and flash specials",
+                    "location": "postField",
+                    "required": false
+                },
+                "count2": {
+                    "description": "Secondary count for regular, flash specials",
+                    "location": "postField",
+                    "required": false
+                },
+                "count3": {
+                    "description": "Tertiary count for flash specials",
+                    "location": "postField",
+                    "required": false
+                },
+                "type": {
+                    "description": "Required. The type of special.",
+                    "location": "postField",
+                    "required": true
+                },
+                "offerId": {
+                    "description": "Maximum length of 16 characters. Internal id in your 3rd party system.",
+                    "location": "postField",
+                    "required": false
+                },
+                "cost": {
+                    "description": "The amount of money the user must spend to use this special in dollars and cents. For example, 5.50 meaning 5 dollars and 50 cents.",
+                    "location": "postField",
+                    "required": false
+                }
+            },
+            "uri": "specials/add"
+        },
+        "specials/list": {
+            "description": "List available specials.",
+            "httpMethod": "GET",
+            "parameters": {
+                "venueId": {
+                    "description": "comma-separated list of venue IDs; filters results to the specials assigned to the venue(s).",
+                    "location": "query",
+                    "required": false
+                },
+                "status": {
+                    "description": "(optional, requires venueId) which specials to return: pending, active, expired, all",
+                    "location": "query",
+                    "required": false
+                }
+            },
+            "uri": "specials/list"
+        },
+        "specials/search": {
+            "description": "Returns a list of specials near the current location.",
+            "httpMethod": "GET",
+            "parameters": {
+                "ll": {
+                    "description": "Required. Latitude and longitude to search near.",
+                    "location": "query",
+                    "required": true
+                },
+                "radius": {
+                    "description": "Limit results to venues within this many meters of the specified location. Defaults to a city-wide area.",
+                    "location": "query",
+                    "required": false
+                },
+                "llAcc": {
+                    "description": "Accuracy of latitude and longitude, in meters.",
+                    "location": "query",
+                    "required": false
+                },
+                "alt": {
+                    "description": "Altitude of the user's location, in meters.",
+                    "location": "query",
+                    "required": false
+                },
+                "altAcc": {
+                    "description": "Accuracy of the user's altitude, in meters.",
+                    "location": "query",
+                    "required": false
+                },
+                "limit": {
+                    "description": "Number of results to return, up to 50.",
+                    "location": "query",
+                    "required": false
+                }
+            },
+            "uri": "specials/search"
+        },
+        "specials/configuration": {
+            "description": "Get special configuration details.",
+            "httpMethod": "GET",
+            "parameters": {
+                "special_id": {
+                    "description": "The ID of the special to retrieve configuration details for.",
+                    "location": "uri",
+                    "required": true
+                }
+            },
+            "uri": "specials/{special_id}/configuration"
+        },
+        "specials/flag": {
+            "description": "Allows users to indicate a Special is improper in some way.",
+            "httpMethod": "POST",
+            "parameters": {
+                "id": {
+                    "description": "required The id of the special being flagged",
+                    "location": "uri",
+                    "required": true
+                },
+                "venueId": {
+                    "description": "required The id of the venue running the special.",
+                    "location": "postField",
+                    "required": true
+                },
+                "problem": {
+                    "description": "required One of not_redeemable, not_valuable, other.",
+                    "location": "postField",
+                    "required": true
+                },
+                "text": {
+                    "description": "Additional text about why the user has flagged this special",
+                    "location": "postField",
+                    "required": false
+                }
+            },
+            "uri": "specials/{id}/flag"
+        },
+        "specials/retire": {
+            "description": "Retire a special. Retired specials will not show up in the list of specials and cannot be assigned to a group. Also ends any active campaigns associated with the special.",
+            "httpMethod": "POST",
+            "parameters": {
+                "special_id": {
+                    "description": "The ID of the special to retire.",
+                    "location": "uri",
+                    "required": true
+                }
+            },
+            "uri": "specials/{special_id}/retire"
+        },
+        "campaigns": {
+            "description": "Get details of a campaign.",
+            "httpMethod": "GET",
+            "parameters": {
+                "campaign_id": {
+                    "description": "The ID of the campaign to retrieve additional information for.",
+                    "location": "uri",
+                    "required": true
+                }
+            },
+            "uri": "campaigns/{campaign_id}"
+        },
+        "campaigns/add": {
+            "description": "Create a campaign. The special must be started in order for it to be visible to users. Homes and Offices are not allowed to run specials, so an attempt to add a campaign on such a venue will result in an error.",
+            "httpMethod": "POST",
+            "parameters": {
+                "specialId": {
+                    "description": "required (unless campaignId has been provided). Special ID",
+                    "location": "postField",
+                    "required": true
+                },
+                "groupId": {
+                    "description": "required (unless venueId has been provided). Comma-separated list of venue group IDs.",
+                    "location": "postField",
+                    "required": true
+                },
+                "venueId": {
+                    "description": "required (unless groupId has been provided). Comma-separated list of venue IDs",
+                    "location": "postField",
+                    "required": true
+                },
+                "endAt": {
+                    "description": "DateTime when the campaign is to be automatically deactivated (seconds since epoch)",
+                    "location": "postField",
+                    "required": false
+                },
+                "startAt": {
+                    "description": "DateTime when the campaign is to be started (seconds since epoch). If this parameter is not specified, the campaign will be in a pending state until the campaign is actually started via the start action. If this parameter is specified and is in the past, the campaign will be started as of the current time.",
+                    "location": "postField",
+                    "required": false
+                },
+                "campaignId": {
+                    "description": "ID of an existing campaign to copy. The existing campaign will be used to supply values for all parameters other than the startAt and endAt parameters. Accordingly, the specialId parameter is optional when campaignId has been specified, but may be specified to override the special ID obtained from the existing campaign. Similarly, the groupId and venueId parameters can also be specified to override the values obtained from the existing campaign.",
+                    "location": "postField",
+                    "required": false
+                }
+            },
+            "uri": "campaigns/add"
+        },
+        "campaigns/list": {
+            "description": "List all campaigns matching the given criteria.",
+            "httpMethod": "GET",
+            "parameters": {
+                "specialId": {
+                    "description": "if specified, limits response to campaigns involving the given special",
+                    "location": "query",
+                    "required": false
+                },
+                "groupId": {
+                    "description": "if specified, limits response to campaigns involving the given group",
+                    "location": "query",
+                    "required": false
+                },
+                "status": {
+                    "description": "which campaigns to return: pending,scheduled,active,expired,depleted,stopped,notStarted,ended,all (default=all)",
+                    "location": "query",
+                    "required": false
+                }
+            },
+            "uri": "campaigns/list"
+        },
+        "campaigns/timeseries": {
+            "description": "Get daily campaign stats over a given time range.",
+            "httpMethod": "GET",
+            "parameters": {
+                "campaign_id": {
+                    "description": "required The campaign id to retrieve stats for.",
+                    "location": "uri",
+                    "required": true
+                },
+                "startAt": {
+                    "description": "The start of the time range to retrieve stats for (seconds since epoch). If omitted, the campaign start time will be used.",
+                    "location": "query",
+                    "required": false
+                },
+                "endAt": {
+                    "description": "The end of the time range to retrieve stats for (seconds since epoch). If omitted, the campaign end time or the current time will be used, whichever occurs first.",
+                    "location": "query",
+                    "required": false
+                }
+            },
+            "uri": "campaigns/{campaign_id}/timeseries"
+        },
+        "campaigns/delete": {
+            "description": "Delete a campaign that has never been activated.",
+            "httpMethod": "POST",
+            "parameters": {
+                "campaign_id": {
+                    "description": "The ID of the campaign to delete.",
+                    "location": "uri",
+                    "required": true
+                }
+            },
+            "uri": "campaigns/{campaign_id}/delete"
+        },
+        "campaigns/end": {
+            "description": "End a campaign.",
+            "httpMethod": "POST",
+            "parameters": {
+                "campaign_id": {
+                    "description": "The ID of the campaign to end.",
+                    "location": "uri",
+                    "required": true
+                }
+            },
+            "uri": "campaigns/{campaign_id}/end"
+        },
+        "campaigns/start": {
+            "description": "Start a campaign.",
+            "httpMethod": "POST",
+            "parameters": {
+                "campaign_id": {
+                    "description": "The ID of the campaign to start.",
+                    "location": "uri",
+                    "required": true
+                },
+                "startAt": {
+                    "description": "DateTime when the campaign is to be started (seconds since epoch). If this parameter is not specified or is in the past, the campaign will be started as of the current time.",
+                    "location": "postField",
+                    "required": false
+                }
+            },
+            "uri": "campaigns/{campaign_id}/start"
+        },
+        "events": {
+            "description": "Get details of a event.",
+            "httpMethod": "GET",
+            "parameters": {
+                "event_id": {
+                    "description": "required The ID of the event to retrieve additional information for.",
+                    "location": "uri",
+                    "required": true
+                }
+            },
+            "uri": "events/{event_id}"
+        },
+        "events/categories": {
+            "description": "Returns a hierarchical list of categories applied to events. ",
+            "httpMethod": "GET",
+            "uri": "events/categories"
+        },
+        "events/search": {
+            "description": "This is an experimental API and subject to change or breakage.",
+            "httpMethod": "GET",
+            "parameters": {
+                "domain": {
+                    "description": "required Identifier for a known third-party event provider. This is used in conjunction with id. Currently songkick.com is the only supported value.",
+                    "location": "query",
+                    "required": true
+                },
+                "eventId": {
+                    "description": "required Identifier used by third-party specifed in domain, which we will attempt to match against our events listings. eventId is the id of an event, participantId is the id of a participant, like a band or sports team.",
+                    "location": "query",
+                    "required": false
+                },
+                "participantId": {
+                    "description": "required Identifier used by third-party specifed in domain, which we will attempt to match against our events listings. eventId is the id of an event, participantId is the id of a participant, like a band or sports team.",
+                    "location": "query",
+                    "required": false
+                }
+            },
+            "uri": "events/search"
+        },
+        "events/add": {
+            "description": "Create an event for a venue that you manage. You can see all your events in the tools tab when you're managing your venue. They're on the calendar. Events show up when users view your venue on mobile or the web. Users can also check in to events and share with their friends what they're up to in the present moment, and look back to see what they did in the days of yore.",
+            "httpMethod": "POST",
+            "parameters": {
+                "venueId": {
+                    "description": "The id of the venue where the event is being held.",
+                    "location": "postField",
+                    "required": false
+                },
+                "name": {
+                    "description": "The name of the event.",
+                    "location": "postField",
+                    "required": false
+                },
+                "start": {
+                    "description": "Time when the event is scheduled to start, in seconds since Unix epoch.",
+                    "location": "postField",
+                    "required": false
+                },
+                "end": {
+                    "description": "Time when the event is scheduled to end, in seconds since Unix epoch.",
+                    "location": "postField",
+                    "required": false
+                }
+            },
+            "uri": "events/add"
+        },
+        "pages": {
+            "description": "Returns user details for a page. Will return error if user specified is not a page.",
+            "httpMethod": "GET",
+            "parameters": {
+                "user_id": {
+                    "description": "Identity of the page to get details for.",
+                    "location": "uri",
+                    "required": true
+                }
+            },
+            "uri": "pages/{user_id}"
+        },
+        "pages/add": {
+            "description": "Allows users to create a new page. The creating user is added as a manager of the new page.",
+            "httpMethod": "POST",
+            "parameters": {
+                "name": {
+                    "description": "required the name of the page",
+                    "location": "postField",
+                    "required": true
+                }
+            },
+            "uri": "pages/add"
+        },
+        "pages/managing": {
+            "description": "Returns an array of the pages a user manages.",
+            "httpMethod": "GET",
+            "uri": "pages/managing"
+        },
+        "pages/search": {
+            "description": "Returns a list of pages matching the search term.",
+            "httpMethod": "GET",
+            "parameters": {
+                "name": {
+                    "description": "A search term to be applied against page names.",
+                    "location": "query",
+                    "required": false
+                },
+                "twitter": {
+                    "description": "A comma-delimited list of Twitter handles to look for.",
+                    "location": "query",
+                    "required": false
+                },
+                "fbid": {
+                    "description": "A comma-delimited list of Facebook ID's to look for.",
+                    "location": "query",
+                    "required": false
+                }
+            },
+            "uri": "pages/search"
+        },
+        "pages/timeseries": {
+            "description": "Get daily venue stats for venues managed by a page over a time range.",
+            "httpMethod": "GET",
+            "parameters": {
+                "page_id": {
+                    "description": "The page whose venues to get timeseries data for",
+                    "location": "uri",
+                    "required": true
+                },
+                "startAt": {
+                    "description": "required. The start of the time range to retrieve stats for (seconds since epoch).",
+                    "location": "query",
+                    "required": false
+                },
+                "endAt": {
+                    "description": "The end of the time range to retrieve stats for (seconds since epoch). If omitted, the current time is assumed.",
+                    "location": "query",
+                    "required": false
+                },
+                "fields": {
+                    "description": "Specifies which fields to return. May be one or more of totalCheckins, newCheckins, uniqueVisitors, sharing, genders, ages, hours, separated by commas.",
+                    "location": "query",
+                    "required": false
+                }
+            },
+            "uri": "pages/{page_id}/timeseries"
+        },
+        "pages/venues": {
+            "description": "Allows you to get the page's venues.",
+            "httpMethod": "GET",
+            "parameters": {
+                "page_id": {
+                    "description": "The page id for which venues are being requested.",
+                    "location": "uri",
+                    "required": true
+                },
+                "ll": {
+                    "description": "optional Not valid with ne or sw. Limits results to venues near this latitude and longitude within an optional radius.",
+                    "location": "query",
+                    "required": false
+                },
+                "radius": {
+                    "description": "optional Can be used when including ll. Not valid with ne or sw. Limit results to venues within this many meters of the specified ll. The maximum supported radius is currently 100,000 meters.",
+                    "location": "query",
+                    "required": false
+                },
+                "sw": {
+                    "description": "With ne, limits results to the bounding quadrangle defined by the latitude and longitude given by sw as its south-west corner, and ne as its north-east corner. Not valid with ll or radius. Bounding quadrangles with an area up to approximately 10,000 square kilometers are supported.",
+                    "location": "query",
+                    "required": false
+                },
+                "ne": {
+                    "description": "See sw",
+                    "location": "query",
+                    "required": false
+                },
+                "offset": {
+                    "description": "The offset of which venues to return. Defaults to 0.",
+                    "location": "query",
+                    "required": false
+                },
+                "limit": {
+                    "description": "The number of venues to return. Defaults to 20, max of 100.",
+                    "location": "query",
+                    "required": false
+                },
+                "storeId": {
+                    "description": "optional Only return venues whose storeId matches. storeIds are defined by the page manager (and therefore namespaced to that particular page). They are the page's own internal identifier for that venue. Cannot be used with any geo params.",
+                    "location": "query",
+                    "required": false
+                }
+            },
+            "uri": "pages/{page_id}/venues"
+        },
+        "pages/like": {
+            "description": "Allows the acting user to like or unlike a page. Liking a page subscribes the acting user to updates from that page.",
+            "httpMethod": "POST",
+            "parameters": {
+                "user_id": {
+                    "description": "required The page to like or unlike.",
+                    "location": "uri",
+                    "required": true
+                },
+                "set": {
+                    "default": 1,
+                    "description": "If 1, like this page. If 0 unlike (un-do a previous like) it. Default value is 1.",
+                    "location": "postField",
+                    "required": false
+                }
+            },
+            "uri": "pages/{user_id}/like"
+        },
+        "pageupdates": {
+            "description": "Get page update details.",
+            "httpMethod": "GET",
+            "parameters": {
+                "update_id": {
+                    "description": "The ID of the update to retrieve additional information for.",
+                    "location": "uri",
+                    "required": true
+                },
+                "limit": {
+                    "description": "The number of nearby venues to show (default 20).",
+                    "location": "query",
+                    "required": false
+                },
+                "ll": {
+                    "description": "The location of the current user.",
+                    "location": "query",
+                    "required": false
+                }
+            },
+            "uri": "pageupdates/{update_id}"
+        },
+        "pageupdates/add": {
+            "description": "Broadcast an update as a page to followers of the page and associated venues. Venues can be specified either by the venueId, groupId or pageId (meaning all venues managed by the page) parameters. Broadcasts will show up in the Activity Stream (the Friends tab in the app) for any user who has either liked the page or any of the venues or has checked in enough times at any of the venues AND is in the same city as one of the venues associated with the broadcast. A broadcast can contain any combination of a shout, a special and photos, but at least one of the three must be specified. The API enforces a rate limit of at most one broadcast sent by a given user to the same set of venues in 15 minutes. This rate may change and is stricter for larger sets of venues.",
+            "httpMethod": "POST",
+            "parameters": {
+                "pageId": {
+                    "description": "required id of the page to associate with the broadcast. To find the page for a venue you can look at the page object in the venue response.",
+                    "location": "postField",
+                    "required": true
+                },
+                "groupId": {
+                    "description": "The venue group from which to broadcast an update.",
+                    "location": "postField",
+                    "required": false
+                },
+                "venueId": {
+                    "description": "A comma-separated list of venue IDs indicated which venues to broadcast from.",
+                    "location": "postField",
+                    "required": false
+                },
+                "shout": {
+                    "description": "Optional text associated with the broadcast. 160 characters max.",
+                    "location": "postField",
+                    "required": false
+                },
+                "campaignId": {
+                    "description": "An optional special to attach to the broadcast.",
+                    "location": "postField",
+                    "required": false
+                },
+                "photoId": {
+                    "description": "An optional photo to attach to the broadcast. For a new photo, you should use the photo add endpoint and specify only the pageId parameter.",
+                    "location": "postField",
+                    "required": false
+                },
+                "broadcast": {
+                    "description": "Additional places to send the broadcast to. Accepts a comma-delimited list of values",
+                    "location": "postField",
+                    "required": false
+                }
+            },
+            "uri": "pageupdates/add"
+        },
+        "pageupdates/list": {
+            "description": "Returns a list of page updates created by the current user.",
+            "httpMethod": "GET",
+            "uri": "pageupdates/list"
+        },
+        "pageupdates/delete": {
+            "description": "Delete a page update created by the current user.",
+            "httpMethod": "POST",
+            "parameters": {
+                "update_id": {
+                    "description": "The ID of the update to delete.",
+                    "location": "uri",
+                    "required": true
+                }
+            },
+            "uri": "pageupdates/{update_id}/delete"
+        },
+        "pageupdates/like": {
+            "description": "Causes the current user to 'like' a page update. If there is a campaign associated with the update, the like will propagate to the special as well.",
+            "httpMethod": "POST",
+            "parameters": {
+                "update_id": {
+                    "description": "The ID of the update to like.",
+                    "location": "uri",
+                    "required": true
+                }
+            },
+            "uri": "pageupdates/{update_id}/like"
+        },
+        "multi": {
+            "description": "Does multiple (up to 5) requests at once. If specifying a v=YYYYMMDD param, be sure to use it for the top-level",
+            "httpMethod": "GET",
+            "parameters": {
+                "requests": {
+                    "description": "required A comma-delimited list of API requests.",
+                    "location": "query",
+                    "required": true
+                }
+            },
+            "uri": "multi"
+        },
+        "multi/post": {
+            "extends": "multi",
+            "httpMethod": "POST",
+            "parameters": {
+                "requests": {
+                    "location": "postField"
+                }
+            }
         }
     }
 }
