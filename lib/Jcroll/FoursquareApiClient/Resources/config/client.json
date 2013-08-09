@@ -2334,6 +2334,35 @@
                 }
             },
             "uri": "pageupdates/add"
+        },
+        "pageupdates/list": {
+            "description": "Returns a list of page updates created by the current user.",
+            "httpMethod": "GET",
+            "uri": "pageupdates/list"
+        },
+        "pageupdates/delete": {
+            "description": "Delete a page update created by the current user.",
+            "httpMethod": "POST",
+            "parameters": {
+                "update_id": {
+                    "description": "The ID of the update to delete.",
+                    "location": "uri",
+                    "required": true
+                }
+            },
+            "uri": "pageupdates/{update_id}/delete"
+        },
+        "pageupdates/like": {
+            "description": "Causes the current user to 'like' a page update. If there is a campaign associated with the update, the like will propagate to the special as well.",
+            "httpMethod": "POST",
+            "parameters": {
+                "update_id": {
+                    "description": "The ID of the update to like.",
+                    "location": "uri",
+                    "required": true
+                }
+            },
+            "uri": "pageupdates/{update_id}/like"
         }
     }
 }
