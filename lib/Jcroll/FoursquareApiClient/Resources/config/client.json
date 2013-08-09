@@ -1601,6 +1601,30 @@
                 }
             },
             "uri": "updates/{update_id}"
+        },
+        "updates/notifications": {
+            "description": "Retrieve a user's notification tray notifications",
+            "httpMethod": "GET",
+            "parameters": {
+                "limit": {
+                    "description": "Maximum number of results to return, up to 99. Notifications are grouped over time, so there will usually be fewer than 99 results available at any given time. offset 0 Used to page through results. Only the 99 most recent notifications are visible, so offset must be no more than 99 - limit.",
+                    "location": "query",
+                    "required": false
+                }
+            },
+            "uri": "updates/notifications"
+        },
+        "updates/marknotificationsread": {
+            "description": "Mark notification tray notifications as read up, to a certain timestamp.",
+            "httpMethod": "POST",
+            "parameters": {
+                "highWatermark": {
+                    "description": "required The timestamp of the most recent notification that the user viewed.",
+                    "location": "postField",
+                    "required": true
+                }
+            },
+            "uri": "updates/marknotificationsread"
         }
     }
 }
