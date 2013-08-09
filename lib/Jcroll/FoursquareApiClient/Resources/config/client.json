@@ -1998,6 +1998,69 @@
                 }
             },
             "uri": "campaigns/list"
+        },
+        "campaigns/timeseries": {
+            "description": "Get daily campaign stats over a given time range.",
+            "httpMethod": "GET",
+            "parameters": {
+                "campaign_id": {
+                    "description": "required The campaign id to retrieve stats for.",
+                    "location": "uri",
+                    "required": true
+                },
+                "startAt": {
+                    "description": "The start of the time range to retrieve stats for (seconds since epoch). If omitted, the campaign start time will be used.",
+                    "location": "query",
+                    "required": false
+                },
+                "endAt": {
+                    "description": "The end of the time range to retrieve stats for (seconds since epoch). If omitted, the campaign end time or the current time will be used, whichever occurs first.",
+                    "location": "query",
+                    "required": false
+                }
+            },
+            "uri": "campaigns/{campaign_id}/timeseries"
+        },
+        "campaigns/delete": {
+            "description": "Delete a campaign that has never been activated.",
+            "httpMethod": "POST",
+            "parameters": {
+                "campaign_id": {
+                    "description": "The ID of the campaign to delete.",
+                    "location": "uri",
+                    "required": true
+                }
+            },
+            "uri": "campaigns/{campaign_id}/delete"
+        },
+        "campaigns/end": {
+            "description": "End a campaign.",
+            "httpMethod": "POST",
+            "parameters": {
+                "campaign_id": {
+                    "description": "The ID of the campaign to end.",
+                    "location": "uri",
+                    "required": true
+                }
+            },
+            "uri": "campaigns/{campaign_id}/end"
+        },
+        "campaigns/start": {
+            "description": "Start a campaign.",
+            "httpMethod": "POST",
+            "parameters": {
+                "campaign_id": {
+                    "description": "The ID of the campaign to start.",
+                    "location": "uri",
+                    "required": true
+                },
+                "startAt": {
+                    "description": "DateTime when the campaign is to be started (seconds since epoch). If this parameter is not specified or is in the past, the campaign will be started as of the current time.",
+                    "location": "postField",
+                    "required": false
+                }
+            },
+            "uri": "campaigns/{campaign_id}/start"
         }
     }
 }
