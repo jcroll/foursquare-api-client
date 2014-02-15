@@ -70,9 +70,3 @@ Endpoints in the foursquare API that are user specific will require authorizatio
 of authorization is beyond the scope of this library as there are better libraries for that such as the [FriendsOfSymfony Oauth2 
 Server](https://github.com/FriendsOfSymfony/oauth2-php). After authorization you can pass the access token into the client for user 
 specific access.
-
-## TODO
-
-Almost all of the endpoints should now be included in the library but if you don't see the one you are looking for it's as
-easy as forking this repo and just adding your endpoint following the schema in [client.json](https://github.com/jcroll/foursquare-api-client/blob/master/lib/Jcroll/FoursquareApiClient/Resources/config/client.json)
-(yay Guzzle!). Then please just submit a pr and I'll be happy to include your endpoint.
