@@ -12,7 +12,9 @@
         }
     ],
     "require": {
-        "guzzle/guzzle": "~3.7"
+        "guzzlehttp/guzzle": "~4.1.4",
+        "guzzlehttp/guzzle-services": "~0.3",
+        "guzzlehttp/oauth-subscriber": "0.1.x"
     },
     "autoload": {
         "psr-0": {

@@ -1,20 +1,23 @@
 <?php
 
 namespace Jcroll\FoursquareApiClient\Client;
+use GuzzleHttp\Client;
+use GuzzleHttp\Collection;
+use GuzzleHttp\Command\Guzzle\GuzzleClient;
+use GuzzleHttp\Command\Guzzle\Description;
+use GuzzleHttp\Subscriber\Oauth\Oauth1;
+use \InvalidArgumentException;
 
-use Guzzle\Common\Collection;
-use Guzzle\Plugin\Oauth\OauthPlugin;
-use Guzzle\Service\Client;
-use Guzzle\Service\Description\ServiceDescription;
-use Guzzle\Service\Builder\ServiceBuilder;
-use Guzzle\Common\Exception\InvalidArgumentException;
-
-class FoursquareClient extends Client
+class FoursquareClient extends GuzzleClient
 {
+    static $serviceDescription = NULL;
     public static function factory($config = array())
     {
-        $default = array('base_url' => 'https://api.foursquare.com/v2/');
+        if (static::$serviceDescription == NULL) {
+            static::$serviceDescription = json_decode(file_get_contents(dirname(__DIR__).'/Resources/config/client.json'), true);
+        }
 
+        $default = array('base_url' => 'https://api.foursquare.com/v2/');
         $required = array(
             'client_id',
             'client_secret',
@@ -26,26 +29,31 @@ class FoursquareClient extends Client
             }
         }
 
+        $description = new Description(static::$serviceDescription);
+
         $config = Collection::fromConfig($config, $default, $required);
-
-        $client = new self($config->get('base_url'), $config);
-
-        $client->setDefaultOption('query',  array(
-            'client_id' => $config['client_id'],
-            'client_secret' => $config['client_secret'],
-            'v' => '20130707'
+        $client = new Client(array(
+            'base_url' => $config->get('base_url'),
+            'query' => array(
+                'client_id' => $config['client_id'],
+                'client_secret' => $config['client_secret'],
+                'v' => '20130707'
+            ),
+            'defaults' => array('auth' => 'oauth')
         ));
-
-        $client->setDescription(ServiceDescription::factory(__DIR__.'/../Resources/config/client.json'));
-
-        return $client;
+        $oauth = new Oauth1(array(
+            'consumer_key' => $config['client_id'],
+            'consumer_secret' => $config['client_secret']
+        ));
+        $client->getEmitter()->attach($oauth);
+        return new self($client, $description);
     }
 
     public function addToken($token)
     {
-        $config = $this->getDefaultOption('query');
-        $config = array_merge(array('oauth_token' => $token), $config);
-        $this->setDefaultOption('query', $config);
+        $query = $this->getHttpClient()->getDefaultOption('query');
+        $query['oauth_token'] = $token;
+        $this->getHttpClient()->setDefaultOption('query', $query);
 
         return $this;
     }
