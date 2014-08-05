@@ -5,7 +5,8 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Collection;
 use GuzzleHttp\Command\Guzzle\GuzzleClient;
 use GuzzleHttp\Command\Guzzle\Description;
-use GuzzleHttp\Subscriber\Oauth\Oauth1;
+use GuzzleHttp\Event\CompleteEvent;
+use GuzzleHttp\Event\ErrorEvent;
 use GuzzleHttp\Event\BeforeEvent;
 use \InvalidArgumentException;
 
@@ -19,12 +20,11 @@ class FoursquareClient extends GuzzleClient
             static::$serviceDescription = json_decode(file_get_contents(dirname(__DIR__).'/Resources/config/client.json'), true);
         }
 
-//        static::$serviceDescription['base_url'] = 'https://api.foursquare.com/v2/';
-
         $default = array(
             'verify' => true,
-            'event.before' => array(),
-            'event.after' => array()
+            'event.before' => function(BeforeEvent $e) { },
+            'event.after' => function(CompleteEvent $e) { },
+            'event.error' => function(ErrorEvent $e) { }
         );
 
         $required = array(
@@ -37,7 +37,6 @@ class FoursquareClient extends GuzzleClient
                 throw new InvalidArgumentException("Argument '{$value}' must not be blank.");
             }
         }
-
 
         $description = new Description(static::$serviceDescription);
 
@@ -62,12 +61,6 @@ class FoursquareClient extends GuzzleClient
 
         if (is_callable($config['event.error']))
             $httpClient->getEmitter()->on('error', $config['event.error']);
-
-//        $oauth = new Oauth1(array(
-//            'consumer_key' => $config['client_id'],
-//            'consumer_secret' => $config['client_secret']
-//        ));
-//         $httpClient->getEmitter()->attach($oauth);
 
         return new self($httpClient, $description);
     }
