@@ -52,7 +52,7 @@ $client = FoursquareClient::factory(array(
     'client_id'     => 'your_foursquare_client_id',    // required
     'client_secret' => 'your_foursquare_client_secret' // required
 ));
-$client->addToken($oauthToken); // optionaly pass in for user specific requests
+$client->addToken($oauthToken); // optionally pass in for user specific requests
 $command = $client->getCommand('venues/search', array(
     'near' => 'Chicago, IL',
     'query' => 'sushi'
