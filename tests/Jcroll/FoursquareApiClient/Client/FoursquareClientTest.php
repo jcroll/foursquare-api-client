@@ -22,12 +22,12 @@ class FoursquareClientTest extends \PHPUnit_Framework_TestCase
         $client = FoursquareClient::factory($config);
 
         $this->assertInstanceOf('\Jcroll\FoursquareApiClient\Client\FoursquareClient', $client);
-        $this->assertEquals($config['client_id'], $client->getDefaultOption('query')['client_id']);
-        $this->assertEquals($config['client_secret'], $client->getDefaultOption('query')['client_secret']);
+        $this->assertEquals($config['client_id'], $client->getHttpClient()->getDefaultOption('query')['client_id']);
+        $this->assertEquals($config['client_secret'], $client->getHttpClient()->getDefaultOption('query')['client_secret']);
     }
 
     /**
-     * @expectedException \Guzzle\Common\Exception\InvalidArgumentException
+     * @expectedException \InvalidArgumentException
      */
     public function testFactoryReturnsExceptionOnNullArguments()
     {
@@ -37,7 +37,7 @@ class FoursquareClientTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \Guzzle\Common\Exception\InvalidArgumentException
+     * @expectedException \InvalidArgumentException
      */
     public function testFactoryReturnsExceptionOnBlankArguments()
     {
@@ -67,7 +67,7 @@ class FoursquareClientTest extends \PHPUnit_Framework_TestCase
         $client = FoursquareClient::factory($config);
         $client->addToken($token);
 
-        $this->assertEquals($token, $client->getDefaultOption('query')['oauth_token']);
+        $this->assertEquals($token, $client->getHttpClient()->getDefaultOption('query')['oauth_token']);
     }
 
     public function provideConfigValues()

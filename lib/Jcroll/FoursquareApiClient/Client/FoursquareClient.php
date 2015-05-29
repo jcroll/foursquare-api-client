@@ -1,23 +1,35 @@
 <?php
 
 namespace Jcroll\FoursquareApiClient\Client;
+use GuzzleHttp\Client;
+use GuzzleHttp\Collection;
+use GuzzleHttp\Command\Guzzle\GuzzleClient;
+use GuzzleHttp\Command\Guzzle\Description;
+use GuzzleHttp\Event\CompleteEvent;
+use GuzzleHttp\Event\ErrorEvent;
+use GuzzleHttp\Event\BeforeEvent;
+use \InvalidArgumentException;
 
-use Guzzle\Common\Collection;
-use Guzzle\Plugin\Oauth\OauthPlugin;
-use Guzzle\Service\Client;
-use Guzzle\Service\Description\ServiceDescription;
-use Guzzle\Service\Builder\ServiceBuilder;
-use Guzzle\Common\Exception\InvalidArgumentException;
-
-class FoursquareClient extends Client
+class FoursquareClient extends GuzzleClient
 {
+    static $serviceDescription = NULL;
+    private $httpClient = NULL;
     public static function factory($config = array())
     {
-        $default = array('base_url' => 'https://api.foursquare.com/v2/');
+        if (static::$serviceDescription == NULL) {
+            static::$serviceDescription = json_decode(file_get_contents(dirname(__DIR__).'/Resources/config/client.json'), true);
+        }
+
+        $default = array(
+            'verify' => true,
+            'event.before' => function(BeforeEvent $e) { },
+            'event.after' => function(CompleteEvent $e) { },
+            'event.error' => function(ErrorEvent $e) { }
+        );
 
         $required = array(
             'client_id',
-            'client_secret',
+            'client_secret'
         );
 
         foreach ($required as $value) {
@@ -26,26 +38,38 @@ class FoursquareClient extends Client
             }
         }
 
+        $description = new Description(static::$serviceDescription);
+
         $config = Collection::fromConfig($config, $default, $required);
 
-        $client = new self($config->get('base_url'), $config);
-
-        $client->setDefaultOption('query',  array(
-            'client_id' => $config['client_id'],
-            'client_secret' => $config['client_secret'],
-            'v' => '20130707'
+        $httpClient = new Client(array(
+            'defaults' => array(
+                'query' => array(
+                    'client_id' => $config['client_id'],
+                    'client_secret' => $config['client_secret'],
+                    'v' => '20130707'
+                ),
+                'verify' => $config['verify']
+            )
         ));
 
-        $client->setDescription(ServiceDescription::factory(__DIR__.'/../Resources/config/client.json'));
+        if (is_callable($config['event.before']))
+            $httpClient->getEmitter()->on('before', $config['event.before']);
 
-        return $client;
+        if (is_callable($config['event.complete']))
+            $httpClient->getEmitter()->on('complete', $config['event.complete']);
+
+        if (is_callable($config['event.error']))
+            $httpClient->getEmitter()->on('error', $config['event.error']);
+
+        return new self($httpClient, $description);
     }
 
     public function addToken($token)
     {
-        $config = $this->getDefaultOption('query');
-        $config = array_merge(array('oauth_token' => $token), $config);
-        $this->setDefaultOption('query', $config);
+        $query = $this->getHttpClient()->getDefaultOption('query');
+        $query['oauth_token'] = $token;
+        $this->getHttpClient()->setDefaultOption('query', $query);
 
         return $this;
     }
