@@ -12,12 +12,16 @@
         }
     ],
     "require": {
-        "guzzlehttp/guzzle": "~3.8"
+        "php": ">=5.3.3",
+        "guzzlehttp/guzzle": ">=3.7 <4.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.8"
     },
     "autoload": {
-        "psr-0": {
-            "Jcroll\\FoursquareApiClient": "lib/",
-            "Jcroll\\FoursquareApiClient\\Tests": "tests/"
+        "psr-4": {
+            "Jcroll\\FoursquareApiClient\\": "src/",
+            "Jcroll\\FoursquareApiClient\\Tests\\": "tests/"
         }
     },
     "minimum-stability": "stable",

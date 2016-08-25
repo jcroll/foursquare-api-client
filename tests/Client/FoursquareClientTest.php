@@ -20,10 +20,11 @@ class FoursquareClientTest extends \PHPUnit_Framework_TestCase
         );
 
         $client = FoursquareClient::factory($config);
+        $defaultOptions = $client->getDefaultOption('query');
 
-        $this->assertInstanceOf('\Jcroll\FoursquareApiClient\Client\FoursquareClient', $client);
-        $this->assertEquals($config['client_id'], $client->getDefaultOption('query')['client_id']);
-        $this->assertEquals($config['client_secret'], $client->getDefaultOption('query')['client_secret']);
+        $this->assertInstanceOf('\\Jcroll\\FoursquareApiClient\\Client\\FoursquareClient', $client);
+        $this->assertEquals($config['client_id'], $defaultOptions['client_id']);
+        $this->assertEquals($config['client_secret'], $defaultOptions['client_secret']);
     }
 
     /**
@@ -67,7 +68,9 @@ class FoursquareClientTest extends \PHPUnit_Framework_TestCase
         $client = FoursquareClient::factory($config);
         $client->addToken($token);
 
-        $this->assertEquals($token, $client->getDefaultOption('query')['oauth_token']);
+        $defaultOptions = $client->getDefaultOption('query');
+
+        $this->assertEquals($token, $defaultOptions['oauth_token']);
     }
 
     public function provideConfigValues()
