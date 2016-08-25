@@ -26,7 +26,7 @@ Add JcrollFoursquareApiBundle in your composer.json:
 ```js
 {
     "require": {
-        "jcroll/foursquare-api-client": "1.0.*"
+        "jcroll/foursquare-api-client": "~1."
     }
 }
 ```
