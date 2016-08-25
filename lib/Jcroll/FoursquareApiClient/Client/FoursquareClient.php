@@ -3,14 +3,15 @@
 namespace Jcroll\FoursquareApiClient\Client;
 
 use Guzzle\Common\Collection;
-use Guzzle\Plugin\Oauth\OauthPlugin;
 use Guzzle\Service\Client;
 use Guzzle\Service\Description\ServiceDescription;
-use Guzzle\Service\Builder\ServiceBuilder;
 use Guzzle\Common\Exception\InvalidArgumentException;
 
 class FoursquareClient extends Client
 {
+    /**
+     * {@inheritdoc}
+     */
     public static function factory($config = array())
     {
         $default = array('base_url' => 'https://api.foursquare.com/v2/');
@@ -41,6 +42,11 @@ class FoursquareClient extends Client
         return $client;
     }
 
+    /**
+     * @param string $token
+     *
+     * @return $this
+     */
     public function addToken($token)
     {
         $config = $this->getDefaultOption('query');
