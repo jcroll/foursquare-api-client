@@ -327,7 +327,13 @@
         "venues/categories": {
             "description": "Returns a hierarchical list of categories applied to venues.",
             "httpMethod": "GET",
-            "uri": "venues/categories"
+            "uri": "venues/categories",
+            "parameters": {
+                "locale": {
+                    "description": "locale of response",
+                    "location": "query"
+                }
+            }
         },
         "venues/explore": {
             "description": "Returns a list of recommended venues near the current location. ",
