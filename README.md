@@ -19,6 +19,15 @@ and as such installable via [Composer](http://getcomposer.org/).
 If you do not use Composer, you can grab the code from GitHub, and use any PSR-0 compatible autoloader
 (e.g. the [Symfony2 ClassLoader component](https://github.com/symfony/ClassLoader)) to load the library's classes.
 
+### Guzzle Versioning
+
+This package is compatible with different versions of Guzzle (see below):
+
+| Guzzle Version | Foursquare Client Version |
+|----------------|---------------------------|
+| ~3             | ~1                        |
+| ~4             | ~2                        |
+
 ### Composer example
 
 Add JcrollFoursquareApiBundle in your composer.json:
@@ -26,7 +35,7 @@ Add JcrollFoursquareApiBundle in your composer.json:
 ```js
 {
     "require": {
-        "jcroll/foursquare-api-client": "~1"
+        "jcroll/foursquare-api-client": "~2"
     }
 }
 ```
@@ -48,16 +57,16 @@ require_once 'vendor/autoload.php';
 ```php
 use Jcroll\FoursquareApiClient\Client\FoursquareClient;
 
-$client = FoursquareClient::factory(array(
+$client = FoursquareClient::factory([
     'client_id'     => 'your_foursquare_client_id',    // required
     'client_secret' => 'your_foursquare_client_secret' // required
-));
+]);
 $client->addToken($oauthToken); // optionally pass in for user specific requests
-$command = $client->getCommand('venues/search', array(
-    'near' => 'Chicago, IL',
+$command = $client->getCommand('venues/search', [
+    'near'  => 'Chicago, IL',
     'query' => 'sushi'
-));
-$results = $command->execute(); // returns an array of results
+]);
+$results = (array) $client->execute($command); // returns an array of results
 ```
 
 You can find a list of the client's available commands in the bundle's
@@ -67,6 +76,5 @@ they should be the same as the [api endpoints listed in the docs](https://develo
 ## Oauth Integration
 
 Endpoints in the foursquare API that are user specific will require authorization with foursquare using the Oauth 2.0 protocol. This type
-of authorization is beyond the scope of this library as there are better libraries for that such as the [FriendsOfSymfony Oauth2 
-Server](https://github.com/FriendsOfSymfony/oauth2-php). After authorization you can pass the access token into the client for user 
-specific access.
+of authorization is beyond the scope of this library as there are better libraries for [that](https://packagist.org/search/?q=oauth). 
+After authorization you can pass the access token into the client for user specific access.

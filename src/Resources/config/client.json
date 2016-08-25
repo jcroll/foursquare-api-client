@@ -1,4 +1,12 @@
 {
+    "models": {
+        "getResponse": {
+            "type": "object",
+            "additionalProperties": {
+                "location": "json"
+            }
+        }
+    },
     "operations": {
         "users": {
             "description": "Returns profile information for a given user, including selected badges and mayorships. The web profile for a user is visible at https://foursquare.com/user/USER_ID ",
@@ -10,7 +18,8 @@
                     "required": true
                 }
             },
-            "uri": "users/{user_id}"
+            "uri": "users/{user_id}",
+            "responseModel": "getResponse"
         },
         "users/leaderboard": {
             "description": "Returns the user's leaderboard.",
@@ -21,12 +30,14 @@
                     "location": "query"
                 }
             },
-            "uri": "users/leaderboard"
+            "uri": "users/leaderboard",
+            "responseModel": "getResponse"
         },
         "users/requests": {
             "description": "Shows a user the list of users with whom they have a pending friend request (i.e., someone tried to add the acting user as a friend, but the acting user has not accepted).",
             "httpMethod": "GET",
-            "uri": "users/requests"
+            "uri": "users/requests",
+            "responseModel": "getResponse"
         },
         "users/search": {
             "description": "Helps a user locate friends.",
@@ -57,12 +68,14 @@
                     "location": "query"
                 }
             },
-            "uri": "users/search"
+            "uri": "users/search",
+            "responseModel": "getResponse"
         },
         "users/badges": {
             "description": "Returns badges for a given user.",
             "extends": "users",
-            "uri": "users/{user_id}/badges"
+            "uri": "users/{user_id}/badges",
+            "responseModel": "getResponse"
         },
         "users/checkins": {
             "extends": "users",
@@ -89,7 +102,8 @@
                     "location": "query"
                 }
             },
-            "uri": "users/{user_id}/checkins"
+            "uri": "users/{user_id}/checkins",
+            "responseModel": "getResponse"
         },
         "users/friends": {
             "extends": "users",
@@ -104,7 +118,8 @@
                     "location": "query"
                 }
             },
-            "uri": "users/{user_id}/friends"
+            "uri": "users/{user_id}/friends",
+            "responseModel": "getResponse"
         },
         "users/lists": {
             "extends": "users",
@@ -119,12 +134,14 @@
                     "location": "query"
                 }
             },
-            "uri": "users/{user_id}/lists"
+            "uri": "users/{user_id}/lists",
+            "responseModel": "getResponse"
         },
         "users/mayorships": {
             "extends": "users",
             "description": "Returns a user's mayorships.",
-            "uri": "users/{user_id}/mayorships"
+            "uri": "users/{user_id}/mayorships",
+            "responseModel": "getResponse"
         },
         "users/photos": {
             "extends": "users",
@@ -139,7 +156,8 @@
                     "location": "query"
                 }
             },
-            "uri": "users/{user_id}/photos"
+            "uri": "users/{user_id}/photos",
+            "responseModel": "getResponse"
         },
         "users/tips": {
             "extends": "users",
@@ -163,7 +181,8 @@
                     "location": "query"
                 }
             },
-            "uri": "users/{user_id}/tips"
+            "uri": "users/{user_id}/tips",
+            "responseModel": "getResponse"
         },
         "users/todos": {
             "extends": "users",
@@ -178,7 +197,8 @@
                     "location": "query"
                 }
             },
-            "uri": "users/{user_id}/todos"
+            "uri": "users/{user_id}/todos",
+            "responseModel": "getResponse"
         },
         "users/venuehistory": {
             "extends": "users",
@@ -197,25 +217,29 @@
                     "location": "query"
                 }
             },
-            "uri": "users/{user_id}/venuehistory"
+            "uri": "users/{user_id}/venuehistory",
+            "responseModel": "getResponse"
         },
         "users/approve": {
             "extends": "users",
             "description": "Approves a pending friend request from another user.",
             "httpMethod": "POST",
-            "uri": "users/{user_id}/approve"
+            "uri": "users/{user_id}/approve",
+            "responseModel": "getResponse"
         },
         "users/deny": {
             "extends": "users",
             "description": "Denies a pending friend request from another user.",
             "httpMethod": "POST",
-            "uri": "users/{user_id}/deny"
+            "uri": "users/{user_id}/deny",
+            "responseModel": "getResponse"
         },
         "users/request": {
             "extends": "users",
             "description": "Sends a friend request to another user. If the other user is a page then the requesting user will automatically start following the page.",
             "httpMethod": "POST",
-            "uri": "users/{user_id}/request"
+            "uri": "users/{user_id}/request",
+            "responseModel": "getResponse"
         },
         "users/setpings": {
             "extends": "users",
@@ -228,13 +252,15 @@
                     "required": true
                 }
             },
-            "uri": "users/{user_id}/setpings"
+            "uri": "users/{user_id}/setpings",
+            "responseModel": "getResponse"
         },
         "users/unfriend": {
             "extends": "users",
             "description": "Cancels any relationship between the acting user and the specified user. ",
             "httpMethod": "POST",
-            "uri": "users/{user_id}/unfriend"
+            "uri": "users/{user_id}/unfriend",
+            "responseModel": "getResponse"
         },
         "users/update": {
             "description": "Updates the user's profile photo.",
@@ -245,7 +271,8 @@
                     "location": "postField"
                 }
             },
-            "uri": "users/self/update"
+            "uri": "users/self/update",
+            "responseModel": "getResponse"
         },
         "venues": {
             "description": "Gives details about a venue, including location, mayorship, tags, tips, specials, and category. ",
@@ -257,7 +284,8 @@
                     "required": true
                 }
             },
-            "uri": "venues/{venue_id}"
+            "uri": "venues/{venue_id}",
+            "responseModel": "getResponse"
         },
         "venues/add": {
             "description": "Allows users to add a new venue.",
@@ -322,12 +350,14 @@
                     "location": "postField"
                 }
             },
-            "uri": "venues/add"
+            "uri": "venues/add",
+            "responseModel": "getResponse"
         },
         "venues/categories": {
             "description": "Returns a hierarchical list of categories applied to venues.",
             "httpMethod": "GET",
-            "uri": "venues/categories"
+            "uri": "venues/categories",
+            "responseModel": "getResponse"
         },
         "venues/explore": {
             "description": "Returns a list of recommended venues near the current location. ",
@@ -398,7 +428,8 @@
                     "location": "query"
                 }
             },
-            "uri": "venues/explore"
+            "uri": "venues/explore",
+            "responseModel": "getResponse"
         },
         "venues/managed": {
             "description": "Get a list of venues the current user manages.",
@@ -413,7 +444,8 @@
                     "location": "query"
                 }
             },
-            "uri": "venues/managed"
+            "uri": "venues/managed",
+            "responseModel": "getResponse"
         },
         "venues/search": {
             "description": "Returns a list of venues near the current location, optionally matching a search term. ",
@@ -480,7 +512,8 @@
                     "location": "query"
                 }
             },
-            "uri": "venues/search"
+            "uri": "venues/search",
+            "responseModel": "getResponse"
         },
         "venues/suggestcompletion": {
             "description": "Returns a list of mini-venues partially matching the search term, near the location.",
@@ -517,7 +550,8 @@
                     "location": "query"
                 }
             },
-            "uri": "venues/suggestcompletion"
+            "uri": "venues/suggestcompletion",
+            "responseModel": "getResponse"
         },
         "venues/timeseries": {
             "description": "Get daily venue stats for a list of venues over a time range.",
@@ -541,7 +575,8 @@
                     "location": "query"
                 }
             },
-            "uri": "venues/timeseries"
+            "uri": "venues/timeseries",
+            "responseModel": "getResponse"
         },
         "venues/trending": {
             "description": "Returns a list of venues near the current location with the most people currently checked in. ",
@@ -561,13 +596,15 @@
                     "location": "query"
                 }
             },
-            "uri": "venues/trending"
+            "uri": "venues/trending",
+            "responseModel": "getResponse"
         },
         "venues/events": {
             "extends": "venues",
             "description": "Allows you to access information about the current events at a place. ",
             "httpMethod": "GET",
-            "uri": "venues/{venue_id}/events"
+            "uri": "venues/{venue_id}/events",
+            "responseModel": "getResponse"
         },
         "venues/herenow": {
             "extends": "venues",
@@ -583,25 +620,29 @@
                     "location": "query"
                 }
             },
-            "uri": "venues/{venue_id}/herenow"
+            "uri": "venues/{venue_id}/herenow",
+            "responseModel": "getResponse"
         },
         "venues/hours": {
             "extends": "venues",
             "description": "Returns hours for a venue. ",
             "httpMethod": "GET",
-            "uri": "venues/{venue_id}/hours"
+            "uri": "venues/{venue_id}/hours",
+            "responseModel": "getResponse"
         },
         "venues/likes": {
             "extends": "venues",
             "description": "Returns friends and a total count of users who have liked this venue.",
             "httpMethod": "GET",
-            "uri": "venues/{venue_id}/likes"
+            "uri": "venues/{venue_id}/likes",
+            "responseModel": "getResponse"
         },
         "venues/links": {
             "extends": "venues",
             "description": "Returns URLs or identifiers from third parties that have been applied to this venue, such as how the New York Times refers to this venue and a URL for additional information from nytimes.com. This is part of the foursquare Venue Map.",
             "httpMethod": "GET",
-            "uri": "venues/{venue_id}/links"
+            "uri": "venues/{venue_id}/links",
+            "responseModel": "getResponse"
         },
         "venues/listed": {
             "extends": "venues",
@@ -621,19 +662,22 @@
                     "location": "query"
                 }
             },
-            "uri": "venues/{venue_id}/listed"
+            "uri": "venues/{venue_id}/listed",
+            "responseModel": "getResponse"
         },
         "venues/menu": {
             "extends": "venues",
             "description": "",
             "httpMethod": "GET",
-            "uri": "venues/{venue_id}/menu"
+            "uri": "venues/{venue_id}/menu",
+            "responseModel": "getResponse"
         },
         "venues/nextvenues": {
             "extends": "venues",
             "description": "Returns menu information for a venue.",
             "httpMethod": "GET",
-            "uri": "venues/{venue_id}/nextvenues"
+            "uri": "venues/{venue_id}/nextvenues",
+            "responseModel": "getResponse"
         },
         "venues/photos": {
             "extends": "venues",
@@ -653,13 +697,15 @@
                 }
             },
             "httpMethod": "GET",
-            "uri": "venues/{venue_id}/photos"
+            "uri": "venues/{venue_id}/photos",
+            "responseModel": "getResponse"
         },
         "venues/similar": {
             "extends": "venues",
             "description": "Returns a list of venues similar to the specified venue.",
             "httpMethod": "GET",
-            "uri": "venues/{venue_id}/similar"
+            "uri": "venues/{venue_id}/similar",
+            "responseModel": "getResponse"
         },
         "venues/stats": {
             "extends": "venues",
@@ -675,7 +721,8 @@
                 }
             },
             "httpMethod": "GET",
-            "uri": "venues/{venue_id}/stats"
+            "uri": "venues/{venue_id}/stats",
+            "responseModel": "getResponse"
         },
         "venues/tips": {
             "extends": "venues",
@@ -695,7 +742,8 @@
                 }
             },
             "httpMethod": "GET",
-            "uri": "venues/{venue_id}/tips"
+            "uri": "venues/{venue_id}/tips",
+            "responseModel": "getResponse"
         },
         "venues/dislike": {
             "extends": "venues",
@@ -708,7 +756,8 @@
                 }
             },
             "httpMethod": "POST",
-            "uri": "venues/{venue_id}/dislike"
+            "uri": "venues/{venue_id}/dislike",
+            "responseModel": "getResponse"
         },
         "venues/edit": {
             "extends": "venues",
@@ -772,7 +821,8 @@
                 }
             },
             "httpMethod": "POST",
-            "uri": "venues/{venue_id}/edit"
+            "uri": "venues/{venue_id}/edit",
+            "responseModel": "getResponse"
         },
         "venues/flag": {
             "extends": "venues",
@@ -789,7 +839,8 @@
                 }
             },
             "httpMethod": "POST",
-            "uri": "venues/{venue_id}/flag"
+            "uri": "venues/{venue_id}/flag",
+            "responseModel": "getResponse"
         },
         "venues/like": {
             "extends": "venues",
@@ -803,7 +854,8 @@
                 }
             },
             "httpMethod": "POST",
-            "uri": "venues/{venue_id}/like"
+            "uri": "venues/{venue_id}/like",
+            "responseModel": "getResponse"
         },
         "venues/proposeedit": {
             "extends": "venues",
@@ -851,7 +903,8 @@
                 }
             },
             "httpMethod": "POST",
-            "uri": "venues/{venue_id}/proposeedit"
+            "uri": "venues/{venue_id}/proposeedit",
+            "responseModel": "getResponse"
         },
         "venues/setrole": {
             "extends": "venues",
@@ -873,7 +926,8 @@
                 }
             },
             "httpMethod": "POST",
-            "uri": "venues/{venue_id}/setrole"
+            "uri": "venues/{venue_id}/setrole",
+            "responseModel": "getResponse"
         },
         "venuegroups": {
             "description": "Get venue group details.",
@@ -885,7 +939,8 @@
                     "required": true
                 }
             },
-            "uri": "venuegroups/{group_id}"
+            "uri": "venuegroups/{group_id}",
+            "responseModel": "getResponse"
         },
         "venuegroups/add": {
             "description": "Create a venue group. If the venueId parameter is specified, then the endpoint will add the specified venues to the venue group. If it is not possible to add all of the specified venues to the group, then creation of the venue group will fail entirely.",
@@ -901,18 +956,21 @@
                     "location": "postField"
                 }
             },
-            "uri": "venuegroups/add"
+            "uri": "venuegroups/add",
+            "responseModel": "getResponse"
         },
         "venuegroups/delete": {
             "extends": "venuegroups",
             "description": "Delete a venue group.",
             "httpMethod": "POST",
-            "uri": "venuegroups/{group_id}/delete"
+            "uri": "venuegroups/{group_id}/delete",
+            "responseModel": "getResponse"
         },
         "venuegroups/list": {
             "description": "List all venue groups owned by the user.",
             "httpMethod": "POST",
-            "uri": "venuegroups/list"
+            "uri": "venuegroups/list",
+            "responseModel": "getResponse"
         },
         "venuegroups/timeseries": {
             "extends": "venuegroups",
@@ -932,7 +990,8 @@
                     "location": "query"
                 }
             },
-            "uri": "venuegroups/{group_id}/timeseries"
+            "uri": "venuegroups/{group_id}/timeseries",
+            "responseModel": "getResponse"
         },
         "venuegroups/addvenue": {
             "extends": "venuegroups",
@@ -945,12 +1004,14 @@
                     "required": true
                 }
             },
-            "uri": "venuegroups/{group_id}/addvenue"
+            "uri": "venuegroups/{group_id}/addvenue",
+            "responseModel": "getResponse"
         },
         "venuegroups/campaigns": {
             "extends": "venuegroups",
             "description": "Retrieve the campaigns that reference this venue group.",
-            "uri": "venuegroups/{group_id}/campaigns"
+            "uri": "venuegroups/{group_id}/campaigns",
+            "responseModel": "getResponse"
         },
         "venuegroups/edit": {
             "extends": "venuegroups",
@@ -994,7 +1055,8 @@
                     "location": "postField"
                 }
             },
-            "uri": "venuegroups/{group_id}/edit"
+            "uri": "venuegroups/{group_id}/edit",
+            "responseModel": "getResponse"
         },
         "venuegroups/removevenue": {
             "extends": "venuegroups",
@@ -1007,7 +1069,8 @@
                     "required": true
                 }
             },
-            "uri": "venuegroups/{group_id}/removevenue"
+            "uri": "venuegroups/{group_id}/removevenue",
+            "responseModel": "getResponse"
         },
         "venuegroups/update": {
             "extends": "venuegroups",
@@ -1023,7 +1086,8 @@
                     "location": "postField"
                 }
             },
-            "uri": "venuegroups/{group_id}/update"
+            "uri": "venuegroups/{group_id}/update",
+            "responseModel": "getResponse"
         },
         "checkins": {
             "description": "Get details of a checkin.",
@@ -1039,7 +1103,8 @@
                     "location": "query"
                 }
             },
-            "uri": "checkins/{checkin_id}"
+            "uri": "checkins/{checkin_id}",
+            "responseModel": "getResponse"
         },
         "checkins/add": {
             "description": "Allows the acting user to check in to a place.",
@@ -1091,7 +1156,8 @@
                     "required": false
                 }
             },
-            "uri": "checkins/add"
+            "uri": "checkins/add",
+            "responseModel": "getResponse"
         },
         "checkins/recent": {
             "description": "Returns a list of recent checkins from friends.",
@@ -1113,13 +1179,15 @@
                     "required": false
                 }
             },
-            "uri": "checkins/recent"
+            "uri": "checkins/recent",
+            "responseModel": "getResponse"
         },
         "checkins/likes": {
             "extends": "checkins",
             "description": "Returns friends and a total count of users who have liked this checkin.",
             "httpMethod": "GET",
-            "uri": "checkins/{checkin_id}/likes"
+            "uri": "checkins/{checkin_id}/likes",
+            "responseModel": "getResponse"
         },
         "checkins/addcomment": {
             "extends": "checkins",
@@ -1137,7 +1205,8 @@
                     "required": false
                 }
             },
-            "uri": "checkins/{checkin_id}/addcomment"
+            "uri": "checkins/{checkin_id}/addcomment",
+            "responseModel": "getResponse"
         },
         "checkins/deletecomment": {
             "extends": "checkins",
@@ -1150,7 +1219,8 @@
                     "required": true
                 }
             },
-            "uri": "checkins/{checkin_id}/deletecomment"
+            "uri": "checkins/{checkin_id}/deletecomment",
+            "responseModel": "getResponse"
         },
         "checkins/like": {
             "extends": "checkins",
@@ -1164,7 +1234,8 @@
                     "required": false
                 }
             },
-            "uri": "checkins/{checkin_id}/like"
+            "uri": "checkins/{checkin_id}/like",
+            "responseModel": "getResponse"
         },
         "tips": {
             "description": "Gives details about a tip, including which users (especially friends) have marked the tip to-do.",
@@ -1176,7 +1247,8 @@
                     "required": true
                 }
             },
-            "uri": "tips/{tip_id}"
+            "uri": "tips/{tip_id}",
+            "responseModel": "getResponse"
         },
         "tips/add": {
             "description": "Allows you to add a new tip at a venue.",
@@ -1203,7 +1275,8 @@
                     "required": false
                 }
             },
-            "uri": "tips/add"
+            "uri": "tips/add",
+            "responseModel": "getResponse"
         },
         "tips/search": {
             "description": "Returns a list of tips near the area specified. ",
@@ -1240,12 +1313,14 @@
                     "required": false
                 }
             },
-            "uri": "tips/search"
+            "uri": "tips/search",
+            "responseModel": "getResponse"
         },
         "tips/likes": {
             "extends": "tips",
             "description": "Returns friends and a total count of users who have liked this tip.",
-            "uri": "tips/{tip_id}/likes"
+            "uri": "tips/{tip_id}/likes",
+            "responseModel": "getResponse"
         },
         "tips/listed": {
             "extends": "tips",
@@ -1257,12 +1332,14 @@
                     "required": false
                 }
             },
-            "uri": "tips/{tip_id}/listed"
+            "uri": "tips/{tip_id}/listed",
+            "responseModel": "getResponse"
         },
         "tips/saves": {
             "extends": "tips",
             "description": "Returns friends and a total count of users who have saved this tip.",
-            "uri": "tips/{tip_id}/saves"
+            "uri": "tips/{tip_id}/saves",
+            "responseModel": "getResponse"
         },
         "tips/flag": {
             "extends": "tips",
@@ -1280,7 +1357,8 @@
                     "required": true
                 }
             },
-            "uri": "tips/{tip_id}/flag"
+            "uri": "tips/{tip_id}/flag",
+            "responseModel": "getResponse"
         },
         "tips/like": {
             "extends": "tips",
@@ -1294,13 +1372,15 @@
                     "required": false
                 }
             },
-            "uri": "tips/{tip_id}/like"
+            "uri": "tips/{tip_id}/like",
+            "responseModel": "getResponse"
         },
         "tips/unmark": {
             "extends": "tips",
             "description": "Allows you to remove a tip from your to-do list.",
             "httpMethod": "POST",
-            "uri": "tips/{tip_id}/unmark"
+            "uri": "tips/{tip_id}/unmark",
+            "responseModel": "getResponse"
         },
         "lists": {
             "description": "Gives details about a list.",
@@ -1337,7 +1417,8 @@
                     "required": false
                 }
             },
-            "uri": "lists/{list_id}"
+            "uri": "lists/{list_id}",
+            "responseModel": "getResponse"
         },
         "lists/add": {
             "description": "Allows users to create a new list.",
@@ -1364,7 +1445,8 @@
                     "required": false
                 }
             },
-            "uri": "lists/add"
+            "uri": "lists/add",
+            "responseModel": "getResponse"
         },
         "lists/followers": {
             "description": "Returns a count and items of users following this list.",
@@ -1376,7 +1458,8 @@
                     "required": true
                 }
             },
-            "uri": "lists/{list_id}/followers"
+            "uri": "lists/{list_id}/followers",
+            "responseModel": "getResponse"
         },
         "lists/saves": {
             "description": "Returns friends and a total count of users who have saved this list.",
@@ -1388,7 +1471,8 @@
                     "required": true
                 }
             },
-            "uri": "lists/{list_id}/saves"
+            "uri": "lists/{list_id}/saves",
+            "responseModel": "getResponse"
         },
         "lists/suggestphoto": {
             "extends": "lists/saves",
@@ -1401,19 +1485,22 @@
                     "required": true
                 }
             },
-            "uri": "lists/{list_id}/suggestphoto"
+            "uri": "lists/{list_id}/suggestphoto",
+            "responseModel": "getResponse"
         },
         "lists/suggesttip": {
             "extends": "lists/suggestphoto",
             "description": "Suggests tips that may be appropriate for this item",
             "httpMethod": "GET",
-            "uri": "lists/{list_id}/suggesttip"
+            "uri": "lists/{list_id}/suggesttip",
+            "responseModel": "getResponse"
         },
         "lists/suggestvenues": {
             "extends": "lists/saves",
             "description": "Suggests venues that may be appropriate for this list.",
             "httpMethod": "GET",
-            "uri": "lists/{list_id}/suggestvenues"
+            "uri": "lists/{list_id}/suggestvenues",
+            "responseModel": "getResponse"
         },
         "lists/additem": {
             "extends": "lists/followers",
@@ -1451,7 +1538,8 @@
                     "required": false
                 }
             },
-            "uri": "lists/{list_id}/additem"
+            "uri": "lists/{list_id}/additem",
+            "responseModel": "getResponse"
         },
         "lists/deleteitem": {
             "extends": "lists/followers",
@@ -1475,13 +1563,15 @@
                 }
 
             },
-            "uri": "lists/{list_id}/deleteitem"
+            "uri": "lists/{list_id}/deleteitem",
+            "responseModel": "getResponse"
         },
         "lists/follow": {
             "extends": "lists/followers",
             "description": "Allows you to follow a list.",
             "httpMethod": "POST",
-            "uri": "lists/{list_id}/follow"
+            "uri": "lists/{list_id}/follow",
+            "responseModel": "getResponse"
         },
         "lists/moveitem": {
             "extends": "lists/followers",
@@ -1504,7 +1594,8 @@
                     "required": false
                 }
             },
-            "uri": "lists/{list_id}/moveitem"
+            "uri": "lists/{list_id}/moveitem",
+            "responseModel": "getResponse"
         },
         "lists/share": {
             "extends": "lists/followers",
@@ -1522,13 +1613,15 @@
                     "required": false
                 }
             },
-            "uri": "lists/{list_id}/share"
+            "uri": "lists/{list_id}/share",
+            "responseModel": "getResponse"
         },
         "lists/unfollow": {
             "extends": "lists/followers",
             "description": "Allows you to unfollow a list.",
             "httpMethod": "POST",
-            "uri": "lists/{list_id}/unfollow"
+            "uri": "lists/{list_id}/unfollow",
+            "responseModel": "getResponse"
         },
         "lists/update": {
             "extends": "lists/followers",
@@ -1556,7 +1649,8 @@
                     "required": false
                 }
             },
-            "uri": "lists/{list_id}/update"
+            "uri": "lists/{list_id}/update",
+            "responseModel": "getResponse"
         },
         "lists/updateitem": {
             "extends": "lists/followers",
@@ -1589,7 +1683,8 @@
                     "required": false
                 }
             },
-            "uri": "lists/{list_id}/updateitem"
+            "uri": "lists/{list_id}/updateitem",
+            "responseModel": "getResponse"
         },
         "updates": {
             "httpMethod": "GET",
@@ -1600,7 +1695,8 @@
                     "required": true
                 }
             },
-            "uri": "updates/{update_id}"
+            "uri": "updates/{update_id}",
+            "responseModel": "getResponse"
         },
         "updates/notifications": {
             "description": "Retrieve a user's notification tray notifications",
@@ -1612,7 +1708,8 @@
                     "required": false
                 }
             },
-            "uri": "updates/notifications"
+            "uri": "updates/notifications",
+            "responseModel": "getResponse"
         },
         "updates/marknotificationsread": {
             "description": "Mark notification tray notifications as read up, to a certain timestamp.",
@@ -1624,7 +1721,8 @@
                     "required": true
                 }
             },
-            "uri": "updates/marknotificationsread"
+            "uri": "updates/marknotificationsread",
+            "responseModel": "getResponse"
         },
         "photos": {
             "description": "Get details of a photo.",
@@ -1636,7 +1734,8 @@
                     "required": true
                 }
             },
-            "uri": "photos/{photo_id}"
+            "uri": "photos/{photo_id}",
+            "responseModel": "getResponse"
         },
         "photos/add": {
             "description": "Allows users to add a new photo to a checkin, tip, venue, or page update in general.",
@@ -1708,7 +1807,8 @@
                     "required": false
                 }
             },
-            "uri": "photos/add"
+            "uri": "photos/add",
+            "responseModel": "getResponse"
         },
         "settings": {
             "description": "Returns a setting for the acting user.",
@@ -1720,12 +1820,14 @@
                     "required": true
                 }
             },
-            "uri": "settings/{setting_id}"
+            "uri": "settings/{setting_id}",
+            "responseModel": "getResponse"
         },
         "settings/all": {
             "description": "Returns the settings of the acting user.",
             "httpMethod": "GET",
-            "uri": "settings/all"
+            "uri": "settings/all",
+            "responseModel": "getResponse"
         },
         "settings/set": {
             "description": "Change a setting for the given user.",
@@ -1742,7 +1844,8 @@
                     "required": true
                 }
             },
-            "uri": "settings/{setting_id}/set"
+            "uri": "settings/{setting_id}/set",
+            "responseModel": "getResponse"
         },
         "specials": {
             "description": "Gives details about a special, including text and whether it is unlocked for the current or provided user.",
@@ -1764,7 +1867,8 @@
                     "required": false
                 }
             },
-            "uri": "specials/{special_id}"
+            "uri": "specials/{special_id}",
+            "responseModel": "getResponse"
         },
         "specials/add": {
             "description": "Allows you to create a new special.",
@@ -1821,7 +1925,8 @@
                     "required": false
                 }
             },
-            "uri": "specials/add"
+            "uri": "specials/add",
+            "responseModel": "getResponse"
         },
         "specials/list": {
             "description": "List available specials.",
@@ -1838,7 +1943,8 @@
                     "required": false
                 }
             },
-            "uri": "specials/list"
+            "uri": "specials/list",
+            "responseModel": "getResponse"
         },
         "specials/search": {
             "description": "Returns a list of specials near the current location.",
@@ -1875,7 +1981,8 @@
                     "required": false
                 }
             },
-            "uri": "specials/search"
+            "uri": "specials/search",
+            "responseModel": "getResponse"
         },
         "specials/configuration": {
             "description": "Get special configuration details.",
@@ -1887,7 +1994,8 @@
                     "required": true
                 }
             },
-            "uri": "specials/{special_id}/configuration"
+            "uri": "specials/{special_id}/configuration",
+            "responseModel": "getResponse"
         },
         "specials/flag": {
             "description": "Allows users to indicate a Special is improper in some way.",
@@ -1914,7 +2022,8 @@
                     "required": false
                 }
             },
-            "uri": "specials/{id}/flag"
+            "uri": "specials/{id}/flag",
+            "responseModel": "getResponse"
         },
         "specials/retire": {
             "description": "Retire a special. Retired specials will not show up in the list of specials and cannot be assigned to a group. Also ends any active campaigns associated with the special.",
@@ -1926,7 +2035,8 @@
                     "required": true
                 }
             },
-            "uri": "specials/{special_id}/retire"
+            "uri": "specials/{special_id}/retire",
+            "responseModel": "getResponse"
         },
         "campaigns": {
             "description": "Get details of a campaign.",
@@ -1938,7 +2048,8 @@
                     "required": true
                 }
             },
-            "uri": "campaigns/{campaign_id}"
+            "uri": "campaigns/{campaign_id}",
+            "responseModel": "getResponse"
         },
         "campaigns/add": {
             "description": "Create a campaign. The special must be started in order for it to be visible to users. Homes and Offices are not allowed to run specials, so an attempt to add a campaign on such a venue will result in an error.",
@@ -1975,7 +2086,8 @@
                     "required": false
                 }
             },
-            "uri": "campaigns/add"
+            "uri": "campaigns/add",
+            "responseModel": "getResponse"
         },
         "campaigns/list": {
             "description": "List all campaigns matching the given criteria.",
@@ -1997,7 +2109,8 @@
                     "required": false
                 }
             },
-            "uri": "campaigns/list"
+            "uri": "campaigns/list",
+            "responseModel": "getResponse"
         },
         "campaigns/timeseries": {
             "description": "Get daily campaign stats over a given time range.",
@@ -2019,7 +2132,8 @@
                     "required": false
                 }
             },
-            "uri": "campaigns/{campaign_id}/timeseries"
+            "uri": "campaigns/{campaign_id}/timeseries",
+            "responseModel": "getResponse"
         },
         "campaigns/delete": {
             "description": "Delete a campaign that has never been activated.",
@@ -2031,7 +2145,8 @@
                     "required": true
                 }
             },
-            "uri": "campaigns/{campaign_id}/delete"
+            "uri": "campaigns/{campaign_id}/delete",
+            "responseModel": "getResponse"
         },
         "campaigns/end": {
             "description": "End a campaign.",
@@ -2043,7 +2158,8 @@
                     "required": true
                 }
             },
-            "uri": "campaigns/{campaign_id}/end"
+            "uri": "campaigns/{campaign_id}/end",
+            "responseModel": "getResponse"
         },
         "campaigns/start": {
             "description": "Start a campaign.",
@@ -2060,7 +2176,8 @@
                     "required": false
                 }
             },
-            "uri": "campaigns/{campaign_id}/start"
+            "uri": "campaigns/{campaign_id}/start",
+            "responseModel": "getResponse"
         },
         "events": {
             "description": "Get details of a event.",
@@ -2072,12 +2189,14 @@
                     "required": true
                 }
             },
-            "uri": "events/{event_id}"
+            "uri": "events/{event_id}",
+            "responseModel": "getResponse"
         },
         "events/categories": {
             "description": "Returns a hierarchical list of categories applied to events. ",
             "httpMethod": "GET",
-            "uri": "events/categories"
+            "uri": "events/categories",
+            "responseModel": "getResponse"
         },
         "events/search": {
             "description": "This is an experimental API and subject to change or breakage.",
@@ -2099,7 +2218,8 @@
                     "required": false
                 }
             },
-            "uri": "events/search"
+            "uri": "events/search",
+            "responseModel": "getResponse"
         },
         "events/add": {
             "description": "Create an event for a venue that you manage. You can see all your events in the tools tab when you're managing your venue. They're on the calendar. Events show up when users view your venue on mobile or the web. Users can also check in to events and share with their friends what they're up to in the present moment, and look back to see what they did in the days of yore.",
@@ -2126,7 +2246,8 @@
                     "required": false
                 }
             },
-            "uri": "events/add"
+            "uri": "events/add",
+            "responseModel": "getResponse"
         },
         "pages": {
             "description": "Returns user details for a page. Will return error if user specified is not a page.",
@@ -2138,7 +2259,8 @@
                     "required": true
                 }
             },
-            "uri": "pages/{user_id}"
+            "uri": "pages/{user_id}",
+            "responseModel": "getResponse"
         },
         "pages/add": {
             "description": "Allows users to create a new page. The creating user is added as a manager of the new page.",
@@ -2150,12 +2272,14 @@
                     "required": true
                 }
             },
-            "uri": "pages/add"
+            "uri": "pages/add",
+            "responseModel": "getResponse"
         },
         "pages/managing": {
             "description": "Returns an array of the pages a user manages.",
             "httpMethod": "GET",
-            "uri": "pages/managing"
+            "uri": "pages/managing",
+            "responseModel": "getResponse"
         },
         "pages/search": {
             "description": "Returns a list of pages matching the search term.",
@@ -2177,7 +2301,8 @@
                     "required": false
                 }
             },
-            "uri": "pages/search"
+            "uri": "pages/search",
+            "responseModel": "getResponse"
         },
         "pages/timeseries": {
             "description": "Get daily venue stats for venues managed by a page over a time range.",
@@ -2204,7 +2329,8 @@
                     "required": false
                 }
             },
-            "uri": "pages/{page_id}/timeseries"
+            "uri": "pages/{page_id}/timeseries",
+            "responseModel": "getResponse"
         },
         "pages/venues": {
             "description": "Allows you to get the page's venues.",
@@ -2251,7 +2377,8 @@
                     "required": false
                 }
             },
-            "uri": "pages/{page_id}/venues"
+            "uri": "pages/{page_id}/venues",
+            "responseModel": "getResponse"
         },
         "pages/like": {
             "description": "Allows the acting user to like or unlike a page. Liking a page subscribes the acting user to updates from that page.",
@@ -2269,7 +2396,8 @@
                     "required": false
                 }
             },
-            "uri": "pages/{user_id}/like"
+            "uri": "pages/{user_id}/like",
+            "responseModel": "getResponse"
         },
         "pageupdates": {
             "description": "Get page update details.",
@@ -2291,7 +2419,8 @@
                     "required": false
                 }
             },
-            "uri": "pageupdates/{update_id}"
+            "uri": "pageupdates/{update_id}",
+            "responseModel": "getResponse"
         },
         "pageupdates/add": {
             "description": "Broadcast an update as a page to followers of the page and associated venues. Venues can be specified either by the venueId, groupId or pageId (meaning all venues managed by the page) parameters. Broadcasts will show up in the Activity Stream (the Friends tab in the app) for any user who has either liked the page or any of the venues or has checked in enough times at any of the venues AND is in the same city as one of the venues associated with the broadcast. A broadcast can contain any combination of a shout, a special and photos, but at least one of the three must be specified. The API enforces a rate limit of at most one broadcast sent by a given user to the same set of venues in 15 minutes. This rate may change and is stricter for larger sets of venues.",
@@ -2333,12 +2462,14 @@
                     "required": false
                 }
             },
-            "uri": "pageupdates/add"
+            "uri": "pageupdates/add",
+            "responseModel": "getResponse"
         },
         "pageupdates/list": {
             "description": "Returns a list of page updates created by the current user.",
             "httpMethod": "GET",
-            "uri": "pageupdates/list"
+            "uri": "pageupdates/list",
+            "responseModel": "getResponse"
         },
         "pageupdates/delete": {
             "description": "Delete a page update created by the current user.",
@@ -2350,7 +2481,8 @@
                     "required": true
                 }
             },
-            "uri": "pageupdates/{update_id}/delete"
+            "uri": "pageupdates/{update_id}/delete",
+            "responseModel": "getResponse"
         },
         "pageupdates/like": {
             "description": "Causes the current user to 'like' a page update. If there is a campaign associated with the update, the like will propagate to the special as well.",
@@ -2362,7 +2494,8 @@
                     "required": true
                 }
             },
-            "uri": "pageupdates/{update_id}/like"
+            "uri": "pageupdates/{update_id}/like",
+            "responseModel": "getResponse"
         },
         "multi": {
             "description": "Does multiple (up to 5) requests at once. If specifying a v=YYYYMMDD param, be sure to use it for the top-level",
@@ -2374,7 +2507,8 @@
                     "required": true
                 }
             },
-            "uri": "multi"
+            "uri": "multi",
+            "responseModel": "getResponse"
         },
         "multi/post": {
             "extends": "multi",
