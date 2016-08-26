@@ -26,7 +26,7 @@ This package is compatible with different versions of Guzzle (see below):
 | Guzzle Version | Foursquare Client Version |
 |----------------|---------------------------|
 | ~3             | ~1                        |
-| ~4             | ~2                        |
+| ~4, ~5         | ~2                        |
 
 ### Composer example
 
