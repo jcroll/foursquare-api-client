@@ -14,13 +14,13 @@ class FoursquareClientTest extends \PHPUnit_Framework_TestCase
      */
     public function testFactoryReturnsClient($clientId, $clientSecret)
     {
-        $config = array(
-            'client_id' => $clientId,
+        $config = [
+            'client_id'     => $clientId,
             'client_secret' => $clientSecret
-        );
+        ];
 
-        $client = FoursquareClient::factory($config);
-        $defaultOptions = $client->getDefaultOption('query');
+        $client         = FoursquareClient::factory($config);
+        $defaultOptions = $client->getHttpClient()->getDefaultOption('query');
 
         $this->assertInstanceOf('\\Jcroll\\FoursquareApiClient\\Client\\FoursquareClient', $client);
         $this->assertEquals($config['client_id'], $defaultOptions['client_id']);
@@ -28,26 +28,26 @@ class FoursquareClientTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \Guzzle\Common\Exception\InvalidArgumentException
+     * @expectedException \InvalidArgumentException
      */
     public function testFactoryReturnsExceptionOnNullArguments()
     {
-        $config = array();
+        $config = [];
 
-        $client = FoursquareClient::factory($config);
+        FoursquareClient::factory($config);
     }
 
     /**
-     * @expectedException \Guzzle\Common\Exception\InvalidArgumentException
+     * @expectedException \InvalidArgumentException
      */
     public function testFactoryReturnsExceptionOnBlankArguments()
     {
-        $config = array(
-            'client_id' => '',
+        $config = [
+            'client_id'     => '',
             'client_secret' => ''
-        );
+        ];
 
-        $client = FoursquareClient::factory($config);
+        FoursquareClient::factory($config);
     }
 
     /**
@@ -58,25 +58,25 @@ class FoursquareClientTest extends \PHPUnit_Framework_TestCase
      */
     public function testAddToken($clientId, $clientSecret)
     {
-        $config = array(
-            'client_id' => $clientId,
+        $config = [
+            'client_id'     => $clientId,
             'client_secret' => $clientSecret
-        );
+        ];
 
         $token = 'secretToken';
 
         $client = FoursquareClient::factory($config);
         $client->addToken($token);
 
-        $defaultOptions = $client->getDefaultOption('query');
+        $defaultOptions = $client->getHttpClient()->getDefaultOption('query');
 
         $this->assertEquals($token, $defaultOptions['oauth_token']);
     }
 
     public function provideConfigValues()
     {
-        return array(
-            array('aClientId', 'aClientSecret')
-        );
+        return [
+            ['aClientId', 'aClientSecret']
+        ];
     }
 }

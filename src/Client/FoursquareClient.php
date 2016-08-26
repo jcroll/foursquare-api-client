@@ -2,44 +2,40 @@
 
 namespace Jcroll\FoursquareApiClient\Client;
 
-use Guzzle\Common\Collection;
-use Guzzle\Service\Client;
-use Guzzle\Service\Description\ServiceDescription;
-use Guzzle\Common\Exception\InvalidArgumentException;
+use GuzzleHttp\Command\Guzzle\Description;
+use GuzzleHttp\Command\Guzzle\GuzzleClient;
+use GuzzleHttp\Client;
 
-class FoursquareClient extends Client
+class FoursquareClient extends GuzzleClient
 {
     /**
      * {@inheritdoc}
      */
-    public static function factory($config = array())
+    public static function factory($config = [])
     {
-        $default = array('base_url' => 'https://api.foursquare.com/v2/');
-
-        $required = array(
-            'client_id',
-            'client_secret',
-        );
+        $required = ['client_id', 'client_secret'];
 
         foreach ($required as $value) {
-            if (empty($config[$value])) {
-                throw new InvalidArgumentException("Argument '{$value}' must not be blank.");
+            if (!isset($config[$value]) || !$config[$value]) {
+                throw new \InvalidArgumentException(sprintf('Argument "%s" is required.', $value));
             }
         }
 
-        $config = Collection::fromConfig($config, $default, $required);
+        $client = new Client([
+            'base_url' => 'https://api.foursquare.com/v2/',
+            'defaults' => [
+                'query' => [
+                    'client_id'     => $config['client_id'],
+                    'client_secret' => $config['client_secret'],
+                    'v'             => '20130707'
+                ],
+            ]
+        ]);
 
-        $client = new self($config->get('base_url'), $config);
+        $contents    = file_get_contents(sprintf('%s/../Resources/config/client.json', __DIR__));
+        $description = new Description(json_decode($contents, true));
 
-        $client->setDefaultOption('query',  array(
-            'client_id' => $config['client_id'],
-            'client_secret' => $config['client_secret'],
-            'v' => '20130707'
-        ));
-
-        $client->setDescription(ServiceDescription::factory(__DIR__.'/../Resources/config/client.json'));
-
-        return $client;
+        return new static($client, $description);
     }
 
     /**
@@ -49,9 +45,9 @@ class FoursquareClient extends Client
      */
     public function addToken($token)
     {
-        $config = $this->getDefaultOption('query');
-        $config = array_merge(array('oauth_token' => $token), $config);
-        $this->setDefaultOption('query', $config);
+        $query = $this->getHttpClient()->getDefaultOption('query');
+        $query['oauth_token'] = $token;
+        $this->getHttpClient()->setDefaultOption('query', $query);
 
         return $this;
     }
