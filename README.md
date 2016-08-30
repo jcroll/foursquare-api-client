@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/jcroll/foursquare-api-client.png)](https://travis-ci.org/jcroll/foursquare-api-client)
 
-Find the [Symfony2 Bundle for this library here](https://github.com/jcroll/foursquare-api-bundle).
+Find the [Symfony Bundle for this library here](https://github.com/jcroll/foursquare-api-bundle).
 
 ## Why?
 
@@ -17,7 +17,7 @@ The JcrollFoursquareApiClient is available on Packagist ([jcroll/foursquare-api-
 and as such installable via [Composer](http://getcomposer.org/).
 
 If you do not use Composer, you can grab the code from GitHub, and use any PSR-0 compatible autoloader
-(e.g. the [Symfony2 ClassLoader component](https://github.com/symfony/ClassLoader)) to load the library's classes.
+(e.g. the [Symfony ClassLoader component](https://github.com/symfony/ClassLoader)) to load the library's classes.
 
 ### Guzzle Versioning
 
@@ -70,11 +70,18 @@ $results = (array) $client->execute($command); // returns an array of results
 ```
 
 You can find a list of the client's available commands in the bundle's
-[client.json](https://github.com/jcroll/foursquare-api-client/blob/master/lib/Jcroll/FoursquareApiClient/Resources/config/client.json) but basically
+[client.json](https://github.com/jcroll/foursquare-api-client/tree/master/src/Resources/config) but basically
 they should be the same as the [api endpoints listed in the docs](https://developer.foursquare.com/docs/).
 
 ## Oauth Integration
 
-Endpoints in the foursquare API that are user specific will require authorization with foursquare using the Oauth 2.0 protocol. This type
-of authorization is beyond the scope of this library as there are better libraries for [that](https://packagist.org/search/?q=oauth). 
-After authorization you can pass the access token into the client for user specific access.
+Endpoints in the foursquare API that are user specific will require authorization with foursquare using the Oauth 2.0 
+protocol. 
+
+If you're using the [HWIOAuthBundle](https://github.com/hwi/HWIOAuthBundle) with Symfony you can install the 
+[JcrollFoursquareApiBundle](https://github.com/jcroll/foursquare-api-bundle) for automatic integration with your
+oauth requests.
+
+Otherwise oauth protocol authorization is beyond the scope of this library but you can find a list of possible
+libraries [here](https://packagist.org/search/?q=oauth). After authorization you can pass the access token into the 
+client for user specific access.
