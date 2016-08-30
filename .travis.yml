@@ -6,4 +6,9 @@ php:
   - 7.0
   - hhvm
 
-before_script: composer install --dev
+before_script:
+  - composer self-update
+  - composer update --prefer-dist --no-interaction
+
+script:
+  - ./vendor/bin/phpunit
