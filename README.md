@@ -63,12 +63,16 @@ $client = FoursquareClient::factory([
     'version'       => 20140806,                        // optional
     'mode'          => 'foursquare',                    // optional (one of 'foursquare' or 'swarm')
 ]);
+
 $client->addToken($oauthToken);  // optionally pass in for user specific requests
+
 $client->setMode('swarm');       // switch from mode 'foursquare' to 'swarm'
+
 $command = $client->getCommand('venues/search', [
     'near'  => 'Chicago, IL',
     'query' => 'sushi'
 ]);
+
 $results = (array) $client->execute($command); // returns an array of results
 ```
 
