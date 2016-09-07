@@ -64,7 +64,7 @@ $client = FoursquareClient::factory([
     'mode'          => 'foursquare',                    // optional (one of 'foursquare' or 'swarm')
 ]);
 
-$client->addToken($oauthToken);  // optionally pass in for user specific requests
+$client->setToken($oauthToken);  // optionally pass in for user specific requests
 
 $client->setMode('swarm');       // switch from mode 'foursquare' to 'swarm'
 
