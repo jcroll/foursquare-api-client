@@ -16,7 +16,7 @@ core. You can read more [about Guzzle here](http://guzzlephp.org/).
 The JcrollFoursquareApiClient is available on Packagist ([jcroll/foursquare-api-client](https://packagist.org/packages/jcroll/foursquare-api-client))
 and as such installable via [Composer](http://getcomposer.org/).
 
-If you do not use Composer, you can grab the code from GitHub, and use any PSR-0 compatible autoloader
+If you do not use Composer, you can grab the code from GitHub, and use any PSR-4 compatible autoloader
 (e.g. the [Symfony ClassLoader component](https://github.com/symfony/ClassLoader)) to load the library's classes.
 
 ### Guzzle Versioning
