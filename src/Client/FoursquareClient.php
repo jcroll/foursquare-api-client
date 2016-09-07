@@ -51,11 +51,23 @@ class FoursquareClient extends GuzzleClient
      *
      * @return $this
      */
-    public function addToken($token)
+    public function setToken($token)
     {
         $this->getHttpClient()->setDefaultOption('query/oauth_token', $token);
 
         return $this;
+    }
+
+    /**
+     * @param string $token
+     *
+     * @return $this
+     *
+     * @deprecated since version 2.1. Use setToken() instead.
+     */
+    public function addToken($token)
+    {
+        return $this->setToken($token);
     }
 
     /**

@@ -66,7 +66,7 @@ class FoursquareClientTest extends \PHPUnit_Framework_TestCase
         $token = 'secretToken';
 
         $client = FoursquareClient::factory($config);
-        $client->addToken($token);
+        $client->setToken($token);
 
         $defaultOptions = $client->getHttpClient()->getDefaultOption('query');
 
