@@ -31,6 +31,7 @@ This package is compatible with different versions of Guzzle (see below):
 |----------------|---------------------------|
 | ~3             | ~1                        |
 | ~4, ~5         | ~2                        |
+| ~6             | ~3                        |
 
 ### Composer example
 

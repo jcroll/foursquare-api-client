@@ -5,6 +5,7 @@ namespace Jcroll\FoursquareApiClient\Client;
 use GuzzleHttp\Command\Guzzle\Description;
 use GuzzleHttp\Command\Guzzle\GuzzleClient;
 use GuzzleHttp\Client;
+use GuzzleHttp\Command\ServiceClient;
 
 class FoursquareClient extends GuzzleClient
 {
@@ -53,7 +54,18 @@ class FoursquareClient extends GuzzleClient
      */
     public function setToken($token)
     {
-        $this->getHttpClient()->setDefaultOption('query/oauth_token', $token);
+        $httpClient  = $this->getHttpClient();
+        $config      = $httpClient->getConfig();
+
+        $config['defaults']['query']['oauth_token'] = $token;
+
+        // Guzzle 6 no longer allows changing the config of an already
+        // instantiated client so this is my solution which does not
+        // break the existing api of this library.
+        $reflectionClass    = new \ReflectionClass(ServiceClient::class);
+        $reflectionProperty = $reflectionClass->getProperty('httpClient');
+        $reflectionProperty->setAccessible(true);
+        $reflectionProperty->setValue($this, new Client($config));
 
         return $this;
     }
