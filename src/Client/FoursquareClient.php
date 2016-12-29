@@ -54,20 +54,7 @@ class FoursquareClient extends GuzzleClient
      */
     public function setToken($token)
     {
-        $httpClient  = $this->getHttpClient();
-        $config      = $httpClient->getConfig();
-
-        $config['defaults']['query']['oauth_token'] = $token;
-
-        // Guzzle 6 no longer allows changing the config of an already
-        // instantiated client so this is my solution which does not
-        // break the existing api of this library.
-        $reflectionClass    = new \ReflectionClass(ServiceClient::class);
-        $reflectionProperty = $reflectionClass->getProperty('httpClient');
-        $reflectionProperty->setAccessible(true);
-        $reflectionProperty->setValue($this, new Client($config));
-
-        return $this;
+        return $this->setConfigOption('oauth_token', $token);
     }
 
     /**
@@ -93,9 +80,7 @@ class FoursquareClient extends GuzzleClient
     {
         static::validateMode($mode);
 
-        $this->getHttpClient()->setDefaultOption('query/m', $mode);
-
-        return $this;
+        return $this->setConfigOption('m', $mode);
     }
 
     /**
@@ -130,5 +115,29 @@ class FoursquareClient extends GuzzleClient
         if (!in_array($mode, $modes)) {
             throw new \InvalidArgumentException('Acceptable values for "mode" are "foursquare" or "swarm".');
         }
+    }
+
+    /**
+     * @param string $key
+     * @param string $value
+     *
+     * @return $this
+     */
+    private function setConfigOption($key, $value)
+    {
+        $httpClient  = $this->getHttpClient();
+        $config      = $httpClient->getConfig();
+
+        $config['defaults']['query'][$key] = $value;
+
+        // Guzzle 6 no longer allows changing the config of an already
+        // instantiated client so this is my solution which does not
+        // break the existing api of this library.
+        $reflectionClass    = new \ReflectionClass(ServiceClient::class);
+        $reflectionProperty = $reflectionClass->getProperty('httpClient');
+        $reflectionProperty->setAccessible(true);
+        $reflectionProperty->setValue($this, new Client($config));
+
+        return $this;
     }
 }
