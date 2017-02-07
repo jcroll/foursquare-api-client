@@ -28,23 +28,20 @@ class FoursquareClient extends GuzzleClient
         static::validateVersion($version);
         static::validateMode($mode);
 
-        $client = new Client([
-            'base_url' => 'https://api.foursquare.com/v2/',
-            'defaults' => [
-                'query' => [
-                    'client_id'     => $config['client_id'],
-                    'client_secret' => $config['client_secret'],
-                    'v'             => $version,
-                    'm'             => $mode,
-                ],
-            ]
-        ]);
+        $client = new Client();
 
         $directory   = $version >= 20160901 ? 20160901 : 20130707;
         $contents    = file_get_contents(sprintf('%s/../Resources/config/%s/client.json', __DIR__, $directory));
         $description = new Description(json_decode($contents, true));
 
-        return new static($client, $description);
+        return new static($client, $description, null, null, null, [
+            'defaults' => [
+                    'client_id'     => $config['client_id'],
+                    'client_secret' => $config['client_secret'],
+                    'v'             => $version,
+                    'm'             => $mode,
+            ]
+        ]);
     }
 
     /**
