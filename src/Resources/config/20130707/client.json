@@ -8,7 +8,32 @@
         }
     },
     "operations": {
+        "abstract.foursquare": {
+            "parameters": {
+                "client_id": {
+                    "location": "query",
+                    "description": "App client ID",
+                    "required": true
+                },
+                "client_secret": {
+                    "location": "query",
+                    "description": "App client secret",
+                    "required": true
+                } ,
+                "m": {
+                    "location": "query",
+                    "description": "Mode",
+                    "required": true
+                },
+                "v": {
+                    "location": "query",
+                    "description": "API version",
+                    "required": true
+                }
+            }
+        },
         "users": {
+            "extends" : "abstract.foursquare",
             "description": "Returns profile information for a given user, including selected badges and mayorships. The web profile for a user is visible at https://foursquare.com/user/USER_ID ",
             "httpMethod": "GET",
             "parameters": {
@@ -22,6 +47,7 @@
             "responseModel": "getResponse"
         },
         "users/leaderboard": {
+            "extends" : "abstract.foursquare",
             "description": "Returns the user's leaderboard.",
             "httpMethod": "GET",
             "parameters": {
@@ -34,12 +60,14 @@
             "responseModel": "getResponse"
         },
         "users/requests": {
+            "extends" : "abstract.foursquare",
             "description": "Shows a user the list of users with whom they have a pending friend request (i.e., someone tried to add the acting user as a friend, but the acting user has not accepted).",
             "httpMethod": "GET",
             "uri": "users/requests",
             "responseModel": "getResponse"
         },
         "users/search": {
+            "extends" : "abstract.foursquare",
             "description": "Helps a user locate friends.",
             "httpMethod": "GET|POST",
             "parameters": {
@@ -72,6 +100,7 @@
             "responseModel": "getResponse"
         },
         "users/badges": {
+            "extends" : "abstract.foursquare",
             "description": "Returns badges for a given user.",
             "extends": "users",
             "uri": "users/{user_id}/badges",
@@ -263,6 +292,7 @@
             "responseModel": "getResponse"
         },
         "users/update": {
+            "extends" : "abstract.foursquare",
             "description": "Updates the user's profile photo.",
             "httpMethod": "POST",
             "parameters": {
@@ -275,6 +305,7 @@
             "responseModel": "getResponse"
         },
         "venues": {
+            "extends" : "abstract.foursquare",
             "description": "Gives details about a venue, including location, mayorship, tags, tips, specials, and category. ",
             "httpMethod": "GET",
             "parameters": {
@@ -288,6 +319,7 @@
             "responseModel": "getResponse"
         },
         "venues/add": {
+            "extends" : "abstract.foursquare",
             "description": "Allows users to add a new venue.",
             "httpMethod": "POST",
             "parameters": {
@@ -354,12 +386,14 @@
             "responseModel": "getResponse"
         },
         "venues/categories": {
+            "extends" : "abstract.foursquare",
             "description": "Returns a hierarchical list of categories applied to venues.",
             "httpMethod": "GET",
             "uri": "venues/categories",
             "responseModel": "getResponse"
         },
         "venues/explore": {
+            "extends" : "abstract.foursquare",
             "description": "Returns a list of recommended venues near the current location. ",
             "httpMethod": "GET",
             "parameters": {
@@ -432,6 +466,7 @@
             "responseModel": "getResponse"
         },
         "venues/managed": {
+            "extends" : "abstract.foursquare",
             "description": "Get a list of venues the current user manages.",
             "httpMethod": "GET",
             "parameters": {
@@ -448,6 +483,7 @@
             "responseModel": "getResponse"
         },
         "venues/search": {
+            "extends" : "abstract.foursquare",
             "description": "Returns a list of venues near the current location, optionally matching a search term. ",
             "httpMethod": "GET",
             "parameters": {
@@ -516,6 +552,7 @@
             "responseModel": "getResponse"
         },
         "venues/suggestcompletion": {
+            "extends" : "abstract.foursquare",
             "description": "Returns a list of mini-venues partially matching the search term, near the location.",
             "httpMethod": "GET",
             "parameters": {
@@ -554,6 +591,7 @@
             "responseModel": "getResponse"
         },
         "venues/timeseries": {
+            "extends" : "abstract.foursquare",
             "description": "Get daily venue stats for a list of venues over a time range.",
             "httpMethod": "GET",
             "parameters": {
@@ -579,6 +617,7 @@
             "responseModel": "getResponse"
         },
         "venues/trending": {
+            "extends" : "abstract.foursquare",
             "description": "Returns a list of venues near the current location with the most people currently checked in. ",
             "httpMethod": "GET",
             "parameters": {
@@ -930,6 +969,7 @@
             "responseModel": "getResponse"
         },
         "venuegroups": {
+            "extends" : "abstract.foursquare",
             "description": "Get venue group details.",
             "httpMethod": "GET",
             "parameters": {
@@ -943,6 +983,7 @@
             "responseModel": "getResponse"
         },
         "venuegroups/add": {
+            "extends" : "abstract.foursquare",
             "description": "Create a venue group. If the venueId parameter is specified, then the endpoint will add the specified venues to the venue group. If it is not possible to add all of the specified venues to the group, then creation of the venue group will fail entirely.",
             "httpMethod": "POST",
             "parameters": {
@@ -967,6 +1008,7 @@
             "responseModel": "getResponse"
         },
         "venuegroups/list": {
+            "extends" : "abstract.foursquare",
             "description": "List all venue groups owned by the user.",
             "httpMethod": "POST",
             "uri": "venuegroups/list",
@@ -1090,6 +1132,7 @@
             "responseModel": "getResponse"
         },
         "checkins": {
+            "extends" : "abstract.foursquare",
             "description": "Get details of a checkin.",
             "httpMethod": "GET",
             "parameters": {
@@ -1107,6 +1150,7 @@
             "responseModel": "getResponse"
         },
         "checkins/add": {
+            "extends" : "abstract.foursquare",
             "description": "Allows the acting user to check in to a place.",
             "httpMethod": "POST",
             "parameters": {
@@ -1160,6 +1204,7 @@
             "responseModel": "getResponse"
         },
         "checkins/recent": {
+            "extends" : "abstract.foursquare",
             "description": "Returns a list of recent checkins from friends.",
             "httpMethod": "GET",
             "parameters": {
@@ -1238,6 +1283,7 @@
             "responseModel": "getResponse"
         },
         "tips": {
+            "extends" : "abstract.foursquare",
             "description": "Gives details about a tip, including which users (especially friends) have marked the tip to-do.",
             "httpMethod": "GET",
             "parameters": {
@@ -1251,6 +1297,7 @@
             "responseModel": "getResponse"
         },
         "tips/add": {
+            "extends" : "abstract.foursquare",
             "description": "Allows you to add a new tip at a venue.",
             "httpMethod": "POST",
             "parameters": {
@@ -1279,6 +1326,7 @@
             "responseModel": "getResponse"
         },
         "tips/search": {
+            "extends" : "abstract.foursquare",
             "description": "Returns a list of tips near the area specified. ",
             "httpMethod": "GET",
             "parameters": {
@@ -1383,6 +1431,7 @@
             "responseModel": "getResponse"
         },
         "lists": {
+            "extends" : "abstract.foursquare",
             "description": "Gives details about a list.",
             "httpMethod": "GET",
             "parameters": {
@@ -1421,6 +1470,7 @@
             "responseModel": "getResponse"
         },
         "lists/add": {
+            "extends" : "abstract.foursquare",
             "description": "Allows users to create a new list.",
             "httpMethod": "POST",
             "parameters": {
@@ -1449,6 +1499,7 @@
             "responseModel": "getResponse"
         },
         "lists/followers": {
+            "extends" : "abstract.foursquare",
             "description": "Returns a count and items of users following this list.",
             "httpMethod": "POST",
             "parameters": {
@@ -1462,6 +1513,7 @@
             "responseModel": "getResponse"
         },
         "lists/saves": {
+            "extends" : "abstract.foursquare",
             "description": "Returns friends and a total count of users who have saved this list.",
             "httpMethod": "GET",
             "parameters": {
@@ -1687,6 +1739,7 @@
             "responseModel": "getResponse"
         },
         "updates": {
+            "extends" : "abstract.foursquare",
             "httpMethod": "GET",
             "parameters": {
                 "update_id": {
@@ -1699,6 +1752,7 @@
             "responseModel": "getResponse"
         },
         "updates/notifications": {
+            "extends" : "abstract.foursquare",
             "description": "Retrieve a user's notification tray notifications",
             "httpMethod": "GET",
             "parameters": {
@@ -1712,6 +1766,7 @@
             "responseModel": "getResponse"
         },
         "updates/marknotificationsread": {
+            "extends" : "abstract.foursquare",
             "description": "Mark notification tray notifications as read up, to a certain timestamp.",
             "httpMethod": "POST",
             "parameters": {
@@ -1725,6 +1780,7 @@
             "responseModel": "getResponse"
         },
         "photos": {
+            "extends" : "abstract.foursquare",
             "description": "Get details of a photo.",
             "httpMethod": "GET",
             "parameters": {
@@ -1738,6 +1794,7 @@
             "responseModel": "getResponse"
         },
         "photos/add": {
+            "extends" : "abstract.foursquare",
             "description": "Allows users to add a new photo to a checkin, tip, venue, or page update in general.",
             "httpMethod": "POST",
             "parameters": {
@@ -1811,6 +1868,7 @@
             "responseModel": "getResponse"
         },
         "settings": {
+            "extends" : "abstract.foursquare",
             "description": "Returns a setting for the acting user.",
             "httpMethod": "GET",
             "parameters": {
@@ -1824,12 +1882,14 @@
             "responseModel": "getResponse"
         },
         "settings/all": {
+            "extends" : "abstract.foursquare",
             "description": "Returns the settings of the acting user.",
             "httpMethod": "GET",
             "uri": "settings/all",
             "responseModel": "getResponse"
         },
         "settings/set": {
+            "extends" : "abstract.foursquare",
             "description": "Change a setting for the given user.",
             "httpMethod": "POST",
             "parameters": {
@@ -1848,6 +1908,7 @@
             "responseModel": "getResponse"
         },
         "specials": {
+            "extends" : "abstract.foursquare",
             "description": "Gives details about a special, including text and whether it is unlocked for the current or provided user.",
             "httpMethod": "GET",
             "parameters": {
@@ -1871,6 +1932,7 @@
             "responseModel": "getResponse"
         },
         "specials/add": {
+            "extends" : "abstract.foursquare",
             "description": "Allows you to create a new special.",
             "httpMethod": "POST",
             "parameters": {
@@ -1929,6 +1991,7 @@
             "responseModel": "getResponse"
         },
         "specials/list": {
+            "extends" : "abstract.foursquare",
             "description": "List available specials.",
             "httpMethod": "GET",
             "parameters": {
@@ -1947,6 +2010,7 @@
             "responseModel": "getResponse"
         },
         "specials/search": {
+            "extends" : "abstract.foursquare",
             "description": "Returns a list of specials near the current location.",
             "httpMethod": "GET",
             "parameters": {
@@ -1985,6 +2049,7 @@
             "responseModel": "getResponse"
         },
         "specials/configuration": {
+            "extends" : "abstract.foursquare",
             "description": "Get special configuration details.",
             "httpMethod": "GET",
             "parameters": {
@@ -1998,6 +2063,7 @@
             "responseModel": "getResponse"
         },
         "specials/flag": {
+            "extends" : "abstract.foursquare",
             "description": "Allows users to indicate a Special is improper in some way.",
             "httpMethod": "POST",
             "parameters": {
@@ -2026,6 +2092,7 @@
             "responseModel": "getResponse"
         },
         "specials/retire": {
+            "extends" : "abstract.foursquare",
             "description": "Retire a special. Retired specials will not show up in the list of specials and cannot be assigned to a group. Also ends any active campaigns associated with the special.",
             "httpMethod": "POST",
             "parameters": {
@@ -2039,6 +2106,7 @@
             "responseModel": "getResponse"
         },
         "campaigns": {
+            "extends" : "abstract.foursquare",
             "description": "Get details of a campaign.",
             "httpMethod": "GET",
             "parameters": {
@@ -2052,6 +2120,7 @@
             "responseModel": "getResponse"
         },
         "campaigns/add": {
+            "extends" : "abstract.foursquare",
             "description": "Create a campaign. The special must be started in order for it to be visible to users. Homes and Offices are not allowed to run specials, so an attempt to add a campaign on such a venue will result in an error.",
             "httpMethod": "POST",
             "parameters": {
@@ -2090,6 +2159,7 @@
             "responseModel": "getResponse"
         },
         "campaigns/list": {
+            "extends" : "abstract.foursquare",
             "description": "List all campaigns matching the given criteria.",
             "httpMethod": "GET",
             "parameters": {
@@ -2113,6 +2183,7 @@
             "responseModel": "getResponse"
         },
         "campaigns/timeseries": {
+            "extends" : "abstract.foursquare",
             "description": "Get daily campaign stats over a given time range.",
             "httpMethod": "GET",
             "parameters": {
@@ -2136,6 +2207,7 @@
             "responseModel": "getResponse"
         },
         "campaigns/delete": {
+            "extends" : "abstract.foursquare",
             "description": "Delete a campaign that has never been activated.",
             "httpMethod": "POST",
             "parameters": {
@@ -2149,6 +2221,7 @@
             "responseModel": "getResponse"
         },
         "campaigns/end": {
+            "extends" : "abstract.foursquare",
             "description": "End a campaign.",
             "httpMethod": "POST",
             "parameters": {
@@ -2162,6 +2235,7 @@
             "responseModel": "getResponse"
         },
         "campaigns/start": {
+            "extends" : "abstract.foursquare",
             "description": "Start a campaign.",
             "httpMethod": "POST",
             "parameters": {
@@ -2180,6 +2254,7 @@
             "responseModel": "getResponse"
         },
         "events": {
+            "extends" : "abstract.foursquare",
             "description": "Get details of a event.",
             "httpMethod": "GET",
             "parameters": {
@@ -2193,12 +2268,14 @@
             "responseModel": "getResponse"
         },
         "events/categories": {
+            "extends" : "abstract.foursquare",
             "description": "Returns a hierarchical list of categories applied to events. ",
             "httpMethod": "GET",
             "uri": "events/categories",
             "responseModel": "getResponse"
         },
         "events/search": {
+            "extends" : "abstract.foursquare",
             "description": "This is an experimental API and subject to change or breakage.",
             "httpMethod": "GET",
             "parameters": {
@@ -2222,6 +2299,7 @@
             "responseModel": "getResponse"
         },
         "events/add": {
+            "extends" : "abstract.foursquare",
             "description": "Create an event for a venue that you manage. You can see all your events in the tools tab when you're managing your venue. They're on the calendar. Events show up when users view your venue on mobile or the web. Users can also check in to events and share with their friends what they're up to in the present moment, and look back to see what they did in the days of yore.",
             "httpMethod": "POST",
             "parameters": {
@@ -2250,6 +2328,7 @@
             "responseModel": "getResponse"
         },
         "pages": {
+            "extends" : "abstract.foursquare",
             "description": "Returns user details for a page. Will return error if user specified is not a page.",
             "httpMethod": "GET",
             "parameters": {
@@ -2263,6 +2342,7 @@
             "responseModel": "getResponse"
         },
         "pages/add": {
+            "extends" : "abstract.foursquare",
             "description": "Allows users to create a new page. The creating user is added as a manager of the new page.",
             "httpMethod": "POST",
             "parameters": {
@@ -2276,12 +2356,14 @@
             "responseModel": "getResponse"
         },
         "pages/managing": {
+            "extends" : "abstract.foursquare",
             "description": "Returns an array of the pages a user manages.",
             "httpMethod": "GET",
             "uri": "pages/managing",
             "responseModel": "getResponse"
         },
         "pages/search": {
+            "extends" : "abstract.foursquare",
             "description": "Returns a list of pages matching the search term.",
             "httpMethod": "GET",
             "parameters": {
@@ -2305,6 +2387,7 @@
             "responseModel": "getResponse"
         },
         "pages/timeseries": {
+            "extends" : "abstract.foursquare",
             "description": "Get daily venue stats for venues managed by a page over a time range.",
             "httpMethod": "GET",
             "parameters": {
@@ -2333,6 +2416,7 @@
             "responseModel": "getResponse"
         },
         "pages/venues": {
+            "extends" : "abstract.foursquare",
             "description": "Allows you to get the page's venues.",
             "httpMethod": "GET",
             "parameters": {
